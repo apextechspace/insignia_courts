@@ -1,0 +1,9 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+.thumbnail
+*.tmp
+
+# Environment and IDE
+.vscode/
+.idea/
