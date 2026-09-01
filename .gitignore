@@ -2,6 +2,9 @@
 .DS_Store
 Thumbs.db
 .thumbnail
+# Archives & Temp
+*.zip
+*.tar.gz
 *.tmp
 
 # Environment and IDE
