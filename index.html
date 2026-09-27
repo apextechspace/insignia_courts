@@ -1211,6 +1211,132 @@
     z-index: 2;
   }
 
+  /* Dual-Mode Drone Video & Interactive Enclave Map Grid */
+  .drone-split-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    min-height: 480px;
+    background: #180514;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (max-width: 900px) {
+    .drone-split-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .drone-map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 440px;
+    background: #140211;
+  }
+  .drone-map-iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 440px;
+    border: 0;
+    display: block;
+    filter: contrast(1.05) brightness(0.92);
+  }
+  .drone-mode-tab {
+    padding: 8px 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #FFFFFF;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Archivo', sans-serif;
+  }
+  .drone-mode-tab.tab-active {
+    background: #C4507E;
+    color: #FFFFFF;
+  }
+  .drone-mode-tab:hover {
+    background: #C4507E;
+    color: #FFFFFF;
+  }
+
+  /* Executive Workspace Spaces Carousel */
+  .space-carousel-box {
+    position: relative;
+    min-height: 480px;
+    background: #180514;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .space-pill-tab {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(20, 2, 17, 0.7);
+    color: #FFFFFF;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    font-family: 'Archivo', sans-serif;
+  }
+  .space-pill-tab:hover {
+    background: #C4507E;
+    border-color: #C4507E;
+    color: #FFFFFF;
+  }
+  .space-pill-tab.pill-active {
+    background: #C4507E;
+    border-color: #C4507E;
+    color: #FFFFFF;
+  }
+  .space-dash-pill {
+    width: 28px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .space-dash-pill:hover,
+  .space-dash-pill.dash-active {
+    background: #C4507E;
+    width: 42px;
+  }
+  .space-nav-arrow {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(20, 2, 17, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.18s ease;
+    font-size: 16px;
+    line-height: 1;
+    user-select: none;
+  }
+  .space-nav-arrow:hover {
+    background: #C4507E;
+    border-color: #C4507E;
+    transform: scale(1.06);
+  }
+
   /* ULTRA COMPACT MOBILE (<= 380px) */
   @media (max-width: 380px) {
     .nav-header-inner {
@@ -1969,7 +2095,7 @@
           </div>
         </a>
         <a href="#" onClick="{{ goWork }}" style="background:#F7F4F2;display:flex;flex-direction:column;color:#3C0031" style-hover="background:#FFFFFF">
-          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-work-card" shape="rect" src="https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="Coworking &mdash; desk or meeting room"></image-slot></div>
+          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-work-card" shape="rect" src="./assets/space.jpeg" placeholder="Coworking &mdash; desk or meeting room"></image-slot></div>
           <div style="padding:24px">
             <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">Work &amp; Meetings</h3>
             <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Our partner boutique coworking space is available to guests at preferred rates.</p>
@@ -1981,104 +2107,206 @@
   </section>
 
   <section id="drone-reel" style="border-bottom:2px solid #3C0031">
-    <div class="drone-viewport">
-      <!-- HTML5 Cinematic Flyover Video (Autoplays drone-view.mp4 if present with fallback poster) -->
-      <video id="ic-drone-video" autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:0">
-        <source src="/uploads/drone-view.mp4" type="video/mp4">
-        <source src="/drone-view.mp4" type="video/mp4">
-      </video>
+    <!-- View Switcher & Telemetry Bar -->
+    <div style="background:#20031B;border-bottom:1px solid rgba(255,255,255,0.15);padding:10px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);padding:5px 12px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#FFFFFF;font-weight:600">
+          <span style="width:7px;height:7px;border-radius:50%;background:#E74C3C;animation:pulseRec 1.6s infinite"></span>
+          <span>Abuja Flyover &middot; 4K UHD</span>
+        </span>
+        <span style="color:#E4A9C3;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500">
+          5 Tanba Street, Wuse II &middot; Plus Code: 3FH9+F52
+        </span>
+      </div>
 
-      <!-- Atmospheric Drone Motion Fallback Canvas & High-Quality Image Slot -->
-      <image-slot id="ic-aerial" class="{{ droneMotionClass }}" shape="rect" src="{{ aerialSrc }}" placeholder="Aerial &mdash; Insignia Courts, Wuse II from above (Cinematic Drone View)" style="position:relative;z-index:0;width:100%;height:100%;display:block"></image-slot>
+      <!-- Professional Mode Switcher: 4K Drone Video | Interactive Map | Split Dual View -->
+      <div style="display:inline-flex;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.25);border-radius:4px;overflow:hidden">
+        <button type="button" onClick="{{ setDroneVideoMode }}" class="drone-mode-tab {{ isDroneVideo ? 'tab-active' : '' }}" title="View 4K Drone Aerial Sequence">
+          <span>📹 4K Video Flyover</span>
+        </button>
+        <button type="button" onClick="{{ setDroneMapMode }}" class="drone-mode-tab {{ isDroneMap ? 'tab-active' : '' }}" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2)" title="View Interactive Satellite & Enclave Map">
+          <span>🗺️ Interactive Map</span>
+        </button>
+        <button type="button" onClick="{{ setDroneSplitMode }}" class="drone-mode-tab {{ isDroneSplit ? 'tab-active' : '' }}" title="View Video and Map Side-by-Side">
+          <span>◫ Dual View (Video + Map)</span>
+        </button>
+      </div>
+    </div>
 
-      <!-- Drone Reticle Crosshair Viewfinder -->
-      <svg class="drone-reticle" viewBox="0 0 100 100" fill="none" stroke="#FFFFFF" stroke-width="1.2">
-        <circle cx="50" cy="50" r="38" stroke-dasharray="4 6" opacity="0.6"/>
-        <line x1="50" y1="20" x2="50" y2="35"/>
-        <line x1="50" y1="65" x2="50" y2="80"/>
-        <line x1="20" y1="50" x2="35" y2="50"/>
-        <line x1="65" y1="50" x2="80" y2="50"/>
-        <circle cx="50" cy="50" r="3" fill="#FFFFFF" opacity="0.8"/>
-      </svg>
+    <!-- Mode 1: 4K Drone Video (Cinematic Immersive) -->
+    <sc-if value="{{ isDroneVideo }}" hint-placeholder-val="{{ true }}">
+      <div class="drone-viewport">
+        <!-- Real Abuja Drone Video Sequence with Fallbacks -->
+        <video id="ic-drone-video" autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1">
+          <source src="./assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
+          <source src="/assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
+          <source src="./drone-view.mp4" type="video/mp4">
+          <source src="/uploads/drone-view.mp4" type="video/mp4">
+        </video>
 
-      <!-- Interactive Drone Telemetry & Angle Controller Overlay -->
-      <div class="drone-hud-overlay">
-        <!-- Top Bar: Live REC + Angle Selectors & Flight Motion Toggle -->
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.25);padding:6px 12px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#FFFFFF;font-weight:600;backdrop-filter:blur(6px)">
-              <span style="width:7px;height:7px;border-radius:50%;background:#E74C3C;animation:pulseRec 1.6s infinite"></span>
-              <span>4K Drone &middot; Cinematic Flyover</span>
-            </span>
-            <span style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,0.85);background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px)">
-              Space &rarr; Abuja City Gate &rarr; 5 Tanba, Wuse II
-            </span>
+        <!-- Atmospheric Fallback Canvas -->
+        <image-slot id="ic-aerial" class="{{ droneMotionClass }}" shape="rect" src="{{ aerialSrc }}" placeholder="Aerial &mdash; Insignia Courts, Wuse II from above (Cinematic Drone View)" style="position:relative;z-index:0;width:100%;height:100%;display:block"></image-slot>
+
+        <!-- Drone Reticle Crosshair Viewfinder -->
+        <svg class="drone-reticle" viewBox="0 0 100 100" fill="none" stroke="#FFFFFF" stroke-width="1.2">
+          <circle cx="50" cy="50" r="38" stroke-dasharray="4 6" opacity="0.6"/>
+          <line x1="50" y1="20" x2="50" y2="35"/>
+          <line x1="50" y1="65" x2="50" y2="80"/>
+          <line x1="20" y1="50" x2="35" y2="50"/>
+          <line x1="65" y1="50" x2="80" y2="50"/>
+          <circle cx="50" cy="50" r="3" fill="#FFFFFF" opacity="0.8"/>
+        </svg>
+
+        <!-- Interactive Drone Telemetry & Angle Controller Overlay -->
+        <div class="drone-hud-overlay">
+          <!-- Top Bar: Rec & Motion Controls -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <span style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,0.85);background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px)">
+                Space &rarr; Abuja City Gate &rarr; 5 Tanba, Wuse II
+              </span>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <button type="button" onClick="{{ toggleDroneAudio }}" class="drone-btn-interactive" style="border:1px solid rgba(255,255,255,0.35);background:rgba(20,2,17,0.85);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;display:inline-flex;align-items:center;gap:7px;backdrop-filter:blur(6px)" style-hover="background:#C4507E;border-color:#C4507E" title="Toggle audio on video">
+                <span>{{ droneAudioLabel }}</span>
+              </button>
+
+              <button type="button" onClick="{{ toggleDroneMotion }}" class="drone-btn-interactive" style="border:1px solid rgba(255,255,255,0.35);background:rgba(20,2,17,0.85);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;display:inline-flex;align-items:center;gap:7px;backdrop-filter:blur(6px)" style-hover="background:#C4507E;border-color:#C4507E" title="Toggle cinematic drone flight sweep animation">
+                <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#27AE60"></span>
+                <span>Camera Sweep: {{ droneMotionLabel }}</span>
+              </button>
+
+              <div style="display:inline-flex;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.35);backdrop-filter:blur(6px)">
+                <button type="button" onClick="{{ setDrone1 }}" class="drone-btn-interactive" style="border:none;background:{{ drone1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 11px;font-weight:600" style-hover="background:#C4507E">01 Overhead</button>
+                <button type="button" onClick="{{ setDrone2 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ drone2Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 11px;font-weight:600" style-hover="background:#C4507E">02 Terraces</button>
+                <button type="button" onClick="{{ setDrone3 }}" class="drone-btn-interactive" style="border:none;background:{{ drone3Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 11px;font-weight:600" style-hover="background:#C4507E">03 Courtyard</button>
+              </div>
+            </div>
           </div>
 
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-            <button type="button" onClick="{{ toggleDroneMotion }}" class="drone-btn-interactive" style="border:1px solid rgba(255,255,255,0.35);background:rgba(20,2,17,0.85);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;display:inline-flex;align-items:center;gap:7px;backdrop-filter:blur(6px)" style-hover="background:#C4507E;border-color:#C4507E" title="Toggle cinematic drone flight sweep animation">
-              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#27AE60"></span>
-              <span>Camera Sweep: {{ droneMotionLabel }}</span>
-            </button>
+          <!-- Bottom Bar: Coordinates, Elevation, and Perspectives -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:9.5px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:4px">Plus Code 3FH9+F52 &middot; 5 Tanba, Wuse II</div>
+              <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(16px,1.6vw,22px);color:#FFFFFF;text-shadow:0 1px 4px rgba(0,0,0,0.9)">{{{ droneTitle }}}</div>
+            </div>
 
-            <div style="display:inline-flex;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.35);backdrop-filter:blur(6px)">
-              <button type="button" onClick="{{ setDrone1 }}" class="drone-btn-interactive" style="border:none;background:{{ drone1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 11px;font-weight:600" style-hover="background:#C4507E">01 Overhead</button>
-              <button type="button" onClick="{{ setDrone2 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ drone2Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 11px;font-weight:600" style-hover="background:#C4507E">02 Terraces</button>
-              <button type="button" onClick="{{ setDrone3 }}" class="drone-btn-interactive" style="border:none;background:{{ drone3Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 11px;font-weight:600" style-hover="background:#C4507E">03 Courtyard</button>
+            <div style="display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.92);background:rgba(20,2,17,0.85);padding:7px 14px;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px);flex-wrap:wrap">
+              <span>Alt: <strong>{{{ droneAlt }}}</strong></span>
+              <span style="opacity:0.4">&bull;</span>
+              <span>Gimbal: <strong>{{{ droneGimbal }}}</strong></span>
+              <span style="opacity:0.4">&bull;</span>
+              <span>Plus Code: <strong>3FH9+F52</strong></span>
+              <span style="opacity:0.4">&bull;</span>
+              <span>Optics: <strong>4K UHD HDR 60fps</strong></span>
             </div>
           </div>
         </div>
+      </div>
+    </sc-if>
 
-        <!-- Bottom Bar: Coordinates, Elevation, and Perspectives -->
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
-          <div>
-            <div style="font-size:9.5px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:4px">Plus Code 3FH9+F52 &middot; 5 Tanba, Wuse II</div>
-            <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(16px,1.6vw,22px);color:#FFFFFF;text-shadow:0 1px 4px rgba(0,0,0,0.9)">{{{ droneTitle }}}</div>
+    <!-- Mode 2: Interactive Enclave Map & Directions -->
+    <sc-if value="{{ isDroneMap }}" hint-placeholder-val="{{ false }}">
+      <div class="drone-map-container" style="min-height:500px;position:relative">
+        <iframe class="drone-map-iframe" src="https://maps.google.com/maps?q=5+Tanba+Street,+Wuse+II,+Abuja,+Nigeria&t=&z=15&ie=UTF8&iwloc=&output=embed" title="Insignia Courts Location Map" allowfullscreen></iframe>
+        
+        <!-- Floating Luxury Landmark & Proximity Card -->
+        <div style="position:absolute;bottom:24px;left:24px;max-width:440px;background:rgba(20,2,17,0.92);border:1px solid rgba(255,255,255,0.25);padding:24px;backdrop-filter:blur(10px);color:#FFFFFF;box-shadow:0 12px 36px rgba(0,0,0,0.5);z-index:4">
+          <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:8px">Enclave Coordinates &middot; Wuse II</div>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#FFFFFF">5 Tanba Street, Wuse II</h3>
+          <p style="font-size:13.5px;line-height:1.6;color:#E8D6DF;margin:0 0 16px">Tucked away on a quiet residential street, minutes from Abuja's major diplomatic and corporate hubs.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;font-size:11.5px;border-top:1px solid rgba(255,255,255,0.15);padding-top:12px">
+            <div><span style="color:#E4A9C3">CBD:</span> 7 mins</div>
+            <div><span style="color:#E4A9C3">Maitama:</span> 5 mins</div>
+            <div><span style="color:#E4A9C3">Dining Strip:</span> 2 mins</div>
+            <div><span style="color:#E4A9C3">Airport:</span> 35 mins</div>
           </div>
-
-          <div style="display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.92);background:rgba(20,2,17,0.85);padding:7px 14px;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px);flex-wrap:wrap">
-            <span>Alt: <strong>{{{ droneAlt }}}</strong></span>
-            <span style="opacity:0.4">&bull;</span>
-            <span>Gimbal: <strong>{{{ droneGimbal }}}</strong></span>
-            <span style="opacity:0.4">&bull;</span>
-            <span>Plus Code: <strong>3FH9+F52</strong></span>
-            <span style="opacity:0.4">&bull;</span>
-            <span>Optics: <strong>4K UHD HDR 60fps</strong></span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="https://maps.google.com/?q=5+Tanba+Street,+Wuse+II,+Abuja" target="_blank" rel="noopener" style="background:#C4507E;color:#FFFFFF;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;padding:10px 16px;text-decoration:none;display:inline-flex;align-items:center;gap:6px" style-hover="background:#FFFFFF;color:#3C0031">
+              Open in Google Maps &rarr;
+            </a>
+            <button type="button" onClick="{{ setDroneVideoMode }}" style="border:1px solid rgba(255,255,255,0.35);background:transparent;color:#FFFFFF;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;padding:10px 16px;cursor:pointer" style-hover="background:rgba(255,255,255,0.15)">
+              Watch 4K Video Flyover
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </sc-if>
+
+    <!-- Mode 3: Dual View (Video + Map Side-by-Side) -->
+    <sc-if value="{{ isDroneSplit }}" hint-placeholder-val="{{ false }}">
+      <div class="drone-split-grid">
+        <!-- Left: 4K Drone Video -->
+        <div style="position:relative;min-height:480px;background:#180514;overflow:hidden">
+          <video autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1">
+            <source src="./assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
+            <source src="/assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
+            <source src="./drone-view.mp4" type="video/mp4">
+          </video>
+          <div style="position:absolute;top:16px;left:16px;z-index:3;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.22);padding:6px 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#FFFFFF;font-weight:600">
+            <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#E74C3C;animation:pulseRec 1.6s infinite;margin-right:6px"></span>
+            4K Flyover Sequence
+          </div>
+        </div>
+
+        <!-- Right: Interactive Map -->
+        <div class="drone-map-container" style="min-height:480px;position:relative;border-left:2px solid #3C0031">
+          <iframe class="drone-map-iframe" src="https://maps.google.com/maps?q=5+Tanba+Street,+Wuse+II,+Abuja,+Nigeria&t=&z=15&ie=UTF8&iwloc=&output=embed" title="Insignia Courts Location Map" allowfullscreen></iframe>
+          <div style="position:absolute;bottom:16px;left:16px;right:16px;background:rgba(20,2,17,0.9);border:1px solid rgba(255,255,255,0.2);padding:14px 18px;backdrop-filter:blur(8px);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;z-index:4">
+            <div>
+              <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E4A9C3">Enclave Address</div>
+              <div style="font-size:13px;color:#FFFFFF;font-weight:500">5 Tanba Street, Wuse II, Abuja</div>
+            </div>
+            <a href="https://maps.google.com/?q=5+Tanba+Street,+Wuse+II,+Abuja" target="_blank" rel="noopener" style="background:#C4507E;color:#FFFFFF;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;padding:8px 14px;text-decoration:none" style-hover="background:#FFFFFF;color:#3C0031">
+              Directions &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </sc-if>
   </section>
 
-  <!-- Dedicated Homepage Workspace & Coworking Section -->
+  <!-- Dedicated Homepage Workspace & Coworking Section (Clean Editorial Photo Showcase) -->
   <section id="home-workspace-feature" style="border-bottom:2px solid #3C0031;background:#F7F4F2">
     <div class="grid-2-equal">
-      <div style="position:relative;min-height:440px;background:#180514;overflow:hidden">
-        <!-- Interactive Workspace Preview Media with Video Support -->
-        <video autoplay muted loop playsinline poster="https://images.pexels.com/photos/6480199/pexels-photo-6480199.jpeg?auto=compress&cs=tinysrgb&w=1600" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0">
-          <source src="./workspace-view.mp4" type="video/mp4">
-          <source src="./uploads/workspace-view.mp4" type="video/mp4">
-        </video>
-        <image-slot id="ic-home-work-preview" shape="rect" src="https://images.pexels.com/photos/6480199/pexels-photo-6480199.jpeg?auto=compress&cs=tinysrgb&w=1600" placeholder="Executive Coworking & Boardrooms &mdash; Wuse II, Abuja" style="position:relative;z-index:0;opacity:0.95"></image-slot>
+      <!-- Executive Workspace Clean Photo Carousel -->
+      <div class="space-carousel-box" style="position:relative;min-height:500px;background:#180514;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+        <!-- Active Space Slide Image with Soft Vignette -->
+        <div style="position:absolute;inset:0;z-index:1;overflow:hidden">
+          <img src="{{ curSpace.src }}" alt="{{ curSpace.title }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,2,17,0.4) 0%, transparent 45%, rgba(20,2,17,0.82) 100%);pointer-events:none"></div>
+        </div>
 
-        <!-- Media Badge Overlay -->
-        <div style="position:absolute;top:20px;left:20px;z-index:2;display:flex;flex-direction:column;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(20,2,17,0.85);color:#FFFFFF;padding:6px 12px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
+        <!-- Top Bar: Minimal Status Badge & Photo Counter -->
+        <div style="position:relative;z-index:3;padding:24px 26px;display:flex;justify-content:space-between;align-items:center">
+          <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(20,2,17,0.75);color:#FFFFFF;padding:6px 14px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
             <span style="width:6px;height:6px;border-radius:50%;background:#27AE60"></span>
             <span>Resident Preferred Partner</span>
           </span>
+
+          <span style="background:rgba(20,2,17,0.75);color:#E4A9C3;font-size:10.5px;letter-spacing:0.18em;font-weight:600;padding:6px 14px;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
+            {{ spaceCounter }}
+          </span>
         </div>
 
-        <div style="position:absolute;bottom:20px;left:20px;right:20px;z-index:2;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.22);padding:14px 18px;backdrop-filter:blur(8px);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-          <div style="font-size:11px;color:#FFFFFF;letter-spacing:0.12em;text-transform:uppercase">
-            <span style="color:#E4A9C3;font-weight:600">Enclave Workspace</span> &middot; 3 min walk or car
+        <!-- Bottom Bar: Minimal Caption & Sleek Auto-Slide Progress Indicators -->
+        <div style="position:relative;z-index:3;padding:24px 26px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+          <div>
+            <div style="font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;font-weight:600;margin-bottom:4px">{{ curSpace.tag }}</div>
+            <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:19px;color:#FFFFFF;line-height:1.2">{{ curSpace.title }}</div>
           </div>
-          <button type="button" onClick="{{ goWork }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;cursor:pointer" style-hover="background:#FFFFFF;color:#3C0031">
-            Tour Workspace &rarr;
-          </button>
+
+          <!-- Sleek Auto-Slide Progress Indicators (Pure Visual Rhythm) -->
+          <div style="display:flex;align-items:center;gap:6px">
+            <sc-for list="{{ spaces }}" as="sp">
+              <span class="space-dash-pill {{ sp.active ? 'dash-active' : '' }}"></span>
+            </sc-for>
+          </div>
         </div>
       </div>
 
+      <!-- Right Column: Editorial & Executive Facility Features -->
       <div class="container-pad" style="background:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;justify-content:center">
         <div style="font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:#9E3560;margin-bottom:14px;font-weight:600">
           Executive Facilities &middot; Wuse II Enclave
@@ -2086,12 +2314,12 @@
         <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,46px);line-height:1.1;margin:0 0 16px;color:#3C0031">
           Work, meet, and host with quiet precision.
         </h2>
-        <p style="font-size:15px;line-height:1.65;color:#5C3A52;margin:0 0 24px;max-width:54ch">
+        <p style="font-size:15px;line-height:1.65;color:#5C3A52;margin:0 0 28px;max-width:52ch">
           Whether you are holding a confidential diplomatic briefing, running remote executive sessions, or need a focused private desk between engagements, our partner boutique coworking space provides seamless business infrastructure steps from your residence door.
         </p>
 
         <!-- Key workspace specs pills -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-bottom:34px">
           <div style="border-left:2px solid #C4507E;padding-left:12px">
             <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:15px;color:#3C0031">100 Mbps Low Latency</div>
             <div style="font-size:12px;color:#8A6577">Dedicated dual-redundant fiber</div>
@@ -2106,13 +2334,13 @@
           </div>
           <div style="border-left:2px solid #C4507E;padding-left:12px">
             <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:15px;color:#3C0031">Preferred Resident Rates</div>
-            <div style="font-size:12px;color:#8A6577">Complimentary day passes on long stays</div>
+            <div style="font-size:12px;color:#8A6577">Direct room folio billing</div>
           </div>
         </div>
 
         <div style="display:flex;gap:14px;flex-wrap:wrap">
-          <button type="button" onClick="{{ goWork }}" style="border:0;background:#3C0031;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 26px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#C4507E">
-            Explore Workspace &amp; Rates &rarr;
+          <button type="button" onClick="{{ goWork }}" style="border:0;background:#3C0031;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#C4507E">
+            Explore Workspace &amp; 4K Tour &rarr;
           </button>
           <button type="button" onClick="{{ openEnquiry }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#F7F4F2">
             Reserve Workspace Time
@@ -2394,7 +2622,7 @@
 <sc-if value="{{ isWork }}" hint-placeholder-val="{{ false }}">
 <main>
   <section class="grid-2-equal">
-    <div style="position:relative;min-height:360px;background:#EDE7E6"><image-slot id="ic-work-hero" shape="rect" src="https://images.pexels.com/photos/6480199/pexels-photo-6480199.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" placeholder="Executive Coworking &mdash; Wuse II, Abuja"></image-slot></div>
+    <div style="position:relative;min-height:360px;background:#EDE7E6"><image-slot id="ic-work-hero" shape="rect" src="./assets/space.jpeg" placeholder="Executive Coworking &mdash; Wuse II, Abuja"></image-slot></div>
     <div class="container-pad" style="background:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;justify-content:center">
       <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Work &amp; Meetings &middot; Preferred Resident Rates</div>
       <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0 0 22px;color:#3C0031">Executive Coworking<br>&amp; Meeting Suites</h1>
@@ -2447,16 +2675,19 @@
     </div>
   </section>
 
-  <!-- Workspace Video Reel Section (Ready for workspace video upload) -->
+  <!-- Workspace Video Reel Section (Gliding 4K Walkthrough) -->
   <section id="workspace-reel" style="border-bottom:2px solid #3C0031;background:#180514">
     <div class="drone-viewport" style="min-height:380px">
-      <!-- HTML5 Workspace Video (Autoplays workspace-view.mp4 with fallback poster) -->
-      <video id="ic-work-video" autoplay muted loop playsinline poster="https://images.pexels.com/photos/6480199/pexels-photo-6480199.jpeg?auto=compress&cs=tinysrgb&w=1600" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:0">
+      <!-- HTML5 Workspace Video (Plays continuously on infinite loop) -->
+      <video id="ic-work-video" autoplay muted loop playsinline poster="./assets/space4.jpeg" onended="this.currentTime=0; this.play();" onpause="if (this.currentTime >= (this.duration || 1) - 0.5) { this.currentTime = 0; this.play(); }" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1">
+        <source src="./assets/Camera_gliding_through_modern_of…_20260927135450.mp4" type="video/mp4">
+        <source src="/assets/Camera_gliding_through_modern_of…_20260927135450.mp4" type="video/mp4">
+        <source src="./assets/Camera_gliding_through_modern_of%E2%80%A6_20260927135450.mp4" type="video/mp4">
         <source src="./workspace-view.mp4" type="video/mp4">
         <source src="./uploads/workspace-view.mp4" type="video/mp4">
       </video>
 
-      <image-slot id="ic-work-reel-slot" shape="rect" src="https://images.pexels.com/photos/6480199/pexels-photo-6480199.jpeg?auto=compress&cs=tinysrgb&w=1600" placeholder="Workspace &amp; Boardrooms &mdash; Wuse II, Abuja" style="position:relative;z-index:0;opacity:0.96"></image-slot>
+      <image-slot id="ic-work-reel-slot" shape="rect" src="./assets/space4.jpeg" placeholder="Workspace &amp; Boardrooms &mdash; Wuse II, Abuja" style="position:relative;z-index:0;opacity:0.96"></image-slot>
 
       <div class="drone-hud-overlay">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
@@ -2468,6 +2699,12 @@
             <span style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px)">
               Executive Desks &middot; Private Suites &middot; 12-Seat Boardroom
             </span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <button type="button" onClick="{{ toggleWorkAudio }}" class="drone-btn-interactive" style="border:1px solid rgba(255,255,255,0.35);background:rgba(20,2,17,0.85);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;display:inline-flex;align-items:center;gap:7px;backdrop-filter:blur(6px);cursor:pointer" style-hover="background:#C4507E;border-color:#C4507E" title="Toggle audio on workspace video">
+              <span>{{ workAudioLabel }}</span>
+            </button>
           </div>
         </div>
 
@@ -3162,14 +3399,172 @@ const BRANCH2_ANGLES = {
   }
 };
 
+const SPACES = [
+  {
+    key: 0,
+    src: './assets/space.jpeg',
+    tag: 'Workstations',
+    label: '01 Workstations',
+    title: 'Executive Workstations & Acoustic Pods',
+    desc: 'Ergonomic leather swivel seating, acoustic privacy dividers, and warm overhead pendant illumination.'
+  },
+  {
+    key: 1,
+    src: './assets/space2.jpeg',
+    tag: 'Private Office',
+    label: '02 Suite Wing',
+    title: 'Private Executive Suite Entrance',
+    desc: 'Direct access to sound-isolated meeting chambers, reception foyer, and natural light courtyard.'
+  },
+  {
+    key: 2,
+    src: './assets/space3.jpeg',
+    tag: 'Focus Station',
+    label: '03 Focus Pod',
+    title: 'Dedicated Workstations with Lockable Cabinetry',
+    desc: 'Dedicated private desks with personal lockable storage, integrated desktop organizers, and dual-redundant fiber.'
+  },
+  {
+    key: 3,
+    src: './assets/space4.jpeg',
+    tag: 'Lounge Wing',
+    label: '04 Gallery Lounge',
+    title: 'Resident Lounge & Hydration Gallery',
+    desc: 'Curated modern wall art, artisan coffee & tea station, and comfortable lounge seating for confidential calls.'
+  },
+  {
+    key: 4,
+    src: './assets/space5.jpeg',
+    tag: 'Full Pod',
+    label: '05 Full Quad',
+    title: 'Four-Desk Corporate Pod Quad',
+    desc: 'Integrated four-person team pod arranged for visiting diplomatic delegations and executive management teams.'
+  }
+];
+
 class Component extends DCLogic {
   state = {
     location: 'wuse',
     page: 'home', roomKey: 'atala', enquiryOpen: false, menuOpen: false, branch2ModalOpen: false,
-    droneAngle: 1, droneMotion: true,
+    droneAngle: 1, droneMotion: true, droneMode: 'video', droneMuted: true,
     branch2Angle: 1,
+    spaceSlide: 0,
+    workMediaMode: 'video',
+    workVideoMuted: true,
     f: { name:'', contact:'', checkin:'', checkout:'', room:'No preference', note:'' },
     waitlist: { name:'', contact:'', note:'', suitePref:'No preference' }
+  };
+
+  spaceTimer = null;
+
+  constructor(props) {
+    super(props);
+    this.startSpaceAutoSlide();
+  }
+
+  componentDidMount() {
+    this.startSpaceAutoSlide();
+    this.setupVideoLoop();
+  }
+
+  componentDidUpdate() {
+    this.setupVideoLoop();
+  }
+
+  componentWillUnmount() {
+    this.stopSpaceAutoSlide();
+  }
+
+  setupVideoLoop = () => {
+    if (typeof document === 'undefined') return;
+    const workVid = document.getElementById('ic-work-video');
+    if (workVid) {
+      workVid.loop = true;
+      workVid.playsInline = true;
+      if (!workVid.__loopBound) {
+        workVid.__loopBound = true;
+        const replay = () => {
+          try {
+            workVid.currentTime = 0;
+            const p = workVid.play();
+            if (p && p.catch) p.catch(() => {});
+          } catch (err) {}
+        };
+        workVid.addEventListener('ended', replay);
+        workVid.addEventListener('pause', () => {
+          if (workVid.duration && workVid.currentTime >= workVid.duration - 0.5) {
+            replay();
+          }
+        });
+      }
+      if (workVid.paused) {
+        try {
+          const p = workVid.play();
+          if (p && p.catch) p.catch(() => {});
+        } catch (e) {}
+      }
+    }
+  };
+
+  startSpaceAutoSlide = () => {
+    this.stopSpaceAutoSlide();
+    if (typeof window !== 'undefined') {
+      this.spaceTimer = window.setInterval(() => {
+        if (this.state.page === 'home' && (this.state.location || 'wuse') === 'wuse') {
+          this.setState(s => ({
+            spaceSlide: ((s.spaceSlide || 0) + 1) % SPACES.length
+          }));
+        }
+      }, 3600);
+    }
+  };
+
+  stopSpaceAutoSlide = () => {
+    if (this.spaceTimer) {
+      if (typeof window !== 'undefined') window.clearInterval(this.spaceTimer);
+      this.spaceTimer = null;
+    }
+  };
+
+  setWorkMediaMode = (mode) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ workMediaMode: mode });
+  };
+
+  toggleWorkAudio = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const vids = typeof document !== 'undefined' ? [document.getElementById('ic-home-work-video'), document.getElementById('ic-work-video')].filter(Boolean) : [];
+    vids.forEach(v => { v.muted = !v.muted; });
+    this.setState(s => ({ workVideoMuted: !s.workVideoMuted }));
+  };
+
+  nextSpaceSlide = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState(s => ({ spaceSlide: ((s.spaceSlide || 0) + 1) % SPACES.length, workMediaMode: 'photo' }));
+  };
+
+  prevSpaceSlide = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState(s => ({ spaceSlide: ((s.spaceSlide || 0) - 1 + SPACES.length) % SPACES.length, workMediaMode: 'photo' }));
+  };
+
+  setSpaceSlide = (idx) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ spaceSlide: idx, workMediaMode: 'photo' });
+  };
+
+  setDroneMode = (mode) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ droneMode: mode });
+  };
+
+  toggleDroneAudio = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const vid = typeof document !== 'undefined' ? document.getElementById('ic-drone-video') : null;
+    if (vid) {
+      vid.muted = !vid.muted;
+      this.setState({ droneMuted: vid.muted });
+    }
   };
 
   switchToWuse = (e) => {
@@ -3216,7 +3611,12 @@ class Component extends DCLogic {
   go = (page, roomKey) => (e) => {
     if (e && e.preventDefault) e.preventDefault();
     this.setState(s => ({ location: 'wuse', page, roomKey: roomKey || s.roomKey, menuOpen: false, branch2ModalOpen: false }));
-    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+      if (page === 'work') {
+        setTimeout(() => this.setupVideoLoop(), 60);
+      }
+    }
   };
 
   toggleMenu = (e) => {
@@ -3330,6 +3730,24 @@ class Component extends DCLogic {
     const activeDroneAngle = this.state.droneAngle || 1;
     const curDrone = droneAngles[activeDroneAngle] || droneAngles[1];
     const droneMotion = !!this.state.droneMotion;
+    const droneMode = this.state.droneMode || 'video';
+    const isDroneVideo = droneMode === 'video';
+    const isDroneMap = droneMode === 'map';
+    const isDroneSplit = droneMode === 'split';
+    const droneMuted = this.state.droneMuted !== false;
+
+    const activeSpaceSlide = this.state.spaceSlide || 0;
+    const curSpace = SPACES[activeSpaceSlide] || SPACES[0];
+    const workMediaMode = this.state.workMediaMode || 'video';
+    const isWorkVideoMode = workMediaMode === 'video';
+    const isWorkPhotosMode = workMediaMode === 'photo';
+    const workVideoMuted = this.state.workVideoMuted !== false;
+    const workAudioLabel = workVideoMuted ? '🔇 Audio Off' : '🔊 Audio On';
+    const spaces = SPACES.map((sp, idx) => ({
+      ...sp,
+      active: activeSpaceSlide === idx,
+      pick: this.setSpaceSlide(idx)
+    }));
 
     const isWuse = (this.state.location || 'wuse') === 'wuse';
     const isBranch2 = (this.state.location || 'wuse') === 'branch2';
@@ -3432,6 +3850,33 @@ class Component extends DCLogic {
       setDrone2: this.setDroneAngle(2),
       setDrone3: this.setDroneAngle(3),
       toggleDroneMotion: this.toggleDroneMotion,
+      droneMode,
+      isDroneVideo,
+      isDroneMap,
+      isDroneSplit,
+      droneMuted,
+      droneAudioLabel: droneMuted ? 'Muted' : 'Audio On',
+      droneVideoBtnBg: isDroneVideo ? '#C4507E' : 'transparent',
+      droneMapBtnBg: isDroneMap ? '#C4507E' : 'transparent',
+      droneSplitBtnBg: isDroneSplit ? '#C4507E' : 'transparent',
+      setDroneVideoMode: this.setDroneMode('video'),
+      setDroneMapMode: this.setDroneMode('map'),
+      setDroneSplitMode: this.setDroneMode('split'),
+      toggleDroneAudio: this.toggleDroneAudio,
+      curSpace,
+      spaces,
+      spaceSlide: activeSpaceSlide,
+      spaceCounter: (activeSpaceSlide + 1) + ' / ' + SPACES.length,
+      nextSpaceSlide: this.nextSpaceSlide,
+      prevSpaceSlide: this.prevSpaceSlide,
+      workMediaMode,
+      isWorkVideoMode,
+      isWorkPhotosMode,
+      workVideoMuted,
+      workAudioLabel,
+      setWorkVideoMode: this.setWorkMediaMode('video'),
+      setWorkPhotosMode: this.setWorkMediaMode('photo'),
+      toggleWorkAudio: this.toggleWorkAudio,
       accent
     };
   }
