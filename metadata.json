@@ -1,0 +1,8 @@
+{
+  "name": "Insignia Courts",
+  "description": "Boutique serviced residence and suites in Abuja, Nigeria by Insignia Formahaus.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
