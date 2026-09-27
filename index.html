@@ -704,13 +704,50 @@
     font-weight: 600;
   }
 
-  /* TABLET BREAKPOINT (<= 1024px) */
-  @media (max-width: 1024px) {
+  /* LAPTOP RESPONSIVE TIER (1141px - 1380px) */
+  @media (max-width: 1380px) {
+    .nav-header-inner {
+      padding: 0 24px !important;
+      gap: 16px !important;
+    }
+    .branch-nav-pill-group {
+      display: none !important;
+    }
+    .desktop-nav {
+      gap: 16px !important;
+    }
+    .desktop-nav-link {
+      font-size: 10.5px !important;
+      letter-spacing: 0.12em !important;
+    }
+    .nav-brand-box {
+      padding-right: 18px !important;
+    }
+    .nav-actions-right {
+      gap: 8px !important;
+      flex-shrink: 0 !important;
+    }
+    .nav-book-btn {
+      padding: 0 14px !important;
+      font-size: 10px !important;
+      height: 40px !important;
+      min-height: 40px !important;
+    }
+    .nav-cta-btn {
+      padding: 0 16px !important;
+      font-size: 10px !important;
+      height: 40px !important;
+      min-height: 40px !important;
+    }
+  }
+
+  /* TABLET & COMPACT LAPTOP BREAKPOINT (<= 1140px) */
+  @media (max-width: 1140px) {
     .desktop-nav {
       display: none !important;
     }
     .mobile-burger-btn {
-      display: flex !important;
+      display: inline-flex !important;
     }
     .grid-hero {
       grid-template-columns: 1fr !important;
@@ -998,7 +1035,41 @@
     background: #3C0031;
     color: #FFFFFF;
   }
-  @media (max-width: 860px) {
+  .nav-cta-btn {
+    border: 0;
+    background: #3C0031;
+    color: #FFFFFF;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0 20px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    height: 44px;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    box-sizing: border-box;
+  }
+  .nav-cta-btn:hover {
+    background: #C4507E;
+    color: #FFFFFF;
+  }
+  .nav-cta-btn.branch2-cta {
+    background: #C4507E;
+    color: #FFFFFF;
+  }
+  .nav-cta-btn.branch2-cta:hover {
+    background: #3C0031;
+    color: #FFFFFF;
+  }
+  @media (max-width: 1380px) {
     .branch-nav-pill-group {
       display: none !important;
     }
@@ -1417,7 +1488,7 @@
       </nav>
       <div class="nav-actions-right">
         <button type="button" onClick="{{ switchToWuse }}" class="nav-book-btn" title="Switch to Open Wuse II Flagship">Wuse II (Open Now) &rarr;</button>
-        <a href="#branch2-waitlist-section" class="nav-cta-btn" style="border:0;background:#C4507E;color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:0 20px;cursor:pointer;text-align:center;display:flex;align-items:center;justify-content:center;white-space:nowrap;flex-shrink:0;height:44px;text-decoration:none" style-hover="background:#3C0031">Join Waitlist</a>
+        <a href="#branch2-waitlist-section" class="nav-cta-btn branch2-cta">Join Waitlist</a>
         <button type="button" onClick="{{ toggleMenu }}" class="mobile-burger-btn" aria-label="Toggle navigation directory drawer">
           <span class="burger-bars">
             <span></span>
@@ -1503,7 +1574,7 @@
       </nav>
       <div class="nav-actions-right">
         <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="nav-book-btn" title="Open Instant Booking Web App">Book Online</a>
-        <button type="button" onClick="{{ openEnquiry }}" class="nav-cta-btn" style="border:0;background:#3C0031;color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:0 20px;cursor:pointer;text-align:center;display:flex;align-items:center;justify-content:center;white-space:nowrap;flex-shrink:0;height:44px" style-hover="background:#C4507E">Enquire</button>
+        <button type="button" onClick="{{ openEnquiry }}" class="nav-cta-btn">Enquire</button>
         <button type="button" onClick="{{ toggleMenu }}" class="mobile-burger-btn" aria-label="Toggle navigation directory drawer">
           <span class="burger-bars">
             <span></span>
