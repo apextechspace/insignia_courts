@@ -297,6 +297,9 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     border-bottom: 2px solid #3C0031;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
     box-sizing: border-box;
   }
 
@@ -712,6 +715,80 @@
     font-weight: 600;
   }
 
+  /* Room Detail Hero Card, Actions & CTA Button Alignment */
+  .room-hero-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 56px 40px;
+    overflow: hidden;
+  }
+  .room-hero-info {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .room-hero-info h1 {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .room-hero-info p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    box-sizing: border-box;
+  }
+  .room-hero-actions-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .room-reserve-title {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #E4A9C3;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .room-btn-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .room-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 15px 26px;
+    min-height: 48px;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin: 0;
+    max-width: 100%;
+  }
+
   /* LAPTOP RESPONSIVE TIER (1141px - 1380px) */
   @media (max-width: 1380px) {
     .nav-header-inner {
@@ -782,8 +859,13 @@
     .grid-room-item,
     .grid-contact-wrap,
     .grid-2-equal {
-      grid-template-columns: 1fr !important;
+      grid-template-columns: minmax(0, 1fr) !important;
       gap: 36px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
     }
     .stat-item {
       padding: 24px 16px;
@@ -793,10 +875,14 @@
   /* TABLET & MOBILE AUTOMATIC CENTRALIZATION (<= 960px) */
   @media (max-width: 960px) {
     .room-hero-card {
-      padding-top: 44px !important;
-      padding-bottom: 44px !important;
+      padding: 44px 24px !important;
       align-items: center !important;
       text-align: center !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
     }
     .room-hero-card .room-hero-info {
       display: flex !important;
@@ -804,14 +890,31 @@
       align-items: center !important;
       text-align: center !important;
       width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+    .room-hero-card .room-hero-info h1 {
+      max-width: 100% !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
     }
     .room-hero-card .room-hero-info p {
       text-align: center !important;
       margin-left: auto !important;
       margin-right: auto !important;
+      max-width: 100% !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
+      box-sizing: border-box !important;
     }
     .room-hero-actions-container {
       width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
@@ -823,6 +926,8 @@
     .room-reserve-title {
       text-align: center !important;
       width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
       margin-left: auto !important;
       margin-right: auto !important;
       margin-bottom: 16px !important;
@@ -832,7 +937,7 @@
       display: flex !important;
       flex-direction: column !important;
       width: 100% !important;
-      max-width: 400px !important;
+      max-width: min(100%, 360px) !important;
       gap: 12px !important;
       align-items: stretch !important;
       justify-content: center !important;
@@ -851,9 +956,9 @@
       box-sizing: border-box !important;
       padding: 14px 18px !important;
       min-height: 48px !important;
-      white-space: normal !important;
+      white-space: nowrap !important;
       word-break: normal !important;
-      overflow-wrap: break-word !important;
+      overflow-wrap: normal !important;
       letter-spacing: 0.12em !important;
       font-size: 11px !important;
       line-height: 1.25 !important;
@@ -866,10 +971,13 @@
       gap: 24px !important;
       align-items: center !important;
       justify-content: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
     }
     .room-bottom-cta-text {
       text-align: center !important;
       width: 100% !important;
+      max-width: 100% !important;
       margin-left: auto !important;
       margin-right: auto !important;
     }
@@ -948,8 +1056,12 @@
       min-height: 250px !important;
     }
     .room-hero-card {
-      padding-left: 20px !important;
-      padding-right: 20px !important;
+      padding: 36px 16px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
     }
 
     /* Stats 2-column on mobile */
@@ -2573,22 +2685,22 @@
       <span>{{ room.name }}</span>
     </div>
   </section>
-  <section class="grid-2-equal">
-    <div style="position:relative;min-height:360px;background:#EDE7E6">
+  <section class="grid-2-equal" style="width:100%;max-width:100%;min-width:0;overflow:hidden;box-sizing:border-box">
+    <div style="position:relative;min-height:360px;background:#EDE7E6;width:100%;max-width:100%;overflow:hidden">
       <image-slot id="{{ room.slotHero }}" shape="rect" src="{{ room.photo }}" placeholder="{{ room.slotLabel }}"></image-slot>
     </div>
-    <div class="container-pad room-hero-card" style="background:#3C0031;color:#FFFFFF;padding-top:56px;padding-bottom:56px;display:flex;flex-direction:column;justify-content:space-between;gap:36px">
-      <div class="room-hero-info">
+    <div class="room-hero-card" style="background:#3C0031;color:#FFFFFF;padding-top:56px;padding-bottom:56px;padding-left:40px;padding-right:40px;display:flex;flex-direction:column;justify-content:space-between;gap:36px;width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden">
+      <div class="room-hero-info" style="width:100%;max-width:100%;min-width:0;box-sizing:border-box">
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:18px">{{ room.tier }} &middot; {{ room.tag }}</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(40px,5vw,76px);line-height:1;margin:0 0 20px;color:#FFFFFF">{{ room.name }}</h1>
-        <p style="font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:#FFFFFF;margin:0 0 10px;max-width:40ch">{{ room.line1 }}</p>
-        <p style="font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:#E8D6DF;margin:0;max-width:40ch">{{ room.line2 }}</p>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(40px,5vw,76px);line-height:1;margin:0 0 20px;color:#FFFFFF;word-break:break-word;overflow-wrap:break-word">{{ room.name }}</h1>
+        <p style="font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:#FFFFFF;margin:0 0 10px;max-width:100%;word-break:break-word;overflow-wrap:break-word;box-sizing:border-box">{{ room.line1 }}</p>
+        <p style="font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:#E8D6DF;margin:0;max-width:100%;word-break:break-word;overflow-wrap:break-word;box-sizing:border-box">{{ room.line2 }}</p>
       </div>
-      <div class="room-hero-actions-container">
-        <div class="room-reserve-title" style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">Reserve {{ room.name }}</div>
-        <div class="btn-responsive-row room-btn-row" style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="room-cta-btn room-cta-primary" style="border:1.5px solid #FFFFFF;background:#FFFFFF;color:#3C0031;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;text-decoration:none;transition:all 0.2s ease" style-hover="background:#C4507E;color:#FFFFFF;border-color:#C4507E">Book Online &rarr;</a>
-          <button type="button" onClick="{{ enquireThisRoom }}" class="room-cta-btn room-cta-secondary" style="border:1.5px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;backdrop-filter:blur(6px);transition:all 0.2s ease" style-hover="background:#FFFFFF;color:#3C0031;border-color:#FFFFFF">Enquire About Room</button>
+      <div class="room-hero-actions-container" style="width:100%;max-width:100%;min-width:0;box-sizing:border-box">
+        <div class="room-reserve-title" style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px;box-sizing:border-box;max-width:100%">Reserve {{ room.name }}</div>
+        <div class="btn-responsive-row room-btn-row" style="display:flex;gap:12px;flex-wrap:wrap;width:100%;max-width:100%;box-sizing:border-box">
+          <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="room-cta-btn room-cta-primary" style="border:1.5px solid #FFFFFF;background:#FFFFFF;color:#3C0031;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;white-space:nowrap;line-height:1.2;text-decoration:none;transition:all 0.2s ease" style-hover="background:#C4507E;color:#FFFFFF;border-color:#C4507E">Book Online &rarr;</a>
+          <button type="button" onClick="{{ enquireThisRoom }}" class="room-cta-btn room-cta-secondary" style="border:1.5px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;white-space:nowrap;line-height:1.2;backdrop-filter:blur(6px);transition:all 0.2s ease" style-hover="background:#FFFFFF;color:#3C0031;border-color:#FFFFFF">Enquire</button>
         </div>
       </div>
     </div>
@@ -2619,8 +2731,8 @@
         <h3 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(24px,2.5vw,36px);margin:0;color:#FFFFFF">Ready to reserve {{ room.name }}?</h3>
       </div>
       <div class="btn-responsive-row room-btn-row" style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="room-cta-btn room-cta-primary" style="border:1.5px solid #FFFFFF;background:#FFFFFF;color:#3C0031;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;text-decoration:none;transition:all 0.2s ease" style-hover="background:#C4507E;color:#FFFFFF;border-color:#C4507E">Book Online &rarr;</a>
-        <button type="button" onClick="{{ enquireThisRoom }}" class="room-cta-btn room-cta-secondary" style="border:1.5px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;backdrop-filter:blur(6px);transition:all 0.2s ease" style-hover="background:#FFFFFF;color:#3C0031;border-color:#FFFFFF">Enquire About Room</button>
+        <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="room-cta-btn room-cta-primary" style="border:1.5px solid #FFFFFF;background:#FFFFFF;color:#3C0031;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;white-space:nowrap;line-height:1.2;text-decoration:none;transition:all 0.2s ease" style-hover="background:#C4507E;color:#FFFFFF;border-color:#C4507E">Book Online &rarr;</a>
+        <button type="button" onClick="{{ enquireThisRoom }}" class="room-cta-btn room-cta-secondary" style="border:1.5px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;white-space:nowrap;line-height:1.2;backdrop-filter:blur(6px);transition:all 0.2s ease" style-hover="background:#FFFFFF;color:#3C0031;border-color:#FFFFFF">Enquire</button>
       </div>
     </div>
   </section>
