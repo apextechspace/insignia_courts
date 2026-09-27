@@ -1,0 +1,10 @@
+{
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/((?!assets/|uploads/|vendor/|_ds/|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
