@@ -63,16 +63,24 @@
   img, svg, video, canvas, audio, iframe, embed, object, image-slot {
     max-width: 100%;
     box-sizing: border-box;
+    touch-action: pan-y !important;
   }
-
-  a, button {
-    transition: color 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease, opacity 0.22s ease;
+  img, video {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
   }
-  a { color:#9E3560; text-decoration:none; }
-  a:hover { color:#C4507E; }
-  ::selection { background:#F2DCE5; color:#3C0031; }
-  *:focus-visible { outline:2px solid #C4507E; outline-offset:2px; }
-  image-slot { --slot-bg:#EDE7E6; display:block; width:100%; height:100%; max-width:100%; overflow:hidden; }
+  image-slot {
+    --slot-bg: #EDE7E6;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    touch-action: pan-y !important;
+  }
+  image-slot * {
+    touch-action: pan-y !important;
+  }
 
   /* Smooth page transition */
   @keyframes pageFadeIn {
@@ -2208,7 +2216,7 @@
     <sc-if value="{{ isDroneVideo }}" hint-placeholder-val="{{ true }}">
       <div class="drone-viewport">
         <!-- Real Abuja Drone Video Sequence with Fallbacks -->
-        <video id="ic-drone-video" autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1">
+        <video id="ic-drone-video" autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1;pointer-events:none;touch-action:pan-y">
           <source src="./assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
           <source src="/assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
           <source src="./drone-view.mp4" type="video/mp4">
@@ -2310,7 +2318,7 @@
       <div class="drone-split-grid">
         <!-- Left: 4K Drone Video -->
         <div style="position:relative;min-height:480px;background:#180514;overflow:hidden">
-          <video autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1">
+          <video autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1;pointer-events:none;touch-action:pan-y">
             <source src="./assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
             <source src="/assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
             <source src="./drone-view.mp4" type="video/mp4">
@@ -2345,7 +2353,7 @@
       <div class="space-carousel-box" style="position:relative;min-height:500px;background:#180514;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
         <!-- Active Space Slide Image with Soft Vignette -->
         <div style="position:absolute;inset:0;z-index:1;overflow:hidden">
-          <img src="{{ curSpace.src }}" alt="{{ curSpace.title }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)">
+          <img src="{{ curSpace.src }}" alt="{{ curSpace.title }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);pointer-events:none;touch-action:pan-y">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,2,17,0.4) 0%, transparent 45%, rgba(20,2,17,0.82) 100%);pointer-events:none"></div>
         </div>
 
@@ -2750,7 +2758,7 @@
   <section id="workspace-reel" style="border-bottom:2px solid #3C0031;background:#180514">
     <div class="drone-viewport" style="min-height:380px">
       <!-- HTML5 Workspace Video (Plays continuously on infinite loop) -->
-      <video id="ic-work-video" autoplay muted loop playsinline poster="./assets/space4.jpeg" onended="this.currentTime=0; this.play();" onpause="if (this.currentTime >= (this.duration || 1) - 0.5) { this.currentTime = 0; this.play(); }" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1">
+      <video id="ic-work-video" autoplay muted loop playsinline poster="./assets/space4.jpeg" onended="this.currentTime=0; this.play();" onpause="if (this.currentTime >= (this.duration || 1) - 0.5) { this.currentTime = 0; this.play(); }" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1;pointer-events:none;touch-action:pan-y">
         <source src="./assets/Camera_gliding_through_modern_of…_20260927135450.mp4" type="video/mp4">
         <source src="/assets/Camera_gliding_through_modern_of…_20260927135450.mp4" type="video/mp4">
         <source src="./assets/Camera_gliding_through_modern_of%E2%80%A6_20260927135450.mp4" type="video/mp4">
