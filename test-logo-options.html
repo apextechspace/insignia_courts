@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Insignia Courts — Logo Font & Design Options</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Jost:wght@300;400;500;600&family=Archivo:wght@500;600;700;800&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Archivo', system-ui, sans-serif;
+      background: #EDE8E5;
+      color: #3C0031;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      color: #6A3859;
+      margin-top: 0;
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .preview-card {
+      background: #F7F4F2;
+      border: 1px solid #D9CECE;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 14px rgba(60, 0, 49, 0.04);
+    }
+    .preview-card.dark {
+      background: #3C0031;
+      border-color: #551244;
+      color: #F7F4F2;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .badge-light {
+      background: #F0DEE6;
+      color: #9E3560;
+    }
+    .badge-dark {
+      background: #551244;
+      color: #E4A9C3;
+    }
+    .logo-box {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px;
+      border: 1px dashed rgba(60, 0, 49, 0.15);
+      border-radius: 6px;
+    }
+    .preview-card.dark .logo-box {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    .notes {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #7A506A;
+      line-height: 1.5;
+    }
+    .preview-card.dark .notes {
+      color: #CBB0BF;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Insignia Courts — Authentic Logo Restorations</h1>
+  <p class="subtitle">Replacing the experimental curly-glyphs with authentic, luxury typography and official brand assets.</p>
+
+  <!-- OPTION 1: OFFICIAL INSIGNIA ASSET EMBEDDED -->
+  <h2 style="font-family:'Cinzel',serif; font-size:20px; margin-top:30px;">Option 1: Official Brandmark (Direct from insigniacourts.com)</h2>
+  <div class="grid">
+    <div class="preview-card">
+      <span class="badge badge-light">Light Mode (Header / Main)</span>
+      <div class="logo-box">
+        <img src="/assets/insignia-logo.png" style="max-height: 48px; width: auto; object-fit: contain;" alt="Insignia Official Logo" />
+      </div>
+      <div class="notes">
+        <strong>Direct Official Asset:</strong> The exact high-contrast Roman serif brandmark used on the official domain (<code>insigniacourts.com</code>).
+      </div>
+    </div>
+    <div class="preview-card dark">
+      <span class="badge badge-dark">Dark Mode (Footer / Drawer)</span>
+      <div class="logo-box">
+        <img src="/assets/insignia-logo-light.png" style="max-height: 48px; width: auto; object-fit: contain;" alt="Insignia Official Logo Light" />
+      </div>
+      <div class="notes">
+        <strong>Inverted Crisp White:</strong> Seamless alpha transparency rendered in pure white for dark sections and drawer menus.
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION 2: CINZEL SERIF SVG WITH SUBTITLE & DIVIDER BAR -->
+  <h2 style="font-family:'Cinzel',serif; font-size:20px; margin-top:30px;">Option 2: Vector SVG with Cinzel Serif (Official Site Font) + Location Subtitle</h2>
+  <div class="grid">
+    <div class="preview-card">
+      <span class="badge badge-light">Light Mode (Wuse II Flagship)</span>
+      <div class="logo-box">
+        <svg viewBox="0 0 620 150" style="max-width: 280px; width: 100%; height: auto;">
+          <defs>
+            <style>
+              .c-title { font-family: 'Cinzel', serif; font-weight: 700; fill: #3C0031; letter-spacing: 0.14em; }
+              .c-sub { font-family: 'Cinzel', serif; font-weight: 600; fill: #7E315C; letter-spacing: 0.28em; }
+              .c-bar { fill: #C4507E; }
+            </style>
+          </defs>
+          <text x="310" y="62" text-anchor="middle" class="c-title" font-size="50">INSIGNIA COURTS</text>
+          <rect x="70" y="84" width="480" height="3" rx="1.5" class="c-bar" />
+          <text x="310" y="118" text-anchor="middle" class="c-sub" font-size="20">WUSE II &middot; ABUJA</text>
+        </svg>
+      </div>
+      <div class="notes">
+        Matches the <code>Cinzel</code> font family specified in the live <code>insigniacourts.com</code> stylesheet with balanced letterspacing and a refined rose-plum accent line.
+      </div>
+    </div>
+
+    <div class="preview-card dark">
+      <span class="badge badge-dark">Dark Mode (Wuse II Flagship)</span>
+      <div class="logo-box">
+        <svg viewBox="0 0 620 150" style="max-width: 280px; width: 100%; height: auto;">
+          <defs>
+            <style>
+              .cd-title { font-family: 'Cinzel', serif; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.14em; }
+              .cd-sub { font-family: 'Cinzel', serif; font-weight: 600; fill: #E4A9C3; letter-spacing: 0.28em; }
+              .cd-bar { fill: #E4A9C3; }
+            </style>
+          </defs>
+          <text x="310" y="62" text-anchor="middle" class="cd-title" font-size="50">INSIGNIA COURTS</text>
+          <rect x="70" y="84" width="480" height="3" rx="1.5" class="cd-bar" />
+          <text x="310" y="118" text-anchor="middle" class="cd-sub" font-size="20">WUSE II &middot; ABUJA</text>
+        </svg>
+      </div>
+      <div class="notes">
+        Full vector scalability in crisp white and soft rose-plum, ensuring sharp rendering on retina mobile and 4K displays.
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANCH II VARIANT -->
+  <div class="grid">
+    <div class="preview-card">
+      <span class="badge badge-light">Light Mode (Branch II)</span>
+      <div class="logo-box">
+        <svg viewBox="0 0 620 150" style="max-width: 280px; width: 100%; height: auto;">
+          <defs>
+            <style>
+              .b-title { font-family: 'Cinzel', serif; font-weight: 700; fill: #3C0031; letter-spacing: 0.14em; }
+              .b-sub { font-family: 'Cinzel', serif; font-weight: 600; fill: #7E315C; letter-spacing: 0.28em; }
+              .b-bar { fill: #C4507E; }
+            </style>
+          </defs>
+          <text x="310" y="62" text-anchor="middle" class="b-title" font-size="50">INSIGNIA COURTS</text>
+          <rect x="70" y="84" width="480" height="3" rx="1.5" class="b-bar" />
+          <text x="310" y="118" text-anchor="middle" class="b-sub" font-size="20">BRANCH II &middot; ABUJA</text>
+        </svg>
+      </div>
+      <div class="notes">
+        Identical typographic rhythm and proportions for the upcoming Branch II residence.
+      </div>
+    </div>
+
+    <div class="preview-card dark">
+      <span class="badge badge-dark">Dark Mode (Branch II)</span>
+      <div class="logo-box">
+        <svg viewBox="0 0 620 150" style="max-width: 280px; width: 100%; height: auto;">
+          <defs>
+            <style>
+              .bd-title { font-family: 'Cinzel', serif; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.14em; }
+              .bd-sub { font-family: 'Cinzel', serif; font-weight: 600; fill: #E4A9C3; letter-spacing: 0.28em; }
+              .bd-bar { fill: #E4A9C3; }
+            </style>
+          </defs>
+          <text x="310" y="62" text-anchor="middle" class="bd-title" font-size="50">INSIGNIA COURTS</text>
+          <rect x="70" y="84" width="480" height="3" rx="1.5" class="bd-bar" />
+          <text x="310" y="118" text-anchor="middle" class="bd-sub" font-size="20">BRANCH II &middot; ABUJA</text>
+        </svg>
+      </div>
+      <div class="notes">
+        High contrast for drawer menus and footer sections.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

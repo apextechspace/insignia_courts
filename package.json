@@ -11,5 +11,11 @@
     "express": "^4.21.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "opentype.js": "^2.0.0",
+    "pdf-parse": "^2.4.5",
+    "sharp": "^0.35.5",
+    "tesseract.js": "^7.0.0"
   }
 }
