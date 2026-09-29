@@ -1402,6 +1402,13 @@
     50% { opacity: 0.35; transform: scale(0.85); }
   }
 
+  .drone-media-visible {
+    opacity: 1 !important;
+  }
+  .drone-media-hidden {
+    opacity: 0 !important;
+  }
+
   .drone-viewport {
     position: relative;
     aspect-ratio: 21/9;
@@ -1425,6 +1432,15 @@
   }
   image-slot#ic-aerial.drone-flying {
     animation: droneFlight 26s ease-in-out infinite alternate;
+  }
+
+  .hood-slider-track {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .drone-hud-overlay {
@@ -1947,9 +1963,9 @@
             </span>
 
             <div style="display:inline-flex;background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(8px);border-radius:2px;overflow:hidden">
-              <button type="button" onClick="{{ setBranch2Angle1 }}" class="drone-btn-interactive" style="border:none;background:{{ branch2Angle === 1 ? '#C4507E' : 'transparent' }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">01 Terraces</button>
-              <button type="button" onClick="{{ setBranch2Angle2 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ branch2Angle === 2 ? '#C4507E' : 'transparent' }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">02 Courtyards</button>
-              <button type="button" onClick="{{ setBranch2Angle3 }}" class="drone-btn-interactive" style="border:none;background:{{ branch2Angle === 3 ? '#C4507E' : 'transparent' }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">03 Pavilion</button>
+              <button type="button" onClick="{{ setBranch2Angle1 }}" class="drone-btn-interactive" style="border:none;background:{{ branch2Angle1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">01 Terraces</button>
+              <button type="button" onClick="{{ setBranch2Angle2 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ branch2Angle2Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">02 Courtyards</button>
+              <button type="button" onClick="{{ setBranch2Angle3 }}" class="drone-btn-interactive" style="border:none;background:{{ branch2Angle3Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">03 Pavilion</button>
             </div>
           </div>
 
@@ -2313,20 +2329,22 @@
     <sc-if value="{{ isDroneVideo }}" hint-placeholder-val="{{ true }}">
       <div class="drone-viewport">
         <!-- Real Abuja Drone Video Sequence with Fallbacks -->
-        <video id="ic-drone-video" autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1;pointer-events:none;touch-action:pan-y">
-          <source src="./assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
-          <source src="/assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
-          <source src="./drone-view.mp4" type="video/mp4">
-          <source src="/uploads/drone-view.mp4" type="video/mp4">
+        <video id="ic-drone-video" autoplay muted playsinline poster="{{ aerialSrc }}" class="{{ isDroneShowingVideo ? 'drone-media-visible' : 'drone-media-hidden' }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:2;transition:opacity 0.8s ease;touch-action:pan-y">
+          <source src="./assets/earthtostreet.mp4" type="video/mp4">
+          <source src="/assets/earthtostreet.mp4" type="video/mp4">
         </video>
 
-        <!-- Atmospheric Fallback Canvas -->
-        <image-slot id="ic-aerial" class="{{ droneMotionClass }}" shape="rect" src="{{ aerialSrc }}" placeholder="Aerial &mdash; Insignia Courts, Wuse II from above (Cinematic Drone View)" style="position:relative;z-index:0;width:100%;height:100%;display:block"></image-slot>
+        <!-- Atmospheric Fallback & Still Photo Canvas -->
+        <image-slot id="ic-aerial" class="{{ droneMotionClass }}" shape="rect" src="{{ aerialSrc }}" placeholder="Aerial &mdash; Insignia Courts, Wuse II from above (Cinematic Drone View)" style="position:relative;z-index:1;width:100%;height:100%;display:block"></image-slot>
 
         <!-- Unobtrusive Floating Control Overlay -->
-        <div class="drone-hud-overlay">
-          <!-- Top Row: Audio Mute/Unmute in corner -->
-          <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px">
+        <div class="drone-hud-overlay" style="z-index:3">
+          <!-- Top Row: Audio Mute/Unmute & Current Mode Badge -->
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <div style="background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.25);padding:6px 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#E4A9C3;font-weight:600;backdrop-filter:blur(8px);display:inline-flex;align-items:center">
+              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:{{ droneDotBg }};animation:{{ droneDotAnim }};margin-right:6px"></span>
+              <span>{{ droneBadgeLabel }}</span>
+            </div>
             <button type="button" onClick="{{ toggleDroneAudio }}" class="drone-btn-interactive" style="border:1px solid rgba(255,255,255,0.3);background:rgba(20,2,17,0.75);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:6px 12px;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px);border-radius:2px" style-hover="background:#C4507E;border-color:#C4507E" title="Toggle audio">
               <span>{{ droneAudioLabel }}</span>
             </button>
@@ -2341,8 +2359,9 @@
 
             <!-- Perspective Switcher: clean glass pill -->
             <div style="display:inline-flex;background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(8px);border-radius:2px;overflow:hidden">
-              <button type="button" onClick="{{ setDrone1 }}" class="drone-btn-interactive" style="border:none;background:{{ drone1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">01 Overhead</button>
-              <button type="button" onClick="{{ setDrone2 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ drone2Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">02 Terraces</button>
+              <button type="button" onClick="{{ setDroneVideoPhase }}" class="drone-btn-interactive" style="border:none;background:{{ droneVideoPhaseBg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">📹 Flyover</button>
+              <button type="button" onClick="{{ setDrone1 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ drone1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">01 Overhead</button>
+              <button type="button" onClick="{{ setDrone2 }}" class="drone-btn-interactive" style="border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;border-left:none;background:{{ drone2Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">02 Terraces</button>
               <button type="button" onClick="{{ setDrone3 }}" class="drone-btn-interactive" style="border:none;background:{{ drone3Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">03 Courtyard</button>
             </div>
           </div>
@@ -2384,9 +2403,8 @@
         <!-- Left: 4K Drone Video -->
         <div style="position:relative;min-height:480px;background:#180514;overflow:hidden">
           <video autoplay muted loop playsinline poster="{{ aerialSrc }}" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1;pointer-events:none;touch-action:pan-y">
-            <source src="./assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
-            <source src="/assets/Drone_video_sequence_in_Abuja_20260927135608.mp4" type="video/mp4">
-            <source src="./drone-view.mp4" type="video/mp4">
+            <source src="./assets/earthtostreet.mp4" type="video/mp4">
+            <source src="/assets/earthtostreet.mp4" type="video/mp4">
           </video>
           <div style="position:absolute;top:16px;left:16px;z-index:3;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.22);padding:6px 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#FFFFFF;font-weight:600">
             <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#E74C3C;animation:pulseRec 1.6s infinite;margin-right:6px"></span>
@@ -3133,8 +3151,67 @@
   </section>
   <section style="border-bottom:2px solid #3C0031">
     <div class="container-pad" style="max-width:1440px;margin:0 auto">
-      <div style="position:relative;aspect-ratio:21/8;background:#EDE7E6;border-left:2px solid #E3D8DC;border-right:2px solid #E3D8DC">
-        <image-slot id="ic-hood-hero" shape="rect" src="https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800" placeholder="Aerial &mdash; Abuja, drone still (replace with real footage)"></image-slot>
+      <div class="drone-viewport" style="position:relative;border-left:2px solid #E3D8DC;border-right:2px solid #E3D8DC;overflow:hidden">
+        <!-- Sliding Video Track Container (Continuous Flow Slider) -->
+        <div class="hood-slider-track" style="transform:translateX({{ hoodSlideTransform }})">
+          <!-- Slide 1: neigbourhood.mp4 -->
+          <div style="position:relative;width:50%;height:100%;flex-shrink:0;overflow:hidden">
+            <video id="ic-hood-video-1" autoplay muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;touch-action:pan-y">
+              <source src="./assets/neigbourhood.mp4" type="video/mp4">
+              <source src="/assets/neigbourhood.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- Slide 2: earthtostreet.mp4 -->
+          <div style="position:relative;width:50%;height:100%;flex-shrink:0;overflow:hidden">
+            <video id="ic-hood-video-2" muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;touch-action:pan-y">
+              <source src="./assets/earthtostreet.mp4" type="video/mp4">
+              <source src="/assets/earthtostreet.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- HUD & Slider Controls Overlay -->
+        <div class="drone-hud-overlay" style="z-index:4">
+          <!-- Top Row: Badge, Counter & Audio Toggle -->
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <div style="background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.25);padding:6px 14px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#E4A9C3;font-weight:600;backdrop-filter:blur(8px);display:inline-flex;align-items:center">
+              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#E74C3C;animation:pulseRec 1.6s infinite;margin-right:8px"></span>
+              <span>{{ hoodStepBadge }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="background:rgba(20,2,17,0.78);color:#FFFFFF;font-size:10px;letter-spacing:0.18em;font-weight:600;padding:6px 12px;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(8px)">
+                {{ hoodCounter }}
+              </span>
+              <button type="button" onClick="{{ toggleHoodAudio }}" class="drone-btn-interactive" style="border:1px solid rgba(255,255,255,0.3);background:rgba(20,2,17,0.75);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:6px 12px;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px);border-radius:2px" style-hover="background:#C4507E;border-color:#C4507E" title="Toggle audio">
+                <span>{{ hoodAudioLabel }}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Title, Nav Arrows & Slide Pills -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+            <div class="drone-mobile-hide" style="text-shadow:0 1px 4px rgba(0,0,0,0.9)">
+              <div style="font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;margin-bottom:2px">Wuse II Enclave &middot; Seamless Media Flow</div>
+              <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:16px;color:#FFFFFF">{{ hoodStepTitle }}</div>
+            </div>
+
+            <!-- Slide Controls: Prev / Next + Slide Selectors -->
+            <div style="display:flex;align-items:center;gap:8px">
+              <!-- Prev / Next Arrow Buttons -->
+              <div style="display:inline-flex;background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(8px);border-radius:2px;overflow:hidden">
+                <button type="button" onClick="{{ prevHoodSlide }}" class="drone-btn-interactive" style="border:none;background:transparent;color:#FFFFFF;font-size:14px;padding:6px 12px;cursor:pointer" style-hover="background:#C4507E" title="Previous Video">&lsaquo;</button>
+                <button type="button" onClick="{{ nextHoodSlide }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:none;border-top:none;border-bottom:none;background:transparent;color:#FFFFFF;font-size:14px;padding:6px 12px;cursor:pointer" style-hover="background:#C4507E" title="Next Video">&rsaquo;</button>
+              </div>
+
+              <!-- Slide Pills -->
+              <div style="display:inline-flex;background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(8px);border-radius:2px;overflow:hidden">
+                <button type="button" onClick="{{ setHoodSlide0 }}" class="drone-btn-interactive" style="border:none;background:{{ hoodSlide0Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">01 Neighbourhood Reel</button>
+                <button type="button" onClick="{{ setHoodSlide1 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;border-right:none;background:{{ hoodSlide1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">02 Earth to Street</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -3696,6 +3773,9 @@ class Component extends DCLogic {
     location: 'wuse',
     page: 'home', roomKey: 'atala', enquiryOpen: false, menuOpen: false, branch2ModalOpen: false,
     droneAngle: 1, droneMotion: true, droneMode: 'video', droneMuted: true,
+    dronePhase: 'video',
+    hoodSlide: 0,
+    hoodMuted: true,
     branch2Angle: 1,
     spaceSlide: 0,
     workMediaMode: 'video',
@@ -3705,23 +3785,25 @@ class Component extends DCLogic {
   };
 
   spaceTimer = null;
+  dronePictureTimer = null;
 
-  constructor(props) {
-    super(props);
-    this.startSpaceAutoSlide();
-  }
 
   componentDidMount() {
     this.startSpaceAutoSlide();
     this.setupVideoLoop();
+    this.setupDroneVideoRotate();
+    this.setupHoodVideoRotate();
   }
 
   componentDidUpdate() {
     this.setupVideoLoop();
+    this.setupDroneVideoRotate();
+    this.setupHoodVideoRotate();
   }
 
   componentWillUnmount() {
     this.stopSpaceAutoSlide();
+    if (this.dronePictureTimer) clearTimeout(this.dronePictureTimer);
   }
 
   setupVideoLoop = () => {
@@ -3802,18 +3884,161 @@ class Component extends DCLogic {
     this.setState({ spaceSlide: idx, workMediaMode: 'photo' });
   };
 
-  setDroneMode = (mode) => (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.setState({ droneMode: mode });
+  setupDroneVideoRotate = () => {
+    if (typeof document === 'undefined') return;
+    const droneVid = document.getElementById('ic-drone-video');
+    if (droneVid && !droneVid.__rotateBound) {
+      droneVid.__rotateBound = true;
+      droneVid.playsInline = true;
+      droneVid.muted = this.state.droneMuted !== false;
+
+      const onVideoEnd = () => {
+        if (this.dronePictureTimer) clearTimeout(this.dronePictureTimer);
+        this.setState({ dronePhase: 'picture' });
+        this.dronePictureTimer = setTimeout(() => {
+          this.setState({ dronePhase: 'video' }, () => {
+            const v = document.getElementById('ic-drone-video');
+            if (v) {
+              v.currentTime = 0;
+              const p = v.play();
+              if (p && p.catch) p.catch(() => {});
+            }
+          });
+        }, 5500);
+      };
+
+      droneVid.addEventListener('ended', onVideoEnd);
+      droneVid.addEventListener('timeupdate', () => {
+        if (droneVid.duration && droneVid.currentTime >= droneVid.duration - 0.4) {
+          onVideoEnd();
+        }
+      });
+    }
+
+    if (droneVid && this.state.dronePhase !== 'picture') {
+      droneVid.muted = this.state.droneMuted !== false;
+      if (droneVid.paused) {
+        try {
+          const p = droneVid.play();
+          if (p && p.catch) p.catch(() => {});
+        } catch (e) {}
+      }
+    }
   };
 
-  toggleDroneAudio = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    const vid = typeof document !== 'undefined' ? document.getElementById('ic-drone-video') : null;
-    if (vid) {
-      vid.muted = !vid.muted;
-      this.setState({ droneMuted: vid.muted });
+  setupHoodVideoRotate = () => {
+    if (typeof document === 'undefined') return;
+    const v1 = document.getElementById('ic-hood-video-1');
+    const v2 = document.getElementById('ic-hood-video-2');
+
+    if (v1 && !v1.__sliderBound) {
+      v1.__sliderBound = true;
+      v1.playsInline = true;
+      v1.muted = this.state.hoodMuted !== false;
+      const onV1End = () => {
+        // Slide to Video 2
+        this.setState({ hoodSlide: 1 }, () => {
+          const vid2 = document.getElementById('ic-hood-video-2');
+          if (vid2) {
+            vid2.currentTime = 0;
+            const p = vid2.play();
+            if (p && p.catch) p.catch(() => {});
+          }
+        });
+      };
+      v1.addEventListener('ended', onV1End);
+      v1.addEventListener('timeupdate', () => {
+        if (v1.duration && v1.currentTime >= v1.duration - 0.4) onV1End();
+      });
     }
+
+    if (v2 && !v2.__sliderBound) {
+      v2.__sliderBound = true;
+      v2.playsInline = true;
+      v2.muted = this.state.hoodMuted !== false;
+      const onV2End = () => {
+        // Slide back to Video 1
+        this.setState({ hoodSlide: 0 }, () => {
+          const vid1 = document.getElementById('ic-hood-video-1');
+          if (vid1) {
+            vid1.currentTime = 0;
+            const p = vid1.play();
+            if (p && p.catch) p.catch(() => {});
+          }
+        });
+      };
+      v2.addEventListener('ended', onV2End);
+      v2.addEventListener('timeupdate', () => {
+        if (v2.duration && v2.currentTime >= v2.duration - 0.4) onV2End();
+      });
+    }
+
+    const curSlide = this.state.hoodSlide || 0;
+    if (curSlide === 0 && v1) {
+      v1.muted = this.state.hoodMuted !== false;
+      if (v2 && !v2.paused) v2.pause();
+      if (v1.paused) {
+        try { const p = v1.play(); if (p && p.catch) p.catch(() => {}); } catch(e) {}
+      }
+    } else if (curSlide === 1 && v2) {
+      v2.muted = this.state.hoodMuted !== false;
+      if (v1 && !v1.paused) v1.pause();
+      if (v2.paused) {
+        try { const p = v2.play(); if (p && p.catch) p.catch(() => {}); } catch(e) {}
+      }
+    }
+
+    // Touch swipe support for smooth mobile interaction
+    const vp = (v1 && v1.closest) ? v1.closest('.drone-viewport') : null;
+    if (vp && !vp.__swipeBound) {
+      vp.__swipeBound = true;
+      let startX = 0;
+      vp.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) startX = e.touches[0].clientX;
+      }, { passive: true });
+      vp.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          const diff = e.changedTouches[0].clientX - startX;
+          if (diff < -45) this.nextHoodSlide(e);
+          else if (diff > 45) this.prevHoodSlide(e);
+        }
+      }, { passive: true });
+    }
+  };
+
+  setHoodSlide = (idx) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ hoodSlide: idx }, () => {
+      const v1 = document.getElementById('ic-hood-video-1');
+      const v2 = document.getElementById('ic-hood-video-2');
+      if (idx === 0) {
+        if (v2 && !v2.paused) v2.pause();
+        if (v1) { v1.currentTime = 0; const p = v1.play(); if (p && p.catch) p.catch(() => {}); }
+      } else {
+        if (v1 && !v1.paused) v1.pause();
+        if (v2) { v2.currentTime = 0; const p = v2.play(); if (p && p.catch) p.catch(() => {}); }
+      }
+    });
+  };
+
+  nextHoodSlide = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const nextIdx = (this.state.hoodSlide || 0) === 0 ? 1 : 0;
+    this.setHoodSlide(nextIdx)(e);
+  };
+
+  prevHoodSlide = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const prevIdx = (this.state.hoodSlide || 0) === 0 ? 1 : 0;
+    this.setHoodSlide(prevIdx)(e);
+  };
+
+  toggleHoodAudio = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const nextMuted = !this.state.hoodMuted;
+    const vids = typeof document !== 'undefined' ? [document.getElementById('ic-hood-video-1'), document.getElementById('ic-hood-video-2')].filter(Boolean) : [];
+    vids.forEach(v => { v.muted = nextMuted; });
+    this.setState({ hoodMuted: nextMuted });
   };
 
   switchToWuse = (e) => {
@@ -3857,6 +4082,45 @@ class Component extends DCLogic {
     this.setState(s => ({ droneMotion: !s.droneMotion }));
   };
 
+  setDroneVideoPhase = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (this.dronePictureTimer) clearTimeout(this.dronePictureTimer);
+    this.setState({ dronePhase: 'video', droneMode: 'video' }, () => {
+      const v = document.getElementById('ic-drone-video');
+      if (v) {
+        v.currentTime = 0;
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      }
+    });
+  };
+
+  setDroneMode = (mode) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (mode === 'video') {
+      if (this.dronePictureTimer) clearTimeout(this.dronePictureTimer);
+      this.setState({ droneMode: 'video', dronePhase: 'video' }, () => {
+        const v = document.getElementById('ic-drone-video');
+        if (v) {
+          v.currentTime = 0;
+          const p = v.play();
+          if (p && p.catch) p.catch(() => {});
+        }
+      });
+    } else {
+      this.setState({ droneMode: mode });
+    }
+  };
+
+  toggleDroneAudio = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const vid = typeof document !== 'undefined' ? document.getElementById('ic-drone-video') : null;
+    if (vid) {
+      vid.muted = !vid.muted;
+      this.setState({ droneMuted: vid.muted });
+    }
+  };
+
   go = (page, roomKey) => (e) => {
     if (e && e.preventDefault) e.preventDefault();
     this.setState(s => ({ location: 'wuse', page, roomKey: roomKey || s.roomKey, menuOpen: false, branch2ModalOpen: false }));
@@ -3864,6 +4128,9 @@ class Component extends DCLogic {
       window.scrollTo(0, 0);
       if (page === 'work') {
         setTimeout(() => this.setupVideoLoop(), 60);
+      }
+      if (page === 'hood') {
+        setTimeout(() => this.setupHoodVideoRotate(), 60);
       }
     }
   };
@@ -4025,6 +4292,9 @@ class Component extends DCLogic {
       branch2Suites: BRANCH2_SUITES.map(s => ({ ...s, register: this.prefillWaitlistSuite(s.name) })),
       branch2Milestones: BRANCH2_MILESTONES,
       branch2Angle: activeBranch2Angle,
+      branch2Angle1Bg: activeBranch2Angle === 1 ? '#C4507E' : 'transparent',
+      branch2Angle2Bg: activeBranch2Angle === 2 ? '#C4507E' : 'transparent',
+      branch2Angle3Bg: activeBranch2Angle === 3 ? '#C4507E' : 'transparent',
       branch2CurTitle: curBranch2Angle.title,
       branch2CurSrc: curBranch2Angle.src,
       branch2CurAlt: curBranch2Angle.alt,
@@ -4092,9 +4362,16 @@ class Component extends DCLogic {
       droneTitle: curDrone.title,
       droneAlt: curDrone.alt,
       droneGimbal: curDrone.gimbal,
-      drone1Bg: activeDroneAngle === 1 ? '#C4507E' : 'transparent',
-      drone2Bg: activeDroneAngle === 2 ? '#C4507E' : 'transparent',
-      drone3Bg: activeDroneAngle === 3 ? '#C4507E' : 'transparent',
+      isDroneShowingVideo: (this.state.dronePhase || 'video') === 'video',
+      isDroneShowingPicture: this.state.dronePhase === 'picture',
+      droneDotBg: (this.state.dronePhase || 'video') === 'video' ? '#E74C3C' : '#27AE60',
+      droneDotAnim: (this.state.dronePhase || 'video') === 'video' ? 'pulseRec 1.6s infinite' : 'none',
+      droneBadgeLabel: (this.state.dronePhase || 'video') === 'video' ? '📹 4K Flyover Sequence' : '📸 High-Resolution Aerial View',
+      droneVideoPhaseBg: (this.state.dronePhase || 'video') === 'video' ? '#C4507E' : 'transparent',
+      drone1Bg: this.state.dronePhase === 'picture' && activeDroneAngle === 1 ? '#C4507E' : 'transparent',
+      drone2Bg: this.state.dronePhase === 'picture' && activeDroneAngle === 2 ? '#C4507E' : 'transparent',
+      drone3Bg: this.state.dronePhase === 'picture' && activeDroneAngle === 3 ? '#C4507E' : 'transparent',
+      setDroneVideoPhase: this.setDroneVideoPhase,
       setDrone1: this.setDroneAngle(1),
       setDrone2: this.setDroneAngle(2),
       setDrone3: this.setDroneAngle(3),
@@ -4112,6 +4389,21 @@ class Component extends DCLogic {
       setDroneMapMode: this.setDroneMode('map'),
       setDroneSplitMode: this.setDroneMode('split'),
       toggleDroneAudio: this.toggleDroneAudio,
+
+      hoodSlide: this.state.hoodSlide || 0,
+      hoodSlideTransform: (this.state.hoodSlide || 0) === 1 ? '-50%' : '0%',
+      hoodSlide0Bg: (this.state.hoodSlide || 0) === 0 ? '#C4507E' : 'transparent',
+      hoodSlide1Bg: (this.state.hoodSlide || 0) === 1 ? '#C4507E' : 'transparent',
+      hoodMuted: this.state.hoodMuted !== false,
+      hoodAudioLabel: (this.state.hoodMuted !== false) ? '🔇 Audio Off' : '🔊 Audio On',
+      hoodStepBadge: (this.state.hoodSlide || 0) === 0 ? '📹 01 Neighbourhood Reel' : '📹 02 Earth to Street Flyover',
+      hoodStepTitle: (this.state.hoodSlide || 0) === 0 ? 'Abuja Wuse II Streetscape & Enclave Surroundings' : 'High-Altitude Earth to Street Descent',
+      hoodCounter: ((this.state.hoodSlide || 0) + 1) + ' / 2',
+      setHoodSlide0: this.setHoodSlide(0),
+      setHoodSlide1: this.setHoodSlide(1),
+      nextHoodSlide: this.nextHoodSlide,
+      prevHoodSlide: this.prevHoodSlide,
+      toggleHoodAudio: this.toggleHoodAudio,
       curSpace,
       spaces,
       spaceSlide: activeSpaceSlide,
