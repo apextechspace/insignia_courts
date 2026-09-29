@@ -4201,225 +4201,240 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const { page, roomKey, enquiryOpen, menuOpen, branch2ModalOpen, f, waitlist } = this.state;
-    const accent = this.props.accent ?? '#C4507E';
-    const bookingUrl = this.props.bookingUrl ?? 'https://booking.insigniacourts.com';
-    const withHandlers = ROOMS.map(r => ({
-      ...r,
-      slot: 'ic-card-' + r.key,
-      slotWide: 'ic-wide-' + r.key,
-      slotHero: 'ic-hero-' + r.key,
-      slotG1: 'ic-g1-' + r.key, slotG2: 'ic-g2-' + r.key, slotG3: 'ic-g3-' + r.key,
-      slotLabel: r.name + ' — ' + r.tier.toLowerCase() + ' room',
-      photo: PX(PHOTOS[r.key].main, 1600),
-      photoWide: PX(PHOTOS[r.key].wide, 1400),
-      g1: PX(PHOTOS[r.key].g[0]), g2: PX(PHOTOS[r.key].g[1]), g3: PX(PHOTOS[r.key].g[2]),
-      open: this.go('room', r.key),
-      enquire: this.openEnquiry(r.name)
-    }));
-    const room = withHandlers.find(r => r.key === roomKey) || withHandlers[0];
-    const msg = this.message();
-    const wMsg = this.waitlistMessage();
-    const wa = 'https://wa.me/' + msg.phone;
-    const options = ['No preference'].concat(ROOMS.map(r => r.name + ' — ' + r.tag));
+    try {
+      const { page, roomKey, enquiryOpen, menuOpen, branch2ModalOpen, f, waitlist } = this.state || {};
+      const accent = (this.props && this.props.accent) ? this.props.accent : '#C4507E';
+      const bookingUrl = (this.props && this.props.bookingUrl) ? this.props.bookingUrl : 'https://booking.insigniacourts.com';
+      const safeRoomKey = roomKey || 'atala';
+      const withHandlers = ROOMS.map(r => ({
+        ...r,
+        slot: 'ic-card-' + r.key,
+        slotWide: 'ic-wide-' + r.key,
+        slotHero: 'ic-hero-' + r.key,
+        slotG1: 'ic-g1-' + r.key, slotG2: 'ic-g2-' + r.key, slotG3: 'ic-g3-' + r.key,
+        slotLabel: r.name + ' — ' + r.tier.toLowerCase() + ' room',
+        photo: PX(PHOTOS[r.key].main, 1600),
+        photoWide: PX(PHOTOS[r.key].wide, 1400),
+        g1: PX(PHOTOS[r.key].g[0]), g2: PX(PHOTOS[r.key].g[1]), g3: PX(PHOTOS[r.key].g[2]),
+        open: (e) => { if (this.go) this.go('room', r.key)(e); },
+        enquire: (e) => { if (this.openEnquiry) this.openEnquiry(r.name)(e); }
+      }));
+      const room = withHandlers.find(r => r.key === safeRoomKey) || withHandlers[0];
+      const msg = this.message ? this.message() : { phone:'2349110111122', body:'' };
+      const wMsg = this.waitlistMessage ? this.waitlistMessage() : { phone:'2349110111122', body:'' };
+      const wa = 'https://wa.me/' + msg.phone;
+      const options = ['No preference'].concat(ROOMS.map(r => r.name + ' — ' + r.tag));
 
-    const droneAngles = {
-      1: {
-        title: '01 Aerial Overhead &middot; 4-Story Enclave, 5 Tanba Street, Wuse II',
-        src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85',
-        alt: '120m',
-        gimbal: '-45&deg;'
-      },
-      2: {
-        title: '02 Sunset Terraces &middot; Floor-to-Ceiling Glazing &amp; Panoramic Vista',
-        src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=85',
-        alt: '65m',
-        gimbal: '-20&deg;'
-      },
-      3: {
-        title: '03 Penthouse Living &middot; Double-Height Chandelier &amp; Sunset Fireplace',
-        src: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=2400&q=85',
-        alt: '35m',
-        gimbal: '-10&deg;'
-      }
-    };
-    const activeDroneAngle = this.state.droneAngle || 1;
-    const curDrone = droneAngles[activeDroneAngle] || droneAngles[1];
-    const droneMotion = !!this.state.droneMotion;
-    const droneMode = this.state.droneMode || 'video';
-    const isDroneVideo = droneMode === 'video';
-    const isDroneMap = droneMode === 'map';
-    const isDroneSplit = droneMode === 'split';
-    const droneMuted = this.state.droneMuted !== false;
+      const droneAngles = {
+        1: {
+          title: '01 Aerial Overhead &middot; 4-Story Enclave, 5 Tanba Street, Wuse II',
+          src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85',
+          alt: '120m',
+          gimbal: '-45&deg;'
+        },
+        2: {
+          title: '02 Sunset Terraces &middot; Floor-to-Ceiling Glazing &amp; Panoramic Vista',
+          src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=85',
+          alt: '65m',
+          gimbal: '-20&deg;'
+        },
+        3: {
+          title: '03 Penthouse Living &middot; Double-Height Chandelier &amp; Sunset Fireplace',
+          src: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=2400&q=85',
+          alt: '35m',
+          gimbal: '-10&deg;'
+        }
+      };
+      const activeDroneAngle = (this.state && this.state.droneAngle) || 1;
+      const curDrone = droneAngles[activeDroneAngle] || droneAngles[1];
+      const droneMotion = !!(this.state && this.state.droneMotion);
+      const droneMode = (this.state && this.state.droneMode) || 'video';
+      const isDroneVideo = droneMode === 'video';
+      const isDroneMap = droneMode === 'map';
+      const isDroneSplit = droneMode === 'split';
+      const droneMuted = (this.state && this.state.droneMuted) !== false;
 
-    const activeSpaceSlide = this.state.spaceSlide || 0;
-    const curSpace = SPACES[activeSpaceSlide] || SPACES[0];
-    const workMediaMode = this.state.workMediaMode || 'video';
-    const isWorkVideoMode = workMediaMode === 'video';
-    const isWorkPhotosMode = workMediaMode === 'photo';
-    const workVideoMuted = this.state.workVideoMuted !== false;
-    const workAudioLabel = workVideoMuted ? '🔇 Audio Off' : '🔊 Audio On';
-    const spaces = SPACES.map((sp, idx) => ({
-      ...sp,
-      active: activeSpaceSlide === idx,
-      pick: this.setSpaceSlide(idx)
-    }));
+      const activeSpaceSlide = (this.state && this.state.spaceSlide) || 0;
+      const curSpace = SPACES[activeSpaceSlide] || SPACES[0];
+      const workMediaMode = (this.state && this.state.workMediaMode) || 'video';
+      const isWorkVideoMode = workMediaMode === 'video';
+      const isWorkPhotosMode = workMediaMode === 'photo';
+      const workVideoMuted = (this.state && this.state.workVideoMuted) !== false;
+      const workAudioLabel = workVideoMuted ? '🔇 Audio Off' : '🔊 Audio On';
+      const spaces = SPACES.map((sp, idx) => ({
+        ...sp,
+        active: activeSpaceSlide === idx,
+        pick: (e) => { if (this.setSpaceSlide) this.setSpaceSlide(idx)(e); }
+      }));
 
-    const isWuse = (this.state.location || 'wuse') === 'wuse';
-    const isBranch2 = (this.state.location || 'wuse') === 'branch2';
-    const activeBranch2Angle = this.state.branch2Angle || 1;
-    const curBranch2Angle = BRANCH2_ANGLES[activeBranch2Angle] || BRANCH2_ANGLES[1];
+      const isWuse = ((this.state && this.state.location) || 'wuse') === 'wuse';
+      const isBranch2 = ((this.state && this.state.location) || 'wuse') === 'branch2';
+      const activeBranch2Angle = (this.state && this.state.branch2Angle) || 1;
+      const curBranch2Angle = BRANCH2_ANGLES[activeBranch2Angle] || BRANCH2_ANGLES[1];
 
-    return {
-      location: this.state.location || 'wuse',
-      isWuse,
-      isBranch2,
-      isHome: isWuse && page === 'home',
-      isRooms: isWuse && page === 'rooms',
-      isRoom: isWuse && page === 'room',
-      isResidence: isWuse && page === 'residence',
-      isTea: isWuse && page === 'tea',
-      isDecor: isWuse && page === 'decor',
-      isWork: isWuse && page === 'work',
-      isLocations: isWuse && page === 'locations',
-      isStays: isWuse && page === 'stays',
-      isHood: isWuse && page === 'hood',
-      isJournal: isWuse && page === 'journal',
-      isContact: isWuse && page === 'contact',
-      isExperience: isWuse && ['work', 'tea', 'decor', 'stays', 'hood', 'journal'].includes(page),
-      switchToWuse: this.switchToWuse,
-      switchToBranch2: this.switchToBranch2,
-      branch2Suites: BRANCH2_SUITES.map(s => ({ ...s, register: this.prefillWaitlistSuite(s.name) })),
-      branch2Milestones: BRANCH2_MILESTONES,
-      branch2Angle: activeBranch2Angle,
-      branch2Angle1Bg: activeBranch2Angle === 1 ? '#C4507E' : 'transparent',
-      branch2Angle2Bg: activeBranch2Angle === 2 ? '#C4507E' : 'transparent',
-      branch2Angle3Bg: activeBranch2Angle === 3 ? '#C4507E' : 'transparent',
-      branch2CurTitle: curBranch2Angle.title,
-      branch2CurSrc: curBranch2Angle.src,
-      branch2CurAlt: curBranch2Angle.alt,
-      branch2CurGimbal: curBranch2Angle.gimbal,
-      setBranch2Angle1: this.setBranch2Angle(1),
-      setBranch2Angle2: this.setBranch2Angle(2),
-      setBranch2Angle3: this.setBranch2Angle(3),
-      setWaitlistSuitePref: this.setWaitlist('suitePref'),
-      goHome: this.go('home'), goRooms: this.go('rooms'), goResidence: this.go('residence'),
-      goTea: this.go('tea'), goDecor: this.go('decor'), goWork: this.go('work'),
-      goLocations: this.go('locations'),
-      goStays: this.go('stays'), goHood: this.go('hood'), goJournal: this.go('journal'),
-      goContact: this.go('contact'),
-      bookingUrl,
-      rooms: withHandlers,
-      tiers: TIERS.map(t => ({ ...t, rooms: withHandlers.filter(r => r.tier === t.key) })),
-      room,
-      otherRooms: withHandlers.filter(r => r.key !== roomKey).slice(0, 3),
-      enquireThisRoom: this.openEnquiry(room.name),
-      services: SERVICES,
-      decor: DECOR.map(d => ({ ...d, slot: 'ic-decor-' + d.key, slotLabel: d.name, photo: PX(d.px, 900), enquire: this.openEnquiry('Décor — ' + d.name) })),
-      hood: HOOD,
-      journal: JOURNAL.map(p => ({ ...p, slot: 'ic-journal-' + p.key, slotLabel: p.title, photo: PX(p.px, 1000) })),
-      enquiryOpen,
-      openEnquiry: this.openEnquiry(),
-      closeEnquiry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ enquiryOpen: false }); },
-      branch2ModalOpen,
-      openBranch2Modal: this.openBranch2Modal,
-      closeBranch2Modal: this.closeBranch2Modal,
-      goRoomsFromModal: this.goRoomsFromModal,
-      menuOpen,
-      toggleMenu: this.toggleMenu,
-      closeMenu: this.closeMenu,
-      menuLabel: menuOpen ? 'Close' : 'Menu',
-      stop: (e) => e.stopPropagation(),
-      f,
-      setName: this.set('name'), setContact: this.set('contact'),
-      setCheckin: this.set('checkin'), setCheckout: this.set('checkout'),
-      setRoom: this.set('room'), setNote: this.set('note'),
-      waitlist,
-      setWaitlistName: this.setWaitlist('name'),
-      setWaitlistContact: this.setWaitlist('contact'),
-      setWaitlistNote: this.setWaitlist('note'),
-      roomOptions: options,
-      roomChoices: options.map(o => ({
-        label: o,
-        bg: f.room === o ? '#3C0031' : '#FFFFFF',
-        fg: f.room === o ? '#FFFFFF' : '#3C0031',
-        pick: () => this.setState(s => ({ f: { ...s.f, room: o } }))
-      })),
-      waHref: wa,
-      waComposed: wa + '?text=' + encodeURIComponent(msg.body),
-      mailComposed: 'mailto:' + (this.props.email ?? 'stay@insigniacourts.com') +
-        '?subject=' + encodeURIComponent('Stay enquiry — Insignia Courts') +
-        '&body=' + encodeURIComponent(msg.body),
-      waitlistWaComposed: wa + '?text=' + encodeURIComponent(wMsg.body),
-      waitlistMailComposed: 'mailto:' + (this.props.email ?? 'stay@insigniacourts.com') +
-        '?subject=' + encodeURIComponent('Priority Waitlist — Insignia Courts Branch II') +
-        '&body=' + encodeURIComponent(wMsg.body),
-      aerialSrc: curDrone.src,
-      droneAngle: activeDroneAngle,
-      droneMotion,
-      droneMotionLabel: droneMotion ? 'Active' : 'Paused',
-      droneMotionClass: droneMotion ? 'drone-flying' : '',
-      droneTitle: curDrone.title,
-      droneAlt: curDrone.alt,
-      droneGimbal: curDrone.gimbal,
-      isDroneShowingVideo: (this.state.dronePhase || 'video') === 'video',
-      isDroneShowingPicture: this.state.dronePhase === 'picture',
-      droneDotBg: (this.state.dronePhase || 'video') === 'video' ? '#E74C3C' : '#27AE60',
-      droneDotAnim: (this.state.dronePhase || 'video') === 'video' ? 'pulseRec 1.6s infinite' : 'none',
-      droneBadgeLabel: (this.state.dronePhase || 'video') === 'video' ? '📹 4K Flyover Sequence' : '📸 High-Resolution Aerial View',
-      droneVideoPhaseBg: (this.state.dronePhase || 'video') === 'video' ? '#C4507E' : 'transparent',
-      drone1Bg: this.state.dronePhase === 'picture' && activeDroneAngle === 1 ? '#C4507E' : 'transparent',
-      drone2Bg: this.state.dronePhase === 'picture' && activeDroneAngle === 2 ? '#C4507E' : 'transparent',
-      drone3Bg: this.state.dronePhase === 'picture' && activeDroneAngle === 3 ? '#C4507E' : 'transparent',
-      setDroneVideoPhase: this.setDroneVideoPhase,
-      setDrone1: this.setDroneAngle(1),
-      setDrone2: this.setDroneAngle(2),
-      setDrone3: this.setDroneAngle(3),
-      toggleDroneMotion: this.toggleDroneMotion,
-      droneMode,
-      isDroneVideo,
-      isDroneMap,
-      isDroneSplit,
-      droneMuted,
-      droneAudioLabel: droneMuted ? 'Muted' : 'Audio On',
-      droneVideoBtnBg: isDroneVideo ? '#C4507E' : 'transparent',
-      droneMapBtnBg: isDroneMap ? '#C4507E' : 'transparent',
-      droneSplitBtnBg: isDroneSplit ? '#C4507E' : 'transparent',
-      setDroneVideoMode: this.setDroneMode('video'),
-      setDroneMapMode: this.setDroneMode('map'),
-      setDroneSplitMode: this.setDroneMode('split'),
-      toggleDroneAudio: this.toggleDroneAudio,
+      return {
+        location: (this.state && this.state.location) || 'wuse',
+        isWuse,
+        isBranch2,
+        isHome: isWuse && page === 'home',
+        isRooms: isWuse && page === 'rooms',
+        isRoom: isWuse && page === 'room',
+        isResidence: isWuse && page === 'residence',
+        isTea: isWuse && page === 'tea',
+        isDecor: isWuse && page === 'decor',
+        isWork: isWuse && page === 'work',
+        isLocations: isWuse && page === 'locations',
+        isStays: isWuse && page === 'stays',
+        isHood: isWuse && page === 'hood',
+        isJournal: isWuse && page === 'journal',
+        isContact: isWuse && page === 'contact',
+        isExperience: isWuse && ['work', 'tea', 'decor', 'stays', 'hood', 'journal'].includes(page),
+        switchToWuse: this.switchToWuse,
+        switchToBranch2: this.switchToBranch2,
+        branch2Suites: BRANCH2_SUITES.map(s => ({ ...s, register: (e) => { if (this.prefillWaitlistSuite) this.prefillWaitlistSuite(s.name)(e); } })),
+        branch2Milestones: BRANCH2_MILESTONES,
+        branch2Angle: activeBranch2Angle,
+        branch2Angle1Bg: activeBranch2Angle === 1 ? '#C4507E' : 'transparent',
+        branch2Angle2Bg: activeBranch2Angle === 2 ? '#C4507E' : 'transparent',
+        branch2Angle3Bg: activeBranch2Angle === 3 ? '#C4507E' : 'transparent',
+        branch2CurTitle: curBranch2Angle.title,
+        branch2CurSrc: curBranch2Angle.src,
+        branch2CurAlt: curBranch2Angle.alt,
+        branch2CurGimbal: curBranch2Angle.gimbal,
+        setBranch2Angle1: (e) => { if (this.setBranch2Angle) this.setBranch2Angle(1)(e); },
+        setBranch2Angle2: (e) => { if (this.setBranch2Angle) this.setBranch2Angle(2)(e); },
+        setBranch2Angle3: (e) => { if (this.setBranch2Angle) this.setBranch2Angle(3)(e); },
+        setWaitlistSuitePref: (e) => { if (this.setWaitlist) this.setWaitlist('suitePref')(e); },
+        goHome: (e) => { if (this.go) this.go('home')(e); },
+        goRooms: (e) => { if (this.go) this.go('rooms')(e); },
+        goResidence: (e) => { if (this.go) this.go('residence')(e); },
+        goTea: (e) => { if (this.go) this.go('tea')(e); },
+        goDecor: (e) => { if (this.go) this.go('decor')(e); },
+        goWork: (e) => { if (this.go) this.go('work')(e); },
+        goLocations: (e) => { if (this.go) this.go('locations')(e); },
+        goStays: (e) => { if (this.go) this.go('stays')(e); },
+        goHood: (e) => { if (this.go) this.go('hood')(e); },
+        goJournal: (e) => { if (this.go) this.go('journal')(e); },
+        goContact: (e) => { if (this.go) this.go('contact')(e); },
+        bookingUrl,
+        rooms: withHandlers,
+        tiers: TIERS.map(t => ({ ...t, rooms: withHandlers.filter(r => r.tier === t.key) })),
+        room,
+        otherRooms: withHandlers.filter(r => r.key !== safeRoomKey).slice(0, 3),
+        enquireThisRoom: (e) => { if (this.openEnquiry) this.openEnquiry(room.name)(e); },
+        services: SERVICES,
+        decor: DECOR.map(d => ({ ...d, slot: 'ic-decor-' + d.key, slotLabel: d.name, photo: PX(d.px, 900), enquire: (e) => { if (this.openEnquiry) this.openEnquiry('Décor — ' + d.name)(e); } })),
+        hood: HOOD,
+        journal: JOURNAL.map(p => ({ ...p, slot: 'ic-journal-' + p.key, slotLabel: p.title, photo: PX(p.px, 1000) })),
+        enquiryOpen,
+        openEnquiry: (e) => { if (this.openEnquiry) this.openEnquiry()(e); },
+        closeEnquiry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ enquiryOpen: false }); },
+        branch2ModalOpen,
+        openBranch2Modal: this.openBranch2Modal,
+        closeBranch2Modal: this.closeBranch2Modal,
+        goRoomsFromModal: this.goRoomsFromModal,
+        menuOpen,
+        toggleMenu: this.toggleMenu,
+        closeMenu: this.closeMenu,
+        menuLabel: menuOpen ? 'Close' : 'Menu',
+        stop: (e) => e && e.stopPropagation && e.stopPropagation(),
+        f: f || {},
+        setName: (e) => { if (this.set) this.set('name')(e); },
+        setContact: (e) => { if (this.set) this.set('contact')(e); },
+        setCheckin: (e) => { if (this.set) this.set('checkin')(e); },
+        setCheckout: (e) => { if (this.set) this.set('checkout')(e); },
+        setRoom: (e) => { if (this.set) this.set('room')(e); },
+        setNote: (e) => { if (this.set) this.set('note')(e); },
+        waitlist: waitlist || {},
+        setWaitlistName: (e) => { if (this.setWaitlist) this.setWaitlist('name')(e); },
+        setWaitlistContact: (e) => { if (this.setWaitlist) this.setWaitlist('contact')(e); },
+        setWaitlistNote: (e) => { if (this.setWaitlist) this.setWaitlist('note')(e); },
+        roomOptions: options,
+        roomChoices: options.map(o => ({
+          label: o,
+          bg: (f && f.room === o) ? '#3C0031' : '#FFFFFF',
+          fg: (f && f.room === o) ? '#FFFFFF' : '#3C0031',
+          pick: () => this.setState(s => ({ f: { ...s.f, room: o } }))
+        })),
+        waHref: wa,
+        waComposed: wa + '?text=' + encodeURIComponent(msg.body),
+        mailComposed: 'mailto:' + ((this.props && this.props.email) || 'stay@insigniacourts.com') +
+          '?subject=' + encodeURIComponent('Stay enquiry — Insignia Courts') +
+          '&body=' + encodeURIComponent(msg.body),
+        waitlistWaComposed: wa + '?text=' + encodeURIComponent(wMsg.body),
+        waitlistMailComposed: 'mailto:' + ((this.props && this.props.email) || 'stay@insigniacourts.com') +
+          '?subject=' + encodeURIComponent('Priority Waitlist — Insignia Courts Branch II') +
+          '&body=' + encodeURIComponent(wMsg.body),
+        aerialSrc: curDrone.src,
+        droneAngle: activeDroneAngle,
+        droneMotion,
+        droneMotionLabel: droneMotion ? 'Active' : 'Paused',
+        droneMotionClass: droneMotion ? 'drone-flying' : '',
+        droneTitle: curDrone.title,
+        droneAlt: curDrone.alt,
+        droneGimbal: curDrone.gimbal,
+        isDroneShowingVideo: (this.state && (this.state.dronePhase || 'video')) === 'video',
+        isDroneShowingPicture: (this.state && this.state.dronePhase) === 'picture',
+        droneDotBg: (this.state && (this.state.dronePhase || 'video')) === 'video' ? '#E74C3C' : '#27AE60',
+        droneDotAnim: (this.state && (this.state.dronePhase || 'video')) === 'video' ? 'pulseRec 1.6s infinite' : 'none',
+        droneBadgeLabel: (this.state && (this.state.dronePhase || 'video')) === 'video' ? '📹 4K Flyover Sequence' : '📸 High-Resolution Aerial View',
+        droneVideoPhaseBg: (this.state && (this.state.dronePhase || 'video')) === 'video' ? '#C4507E' : 'transparent',
+        drone1Bg: (this.state && this.state.dronePhase === 'picture' && activeDroneAngle === 1) ? '#C4507E' : 'transparent',
+        drone2Bg: (this.state && this.state.dronePhase === 'picture' && activeDroneAngle === 2) ? '#C4507E' : 'transparent',
+        drone3Bg: (this.state && this.state.dronePhase === 'picture' && activeDroneAngle === 3) ? '#C4507E' : 'transparent',
+        setDroneVideoPhase: this.setDroneVideoPhase,
+        setDrone1: (e) => { if (this.setDroneAngle) this.setDroneAngle(1)(e); },
+        setDrone2: (e) => { if (this.setDroneAngle) this.setDroneAngle(2)(e); },
+        setDrone3: (e) => { if (this.setDroneAngle) this.setDroneAngle(3)(e); },
+        toggleDroneMotion: this.toggleDroneMotion,
+        droneMode,
+        isDroneVideo,
+        isDroneMap,
+        isDroneSplit,
+        droneMuted,
+        droneAudioLabel: droneMuted ? 'Muted' : 'Audio On',
+        droneVideoBtnBg: isDroneVideo ? '#C4507E' : 'transparent',
+        droneMapBtnBg: isDroneMap ? '#C4507E' : 'transparent',
+        droneSplitBtnBg: isDroneSplit ? '#C4507E' : 'transparent',
+        setDroneVideoMode: (e) => { if (this.setDroneMode) this.setDroneMode('video')(e); },
+        setDroneMapMode: (e) => { if (this.setDroneMode) this.setDroneMode('map')(e); },
+        setDroneSplitMode: (e) => { if (this.setDroneMode) this.setDroneMode('split')(e); },
+        toggleDroneAudio: this.toggleDroneAudio,
 
-      hoodSlide: this.state.hoodSlide || 0,
-      hoodSlideTransform: (this.state.hoodSlide || 0) === 1 ? '-50%' : '0%',
-      hoodSlide0Bg: (this.state.hoodSlide || 0) === 0 ? '#C4507E' : 'transparent',
-      hoodSlide1Bg: (this.state.hoodSlide || 0) === 1 ? '#C4507E' : 'transparent',
-      hoodMuted: this.state.hoodMuted !== false,
-      hoodAudioLabel: (this.state.hoodMuted !== false) ? '🔇 Audio Off' : '🔊 Audio On',
-      hoodStepBadge: (this.state.hoodSlide || 0) === 0 ? '📹 01 Neighbourhood Reel' : '📹 02 Earth to Street Flyover',
-      hoodStepTitle: (this.state.hoodSlide || 0) === 0 ? 'Abuja Wuse II Streetscape & Enclave Surroundings' : 'High-Altitude Earth to Street Descent',
-      hoodCounter: ((this.state.hoodSlide || 0) + 1) + ' / 2',
-      setHoodSlide0: this.setHoodSlide(0),
-      setHoodSlide1: this.setHoodSlide(1),
-      nextHoodSlide: this.nextHoodSlide,
-      prevHoodSlide: this.prevHoodSlide,
-      toggleHoodAudio: this.toggleHoodAudio,
-      curSpace,
-      spaces,
-      spaceSlide: activeSpaceSlide,
-      spaceCounter: (activeSpaceSlide + 1) + ' / ' + SPACES.length,
-      nextSpaceSlide: this.nextSpaceSlide,
-      prevSpaceSlide: this.prevSpaceSlide,
-      workMediaMode,
-      isWorkVideoMode,
-      isWorkPhotosMode,
-      workVideoMuted,
-      workAudioLabel,
-      setWorkVideoMode: this.setWorkMediaMode('video'),
-      setWorkPhotosMode: this.setWorkMediaMode('photo'),
-      toggleWorkAudio: this.toggleWorkAudio,
-      accent
-    };
+        hoodSlide: (this.state && this.state.hoodSlide) || 0,
+        hoodSlideTransform: ((this.state && this.state.hoodSlide) || 0) === 1 ? '-50%' : '0%',
+        hoodSlide0Bg: ((this.state && this.state.hoodSlide) || 0) === 0 ? '#C4507E' : 'transparent',
+        hoodSlide1Bg: ((this.state && this.state.hoodSlide) || 0) === 1 ? '#C4507E' : 'transparent',
+        hoodMuted: (this.state && this.state.hoodMuted) !== false,
+        hoodAudioLabel: (this.state && this.state.hoodMuted !== false) ? '🔇 Audio Off' : '🔊 Audio On',
+        hoodStepBadge: ((this.state && this.state.hoodSlide) || 0) === 0 ? '📹 01 Neighbourhood Reel' : '📹 02 Earth to Street Flyover',
+        hoodStepTitle: ((this.state && this.state.hoodSlide) || 0) === 0 ? 'Abuja Wuse II Streetscape & Enclave Surroundings' : 'High-Altitude Earth to Street Descent',
+        hoodCounter: (((this.state && this.state.hoodSlide) || 0) + 1) + ' / 2',
+        setHoodSlide0: (e) => { if (this.setHoodSlide) this.setHoodSlide(0)(e); },
+        setHoodSlide1: (e) => { if (this.setHoodSlide) this.setHoodSlide(1)(e); },
+        nextHoodSlide: this.nextHoodSlide,
+        prevHoodSlide: this.prevHoodSlide,
+        toggleHoodAudio: this.toggleHoodAudio,
+        curSpace,
+        spaces,
+        spaceSlide: activeSpaceSlide,
+        spaceCounter: (activeSpaceSlide + 1) + ' / ' + SPACES.length,
+        nextSpaceSlide: this.nextSpaceSlide,
+        prevSpaceSlide: this.prevSpaceSlide,
+        workMediaMode,
+        isWorkVideoMode,
+        isWorkPhotosMode,
+        workVideoMuted,
+        workAudioLabel,
+        setWorkVideoMode: (e) => { if (this.setWorkMediaMode) this.setWorkMediaMode('video')(e); },
+        setWorkPhotosMode: (e) => { if (this.setWorkMediaMode) this.setWorkMediaMode('photo')(e); },
+        toggleWorkAudio: this.toggleWorkAudio,
+        accent
+      };
+    } catch (err) {
+      console.error("[Insignia Courts] renderVals safety catch:", err);
+      return {};
+    }
   }
 }
 
