@@ -7,8 +7,8 @@
 <meta name="description" content="Boutique serviced residence and suites in Abuja, Nigeria by Insignia Properties.">
 <meta property="og:title" content="Insignia Court — Serviced Residence Abuja">
 <meta property="og:description" content="Boutique serviced residence and suites in Abuja, Nigeria by Insignia Properties.">
-<link rel="icon" type="image/jpeg" href="./assets/logo.jpg">
-<meta property="og:image" content="./assets/logo.jpg">
+<link rel="icon" type="image/png" href="./assets/logo.png">
+<meta property="og:image" content="./assets/logo.png">
 <script src="./vendor/react/react.production.min.js"></script>
 <script src="./vendor/react-dom/react-dom.production.min.js"></script>
 <script>
@@ -326,6 +326,11 @@
     cursor: pointer;
     padding: 4px 0;
     display: inline-block;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    line-height: inherit;
     transition: color 0.15s ease, transform 0.15s ease;
   }
   .footer-nav-link:hover, .footer-nav-link:focus {
@@ -668,12 +673,78 @@
     -webkit-backdrop-filter: blur(12px);
     border-top: 1px solid rgba(255, 255, 255, 0.18);
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: stretch;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 100vw;
     box-sizing: border-box;
+  }
+
+  /* Floating / Hovering WhatsApp Button */
+  .hovering-whatsapp-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 28px;
+    z-index: 85;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: #FFFFFF;
+    padding: 12px 20px 12px 14px;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.42), 0 2px 8px rgba(0, 0, 0, 0.16);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.2s ease;
+    cursor: pointer;
+    font-family: 'Archivo', sans-serif;
+  }
+  .hovering-whatsapp-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    background: #20BA5A;
+    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.55), 0 4px 12px rgba(0, 0, 0, 0.22);
+    color: #FFFFFF;
+  }
+  .hovering-whatsapp-btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .hovering-whatsapp-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    white-space: nowrap;
+  }
+  .hovering-whatsapp-pulse {
+    position: absolute;
+    inset: -3px;
+    border-radius: 9999px;
+    border: 2px solid rgba(37, 211, 102, 0.65);
+    animation: waPulse 2.4s infinite;
+    pointer-events: none;
+  }
+  @keyframes waPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 0; }
+    100% { transform: scale(1.14); opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .hovering-whatsapp-btn {
+      right: 16px;
+      bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+      padding: 12px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-sizing: border-box;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    .hovering-whatsapp-label {
+      display: none;
+    }
   }
   .bottom-tab-item {
     display: flex;
@@ -1641,10 +1712,10 @@
   <div class="nav-header-inner">
     <a href="#" onClick="{{ goHome }}" class="nav-brand-box" title="Insignia Court">
       <sc-if value="{{ isWuse }}" hint-placeholder-val="{{ true }}">
-        <img src="./assets/logo.jpg" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
+        <img src="./assets/logo-trimmed.png" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
       </sc-if>
       <sc-if value="{{ isBranch2 }}" hint-placeholder-val="{{ false }}">
-        <img src="./assets/logo.jpg" alt="Insignia Court Branch II, Abuja" class="brand-logo-img" />
+        <img src="./assets/logo-trimmed.png" alt="Insignia Court Branch II, Abuja" class="brand-logo-img" />
       </sc-if>
     </a>
     <div class="branch-nav-pill-group">
@@ -1802,10 +1873,6 @@
     </a>
     <a href="#" onClick="{{ goWork }}" class="mobile-menu-link">
       <span>Work &amp; executive coworking</span>
-      <span style="font-size:12px;opacity:0.6">&rarr;</span>
-    </a>
-    <a href="#" onClick="{{ goLocations }}" class="mobile-menu-link">
-      <span>Two addresses (Locations)</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goTea }}" class="mobile-menu-link">
@@ -2143,17 +2210,12 @@
           </span>
         </div>
         <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,7.5vw,72px);line-height:1.06;letter-spacing:-0.02em;margin:0 0 20px;color:#FFFFFF;text-wrap:balance;overflow-wrap:break-word;word-break:normal">Six rooms.<br>Six names.<br>One quiet address.</h1>
-        <p style="font-size:clamp(15px,1.2vw,17px);line-height:1.65;color:#E8D6DF;max-width:44ch;margin:0">Every room at Insignia Court, Wuse II carries the name of a butterfly - Atala, Junonia, Lyria, Evania, Morpho, Papilio. Each one is prepared for a different kind of stay, and all of them are prepared the same way: carefully.</p>
+        <p style="font-size:clamp(15px,1.2vw,17px);line-height:1.65;color:#E8D6DF;max-width:48ch;margin:0 0 16px">Every room at Insignia Court, Wuse II carries the name of a butterfly - Atala, Junonia, Lyria, Evania, Morpho, Papilio. Each one is prepared for a different kind of stay, and all of them are prepared the same way: carefully.</p>
+        <p style="font-size:clamp(14px,1.15vw,16px);line-height:1.65;color:#E4A9C3;max-width:48ch;margin:0">A little work with your stay? We&rsquo;ve got a space for that too. Just around the corner, our executive coworking space offers hot desks, front desk support and a 5-person meeting room, available with advance booking.</p>
       </div>
       <div class="btn-responsive-row" style="display:flex;flex-wrap:wrap;gap:14px">
         <button type="button" onClick="{{ goRooms }}" style="border:0;background:#FFFFFF;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box" style-hover="background:#C4507E;color:#FFFFFF">See the rooms &rarr;</button>
         <button type="button" onClick="{{ openEnquiry }}" style="border:1px solid rgba(255,255,255,0.45);background:transparent;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box" style-hover="background:rgba(255,255,255,0.1)">Enquire about a stay</button>
-      </div>
-      <div style="margin-top:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-        <button type="button" onClick="{{ goWork }}" style="border:none;background:transparent;padding:0;color:#E4A9C3;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:6px" style-hover="color:#FFFFFF">
-          <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#C4507E"></span>
-          <span>Executive Coworking - Available by Advance Booking &rarr;</span>
-        </button>
       </div>
     </div>
     <div class="grid-hero-image">
@@ -2209,11 +2271,10 @@
         <!-- Card 1: Wuse II -->
         <div style="background:#FFFFFF;display:flex;flex-direction:column;justify-content:space-between;padding:44px 36px">
           <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+            <div style="margin-bottom:16px">
               <span style="display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#1E7E34;background:#E8F5E9;padding:4px 10px;border-radius:4px;font-weight:600">
                 <span style="width:6px;height:6px;border-radius:50%;background:#27AE60"></span>Now Welcoming Guests
               </span>
-              <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A6577">Wuse II Flagship</span>
             </div>
             <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:32px;line-height:1.15;margin:0 0 12px;color:#3C0031">Insignia Court, Wuse II, Abuja</h3>
             <p style="font-size:15px;line-height:1.65;color:#5C3A52;margin:0 0 20px;max-width:72ch">Set in the heart of Abuja&rsquo;s prime business and leisure district, we offer cosy rooms and suites, a Japanese-inspired tea station, curated d&eacute;cor, errand support and more to make your stay comfortable.</p>
@@ -2237,7 +2298,6 @@
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:72px">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:40px">
         <div>
-          <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:14px">Accommodations</div>
           <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0;color:#3C0031">Rooms &amp; Suites</h2>
         </div>
         <p style="font-size:15px;line-height:1.65;color:#5C3A52;max-width:44ch;margin:0">Each one marks a different temperament of room, from the lightest standard to the most private suite.</p>
@@ -2474,7 +2534,7 @@
           &mdash; In the Heart of Wuse II &mdash; &middot; In collaboration with Insignia Courts
         </div>
         <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,46px);line-height:1.1;margin:0 0 16px;color:#3C0031">
-          Executive Co-Working Space
+          Executive Coworking Space
         </h2>
         <p style="font-size:15px;line-height:1.65;color:#5C3A52;margin:0 0 28px;max-width:54ch">
           Designed for professionals, entrepreneurs, freelancers and remote workers seeking a calm, reliable workspace.
@@ -2537,24 +2597,10 @@
             </div>
           </div>
 
-          <!-- Introductory Rates Cards -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-            <div style="border:1px solid #E3D8DC;background:#FFFFFF;padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between">
-              <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;font-weight:600">Day Pass</div>
-              <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:26px;color:#3C0031;margin:6px 0 2px">&#8358;10,000</div>
-              <div style="font-size:11px;color:#C4507E;letter-spacing:0.06em;font-weight:500">Introductory Rate</div>
-            </div>
-            <div style="border:1px solid #E3D8DC;background:#FFFFFF;padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between">
-              <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;font-weight:600">Dedicated Monthly Seat</div>
-              <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:26px;color:#3C0031;margin:6px 0 2px">&#8358;200,000<span style="font-size:14px;color:#8A6577;font-weight:300">/mo</span></div>
-              <div style="font-size:11px;color:#C4507E;letter-spacing:0.06em;font-weight:500">Introductory Rate</div>
-            </div>
-          </div>
-
           <!-- Booking Callout Note -->
           <div style="background:#F7F4F2;padding:12px 16px;border:1px solid #E3D8DC;font-size:12px;color:#5C3A52;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
             <div>
-              <strong style="color:#3C0031">Reserve Your Workspace Today</strong> &bull; Call / WhatsApp: <a href="tel:0910111122" style="color:#9E3560;font-weight:600;text-decoration:none">0910111122</a> | <a href="tel:0911011133" style="color:#9E3560;font-weight:600;text-decoration:none">0911011133</a>
+              <strong style="color:#3C0031">Reserve Your Workspace Today</strong> &bull; Call / WhatsApp: <a href="tel:09110111122" style="color:#9E3560;font-weight:600;text-decoration:none">09110111122</a> | <a href="tel:09110111133" style="color:#9E3560;font-weight:600;text-decoration:none">09110111133</a>
             </div>
             <span style="font-size:11px;color:#C4507E;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Limited seats available</span>
           </div>
@@ -2564,8 +2610,8 @@
           <button type="button" onClick="{{ goWork }}" style="border:0;background:#3C0031;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#C4507E">
             Explore Workspace &amp; 4K Tour &rarr;
           </button>
-          <a href="https://wa.me/234910111122?text=Hello,%20I%20would%20like%20to%20reserve%20a%20workspace%20pass" target="_blank" rel="noopener" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none" style-hover="background:#3C0031;color:#FFFFFF">
-            WhatsApp 0910111122
+          <a href="https://wa.me/2349110111122?text=Hello,%20I%20would%20like%20to%20reserve%20a%20workspace%20pass" target="_blank" rel="noopener" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none" style-hover="background:#3C0031;color:#FFFFFF">
+            WhatsApp 09110111122
           </a>
         </div>
       </div>
@@ -2799,38 +2845,20 @@
       <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:14px">At the General Tea Corner &middot; Three Signature Herbal Infusions</div>
       <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 36px;color:#3C0031">Crafted for calm, warmth, and rest</h2>
       <div class="grid-cards-3" style="background:#3C0031">
-        <div style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column;justify-content:space-between">
-          <div>
-            <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:8px">Golden Herbal Infusion</div>
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 12px;color:#3C0031">Doum &amp; Lemongrass</h3>
-            <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0 0 18px">A soothing, fragrant golden brew pairing indigenous northern doum fruit with crisp lemongrass and warming spices.</p>
-          </div>
-          <div style="border-top:1px solid #E3D8DC;padding-top:14px">
-            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:6px">Blend Composition</div>
-            <div style="font-size:13.5px;color:#3C0031;line-height:1.5">Lemongrass, doum fruit, ginger, clove, cardamom, cinnamon.</div>
-          </div>
+        <div style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column">
+          <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:8px">Golden Herbal Infusion</div>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 12px;color:#3C0031">Doum &amp; Lemongrass</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0">A soothing, fragrant golden brew pairing indigenous northern doum fruit with crisp lemongrass and warming spices.</p>
         </div>
-        <div style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column;justify-content:space-between">
-          <div>
-            <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:8px">Ruby Herbal Infusion</div>
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 12px;color:#3C0031">Hibiscus &amp; Baobab</h3>
-            <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0 0 18px">A vibrant, deeply refreshing ruby infusion rich in natural botanicals, tart baobab fruit, and dried citrus peel.</p>
-          </div>
-          <div style="border-top:1px solid #E3D8DC;padding-top:14px">
-            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:6px">Blend Composition</div>
-            <div style="font-size:13.5px;color:#3C0031;line-height:1.5">Hibiscus, baobab, lemongrass, ginger, dried citrus peel, clove.</div>
-          </div>
+        <div style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column">
+          <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:8px">Ruby Herbal Infusion</div>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 12px;color:#3C0031">Hibiscus &amp; Baobab</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0">A vibrant, deeply refreshing ruby infusion rich in natural botanicals, tart baobab fruit, and dried citrus peel.</p>
         </div>
-        <div style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column;justify-content:space-between">
-          <div>
-            <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:8px">Spiced Herbal Infusion</div>
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 12px;color:#3C0031">Sahel Spice</h3>
-            <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0 0 18px">An earthy, grounded tonic inspired by ancient Sahelian spice formulations, with aromatic uda and sweet fennel.</p>
-          </div>
-          <div style="border-top:1px solid #E3D8DC;padding-top:14px">
-            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:6px">Blend Composition</div>
-            <div style="font-size:13.5px;color:#3C0031;line-height:1.5">Doum fruit, lemongrass, ginger, cinnamon, uda, cardamom, clove, fennel.</div>
-          </div>
+        <div style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column">
+          <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:8px">Spiced Herbal Infusion</div>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 12px;color:#3C0031">Sahel Spice</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0">An earthy, grounded tonic inspired by ancient Sahelian spice formulations, with aromatic uda and sweet fennel.</p>
         </div>
       </div>
     </div>
@@ -2912,7 +2940,7 @@
             <div style="font-family:'Jost',sans-serif;font-size:24px;color:#9E3560;margin-bottom:12px">&#8358;10,000</div>
             <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Ergonomic seating, Ultra-Fast Starlink internet, 24/7 solar &amp; inverter power backup, and full kitchenette access.</p>
           </div>
-          <a href="https://wa.me/234910111122?text=Hello,%20I%20would%20like%20to%20book%20a%20Day%20Pass%20(N10,000)" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560;text-decoration:none">Book Day Pass &rarr;</a>
+          <a href="https://wa.me/2349110111122?text=Hello,%20I%20would%20like%20to%20book%20a%20Day%20Pass%20(N10,000)" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560;text-decoration:none">Book Day Pass &rarr;</a>
         </div>
         <div style="background:#F7F4F2;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between">
           <div>
@@ -2921,7 +2949,7 @@
             <div style="font-family:'Jost',sans-serif;font-size:24px;color:#9E3560;margin-bottom:12px">&#8358;200,000<span style="font-size:14px;color:#8A6577">/mo</span></div>
             <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Your personal comfortable professional work desk reserved month-to-month with lockable cabinetry and front desk coordination.</p>
           </div>
-          <a href="https://wa.me/234910111122?text=Hello,%20I%20would%20like%20to%20reserve%20a%20Dedicated%20Monthly%20Seat%20(N200,000/mo)" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560;text-decoration:none">Reserve Monthly Seat &rarr;</a>
+          <a href="https://wa.me/2349110111122?text=Hello,%20I%20would%20like%20to%20reserve%20a%20Dedicated%20Monthly%20Seat%20(N200,000/mo)" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560;text-decoration:none">Reserve Monthly Seat &rarr;</a>
         </div>
         <div style="background:#F7F4F2;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between">
           <div>
@@ -3341,8 +3369,8 @@
 <footer style="background:#3C0031;color:#FFFFFF">
   <div class="grid-footer">
     <div>
-      <a href="#" onClick="{{ goHome }}" style="display:inline-block;text-decoration:none;margin-bottom:18px;background:#FFFFFF;padding:6px 12px;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.15)" title="Insignia Courts &mdash; Return to Home">
-        <img src="./assets/logo.jpg" alt="Insignia Courts Abuja" style="height:34px;width:auto;max-width:180px;display:block;object-fit:contain" />
+      <a href="#" onClick="{{ goHome }}" style="display:inline-block;text-decoration:none;margin-bottom:18px;background:#FFFFFF;padding:6px 14px;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.15)" title="Insignia Courts &mdash; Return to Home">
+        <img src="./assets/logo-trimmed.png" alt="Insignia Courts Abuja" style="height:36px;width:auto;max-width:180px;display:block;object-fit:contain" />
       </a>
       <p style="font-size:14px;line-height:1.6;color:#E8D6DF;margin:0 0 16px;max-width:36ch">A thoughtfully prepared serviced residence in the heart of Abuja&rsquo;s prime business and leisure district.</p>
       <div style="font-size:12px;color:#C79FB4;line-height:1.6">
@@ -3352,23 +3380,23 @@
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <a href="#" onClick="{{ goRooms }}" class="footer-col-header">Stay</a>
-      <a href="#" onClick="{{ goRooms }}" class="footer-nav-link">Rooms &amp; suites</a>
-      <a href="#" onClick="{{ goResidence }}" class="footer-nav-link">The residence</a>
-      <a href="#" onClick="{{ goWork }}" class="footer-nav-link">Work &amp; meetings</a>
-      <a href="#" onClick="{{ goStays }}" class="footer-nav-link">Long stays &amp; corporate</a>
+      <div class="footer-col-header">Stay</div>
+      <button type="button" onClick="{{ goRooms }}" class="footer-nav-link">Rooms &amp; suites</button>
+      <button type="button" onClick="{{ goResidence }}" class="footer-nav-link">The residence</button>
+      <button type="button" onClick="{{ goWork }}" class="footer-nav-link">Work &amp; meetings</button>
+      <button type="button" onClick="{{ goStays }}" class="footer-nav-link">Long stays &amp; corporate</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <a href="#" onClick="{{ goTea }}" class="footer-col-header">Within</a>
-      <a href="#" onClick="{{ goTea }}" class="footer-nav-link">The Tea Station</a>
-      <a href="#" onClick="{{ goDecor }}" class="footer-nav-link">D&eacute;cor collection</a>
-      <a href="#" onClick="{{ goHood }}" class="footer-nav-link">Neighbourhood</a>
-      <a href="#" onClick="{{ goJournal }}" class="footer-nav-link">Journal</a>
+      <div class="footer-col-header">Within</div>
+      <button type="button" onClick="{{ goTea }}" class="footer-nav-link">The Tea Station</button>
+      <button type="button" onClick="{{ goDecor }}" class="footer-nav-link">D&eacute;cor collection</button>
+      <button type="button" onClick="{{ goHood }}" class="footer-nav-link">Neighbourhood</button>
+      <button type="button" onClick="{{ goJournal }}" class="footer-nav-link">Journal</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;margin-bottom:4px">Reach us</div>
+      <div class="footer-col-header">Reach us</div>
       <a href="{{ bookingUrl }}" target="_blank" rel="noopener" style="font-size:14px;color:#FFB5D2;font-weight:600" style-hover="color:#FFFFFF">Instant Online Booking &rarr;</a>
-      <a href="#" onClick="{{ goContact }}" style="font-size:14px;color:#FFFFFF" style-hover="color:#E4A9C3">Contact &amp; Directions</a>
+      <button type="button" onClick="{{ goContact }}" class="footer-nav-link">Contact &amp; Directions</button>
       <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="font-size:14px;color:#FFFFFF;text-decoration:none" style-hover="color:#E4A9C3">09110111122 (WhatsApp)</a>
       <a href="tel:09110111133" style="font-size:14px;color:#E8D6DF;text-decoration:none" style-hover="color:#FFFFFF">09110111133 (Direct Line)</a>
       <a href="mailto:stay@insigniacourts.com" style="font-size:14px;color:#E8D6DF;text-decoration:none" style-hover="color:#FFFFFF">stay@insigniacourts.com</a>
@@ -3526,12 +3554,6 @@
     </svg>
     <span>Book</span>
   </a>
-  <a href="{{ waHref }}" target="_blank" rel="noopener" class="bottom-tab-item">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-    </svg>
-    <span>WhatsApp</span>
-  </a>
   <button type="button" onClick="{{ openEnquiry }}" class="bottom-tab-item" title="Enquire about a stay">
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -3542,10 +3564,19 @@
   </button>
 </nav>
 
+<!-- Floating / Hovering WhatsApp Concierge Button (Desktop & Mobile) -->
+<a href="{{ waHref }}" target="_blank" rel="noopener" class="hovering-whatsapp-btn" aria-label="Chat with Concierge on WhatsApp" title="WhatsApp Concierge">
+  <div class="hovering-whatsapp-pulse"></div>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.82L4.43 19.64L5.26 16.6L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.43 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15ZM16.56 14.39C16.31 14.26 15.09 13.66 14.86 13.58C14.63 13.5 14.47 13.46 14.3 13.71C14.14 13.95 13.67 14.51 13.52 14.67C13.38 14.83 13.24 14.85 12.99 14.73C12.74 14.6 11.95 14.34 11.01 13.5C10.28 12.85 9.78 12.04 9.64 11.8C9.5 11.55 9.62 11.42 9.75 11.29C9.86 11.18 10 11.02 10.12 10.88C10.24 10.74 10.28 10.64 10.36 10.48C10.44 10.32 10.4 10.18 10.34 10.05C10.28 9.93 9.8 8.74 9.6 8.25C9.4 7.78 9.2 7.84 9.05 7.83C8.91 7.82 8.75 7.82 8.58 7.82C8.42 7.82 8.16 7.88 7.93 8.13C7.71 8.37 7.08 8.96 7.08 10.16C7.08 11.37 7.96 12.53 8.08 12.69C8.21 12.85 9.8 15.3 12.24 16.35C12.82 16.6 13.27 16.75 13.63 16.86C14.21 17.05 14.74 17.02 15.16 16.96C15.63 16.89 16.59 16.38 16.79 15.81C16.99 15.24 16.99 14.75 16.93 14.65C16.87 14.54 16.71 14.48 16.46 14.35L16.56 14.39Z"/>
+  </svg>
+  <span class="hovering-whatsapp-label">WhatsApp Concierge</span>
+</a>
+
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2348000000000&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;stay@insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;bookingUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://booking.insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Booking&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C4507E&quot;,&quot;options&quot;:[&quot;#C4507E&quot;,&quot;#9E3560&quot;,&quot;#3C0031&quot;,&quot;#B8446E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2349110111122&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;stay@insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;bookingUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://booking.insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Booking&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C4507E&quot;,&quot;options&quot;:[&quot;#C4507E&quot;,&quot;#9E3560&quot;,&quot;#3C0031&quot;,&quot;#B8446E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
 const PX = (id, w) => 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=' + (w || 1400);
 
 const PHOTOS = {
@@ -3729,42 +3760,42 @@ const SPACES = [
   {
     key: 0,
     src: './assets/space.jpeg',
-    tag: 'Workstations',
-    label: '01 Workstations',
-    title: 'Executive Workstations & Acoustic Pods',
-    desc: 'Ergonomic leather swivel seating, acoustic privacy dividers, and warm overhead pendant illumination.'
+    tag: 'THE WORKSPACE',
+    label: '01 The Workspace',
+    title: 'A Calm, Executive Setting to Get Things Done',
+    desc: 'A calm, executive setting to get things done.'
   },
   {
     key: 1,
     src: './assets/space2.jpeg',
-    tag: 'Private Office',
-    label: '02 Suite Wing',
-    title: 'Private Executive Suite Entrance',
-    desc: 'Direct access to sound-isolated meeting chambers, reception foyer, and natural light courtyard.'
+    tag: 'YOUR WORKDAY',
+    label: '02 Your Workday',
+    title: 'Settle In. Plug In. Get to Work.',
+    desc: 'Settle in. Plug in. Get to work.'
   },
   {
     key: 2,
     src: './assets/space3.jpeg',
-    tag: 'Focus Station',
-    label: '03 Focus Pod',
-    title: 'Dedicated Workstations with Lockable Cabinetry',
-    desc: 'Dedicated private desks with personal lockable storage, integrated desktop organizers, and dual-redundant fiber.'
+    tag: 'FOCUS',
+    label: '03 Focus',
+    title: 'A Dedicated Setting for Focused Work',
+    desc: 'A dedicated setting for focused work.'
   },
   {
     key: 3,
     src: './assets/space4.jpeg',
-    tag: 'Lounge Wing',
-    label: '04 Gallery Lounge',
-    title: 'Resident Lounge & Hydration Gallery',
-    desc: 'Curated modern wall art, artisan coffee & tea station, and comfortable lounge seating for confidential calls.'
+    tag: 'TAKE A BREAK',
+    label: '04 Take A Break',
+    title: 'Step Away. Recharge. Return Refreshed.',
+    desc: 'Step away. Recharge. Return refreshed.'
   },
   {
     key: 4,
     src: './assets/space5.jpeg',
-    tag: 'Full Pod',
-    label: '05 Full Quad',
-    title: 'Four-Desk Corporate Pod Quad',
-    desc: 'Integrated four-person team pod arranged for visiting diplomatic delegations and executive management teams.'
+    tag: 'WORK YOUR WAY',
+    label: '05 Work Your Way',
+    title: 'For a Few Hours, a Full Day or Longer',
+    desc: 'For a few hours, a full day or longer.'
   }
 ];
 
@@ -3787,15 +3818,40 @@ class Component extends DCLogic {
   spaceTimer = null;
   dronePictureTimer = null;
 
+  scrollToTop = () => {
+    if (typeof window === 'undefined') return;
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    } catch (e) {
+      window.scrollTo(0, 0);
+    }
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
+    const root = document.getElementById('dc-root');
+    if (root) root.scrollTop = 0;
+    const scrollContainer = document.querySelector('.page-content-wrapper') || document.querySelector('main');
+    if (scrollContainer && scrollContainer.scrollTop) scrollContainer.scrollTop = 0;
+  };
 
   componentDidMount() {
+    if (typeof window !== 'undefined' && 'scrollRestoration' in history) {
+      try { history.scrollRestoration = 'manual'; } catch (e) {}
+    }
+    this.scrollToTop();
     this.startSpaceAutoSlide();
     this.setupVideoLoop();
     this.setupDroneVideoRotate();
     this.setupHoodVideoRotate();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState && (prevState.page !== (this.state && this.state.page) || prevState.location !== (this.state && this.state.location) || prevState.roomKey !== (this.state && this.state.roomKey))) {
+      this.scrollToTop();
+      requestAnimationFrame(this.scrollToTop);
+      setTimeout(this.scrollToTop, 20);
+      setTimeout(this.scrollToTop, 100);
+      setTimeout(this.scrollToTop, 250);
+    }
     this.setupVideoLoop();
     this.setupDroneVideoRotate();
     this.setupHoodVideoRotate();
@@ -4043,14 +4099,24 @@ class Component extends DCLogic {
 
   switchToWuse = (e) => {
     if (e && e.preventDefault) e.preventDefault();
-    this.setState({ location: 'wuse', menuOpen: false, branch2ModalOpen: false });
-    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+    this.scrollToTop();
+    this.setState({ location: 'wuse', page: 'home', menuOpen: false, branch2ModalOpen: false }, () => {
+      this.scrollToTop();
+      setTimeout(this.scrollToTop, 50);
+      setTimeout(this.scrollToTop, 150);
+    });
+    setTimeout(this.scrollToTop, 50);
   };
 
   switchToBranch2 = (e) => {
     if (e && e.preventDefault) e.preventDefault();
-    this.setState({ location: 'branch2', menuOpen: false, branch2ModalOpen: false });
-    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+    this.scrollToTop();
+    this.setState({ location: 'branch2', menuOpen: false, branch2ModalOpen: false }, () => {
+      this.scrollToTop();
+      setTimeout(this.scrollToTop, 50);
+      setTimeout(this.scrollToTop, 150);
+    });
+    setTimeout(this.scrollToTop, 50);
   };
 
   setBranch2Angle = (n) => (e) => {
@@ -4122,16 +4188,37 @@ class Component extends DCLogic {
   };
 
   go = (page, roomKey) => (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.setState(s => ({ location: 'wuse', page, roomKey: roomKey || s.roomKey, menuOpen: false, branch2ModalOpen: false }));
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
-      if (page === 'work') {
-        setTimeout(() => this.setupVideoLoop(), 60);
-      }
-      if (page === 'hood') {
-        setTimeout(() => this.setupHoodVideoRotate(), 60);
-      }
+    if (e) {
+      if (e.preventDefault) e.preventDefault();
+      if (e.stopPropagation) e.stopPropagation();
+    }
+    this.scrollToTop();
+    this.setState(s => ({
+      location: 'wuse',
+      page,
+      roomKey: roomKey || s.roomKey,
+      menuOpen: false,
+      branch2ModalOpen: false
+    }), () => {
+      this.scrollToTop();
+      requestAnimationFrame(this.scrollToTop);
+      setTimeout(this.scrollToTop, 10);
+      setTimeout(this.scrollToTop, 50);
+      setTimeout(this.scrollToTop, 150);
+      setTimeout(this.scrollToTop, 300);
+    });
+
+    requestAnimationFrame(this.scrollToTop);
+    setTimeout(this.scrollToTop, 10);
+    setTimeout(this.scrollToTop, 50);
+    setTimeout(this.scrollToTop, 150);
+    setTimeout(this.scrollToTop, 300);
+
+    if (page === 'work') {
+      setTimeout(() => this.setupVideoLoop(), 60);
+    }
+    if (page === 'hood') {
+      setTimeout(() => this.setupHoodVideoRotate(), 60);
     }
   };
 
@@ -4162,8 +4249,12 @@ class Component extends DCLogic {
 
   goRoomsFromModal = (e) => {
     if (e && e.preventDefault) e.preventDefault();
-    this.setState({ branch2ModalOpen: false, location: 'wuse', page: 'rooms' });
-    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+    this.scrollToTop();
+    this.setState({ branch2ModalOpen: false, location: 'wuse', page: 'rooms' }, () => {
+      this.scrollToTop();
+      setTimeout(this.scrollToTop, 50);
+    });
+    setTimeout(this.scrollToTop, 50);
   };
 
   set = (k) => (e) => {
@@ -4178,7 +4269,8 @@ class Component extends DCLogic {
 
   message() {
     const f = this.state.f;
-    const phone = this.props.whatsapp ?? '2349110111122';
+    const raw = (this.props && this.props.whatsapp) ? this.props.whatsapp : '2349110111122';
+    const phone = (raw === '2348000000000' || !raw) ? '2349110111122' : raw;
     const L = ['Hello Insignia Courts — I would like to enquire about a stay.'];
     if (f.name) L.push('Name: ' + f.name);
     if (f.contact) L.push('Contact: ' + f.contact);
@@ -4190,7 +4282,8 @@ class Component extends DCLogic {
 
   waitlistMessage() {
     const w = this.state.waitlist;
-    const phone = this.props.whatsapp ?? '2349110111122';
+    const raw = (this.props && this.props.whatsapp) ? this.props.whatsapp : '2349110111122';
+    const phone = (raw === '2348000000000' || !raw) ? '2349110111122' : raw;
     const L = ['*PRIORITY VIP WAITLIST — INSIGNIA COURTS BRANCH II*'];
     if (w.name) L.push('Name: ' + w.name);
     if (w.contact) L.push('Contact: ' + w.contact);
@@ -4222,7 +4315,7 @@ class Component extends DCLogic {
       const room = withHandlers.find(r => r.key === safeRoomKey) || withHandlers[0];
       const msg = this.message ? this.message() : { phone:'2349110111122', body:'' };
       const wMsg = this.waitlistMessage ? this.waitlistMessage() : { phone:'2349110111122', body:'' };
-      const wa = 'https://wa.me/' + msg.phone;
+      const wa = 'https://wa.me/' + (msg.phone || '2349110111122');
       const options = ['No preference'].concat(ROOMS.map(r => r.name + ' — ' + r.tag));
 
       const droneAngles = {
