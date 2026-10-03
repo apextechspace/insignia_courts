@@ -334,20 +334,20 @@
     transition: color 0.15s ease, transform 0.15s ease;
   }
   .footer-nav-link:hover, .footer-nav-link:focus {
-    color: #E4A9C3;
+    color: #FCE7F0;
     transform: translateX(2px);
   }
 
   .footer-col-header {
     font-size: 10px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: #E4A9C3;
-    margin-bottom: 4px;
+    color: #FCE7F0;
+    margin-bottom: 6px;
     text-decoration: none;
     display: inline-block;
-    cursor: pointer;
-    font-weight: 600;
+    cursor: default;
+    font-weight: 700;
     transition: color 0.15s ease;
   }
   .footer-col-header:hover {
@@ -1202,62 +1202,6 @@
     }
   }
 
-  /* Branch Switcher & Direct Booking Pill Styles */
-  .branch-nav-pill-group {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(60, 0, 49, 0.05);
-    border: 1px solid rgba(60, 0, 49, 0.14);
-    padding: 3px;
-    gap: 2px;
-    border-radius: 999px;
-    flex-shrink: 0;
-  }
-  .branch-pill-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #3C0031;
-    text-decoration: none;
-    padding: 5px 12px;
-    border-radius: 999px;
-    transition: all 0.18s ease;
-    white-space: nowrap;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-  }
-  .branch-pill-item:hover {
-    background: rgba(60, 0, 49, 0.08);
-  }
-  .branch-pill-item.active {
-    background: #3C0031;
-    color: #FFFFFF;
-  }
-  .branch-pill-soon {
-    color: #8A6577;
-  }
-  .branch-pill-soon:hover {
-    color: #C4507E;
-  }
-  .branch-dot-active {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #27AE60;
-    display: inline-block;
-  }
-  .branch-dot-soon {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #E4A9C3;
-    display: inline-block;
-  }
   .nav-book-btn {
     border: 1px solid #3C0031;
     background: transparent;
@@ -1309,139 +1253,6 @@
   .nav-cta-btn:hover {
     background: #C4507E;
     color: #FFFFFF;
-  }
-  .nav-cta-btn.branch2-cta {
-    background: #C4507E;
-    color: #FFFFFF;
-  }
-  .nav-cta-btn.branch2-cta:hover {
-    background: #3C0031;
-    color: #FFFFFF;
-  }
-  @media (max-width: 1380px) {
-    .branch-nav-pill-group {
-      display: none !important;
-    }
-  }
-
-  /* BRANCH II DEDICATED EXPERIENCE STYLES */
-  .branch2-top-banner {
-    background: #25001F;
-    border-bottom: 1px solid rgba(228, 169, 195, 0.3);
-    color: #FFFFFF;
-    position: relative;
-    z-index: 50;
-  }
-  
-  @keyframes gridFloat {
-    0% { background-position: 0 0; }
-    100% { background-position: 36px 36px; }
-  }
-
-  .branch2-hero-grid {
-    background-color: #3C0031;
-    background-image: 
-      linear-gradient(rgba(228, 169, 195, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(228, 169, 195, 0.08) 1px, transparent 1px);
-    background-size: 36px 36px;
-    animation: gridFloat 40s linear infinite;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .branch2-hero-grid::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 50% 50%, rgba(196, 80, 126, 0.22) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .grid-branch2-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
-    gap: 56px;
-    align-items: end;
-  }
-
-  .milestone-stepper {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    position: relative;
-  }
-
-  .milestone-card {
-    background: #FFFFFF;
-    border: 1px solid #E3D8DC;
-    padding: 24px 20px;
-    position: relative;
-    transition: all 0.22s ease;
-  }
-  .milestone-card.milestone-done {
-    border-top: 4px solid #27AE60;
-  }
-  .milestone-card.milestone-active {
-    border: 2px solid #C4507E;
-    border-top: 4px solid #C4507E;
-    box-shadow: 0 10px 28px rgba(196, 80, 126, 0.12);
-  }
-  .milestone-card.milestone-upcoming {
-    border-top: 4px solid #B092A2;
-    opacity: 0.88;
-  }
-
-  .grid-2-equal-suites {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px;
-  }
-
-  .branch2-suite-card {
-    background: #FFFFFF;
-    border: 2px solid #3C0031;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
-  }
-  .branch2-suite-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(60, 0, 49, 0.15);
-  }
-
-  .branch2-suite-image {
-    aspect-ratio: 16/10;
-    width: 100%;
-    background: #EDE7E6;
-    position: relative;
-    overflow: hidden;
-  }
-  .branch2-suite-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .branch2-suite-card:hover .branch2-suite-image img {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 900px) {
-    .grid-branch2-hero {
-      grid-template-columns: 1fr;
-      gap: 36px;
-    }
-    .milestone-stepper {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .grid-2-equal-suites {
-      grid-template-columns: 1fr !important;
-    }
   }
   @media (max-width: 768px) {
     .nav-book-btn {
@@ -1703,6 +1514,37 @@
       padding: 36px 12px 40px !important;
     }
   }
+
+  /* High-Contrast Enhancements for Uppercase Badges & Labels on Burgundy (#3C0031 & dark tones) */
+  .grid-hero-text [style*="color:#E4A9C3"],
+  .grid-hero-text [style*="color:#E8D6DF"],
+  [style*="background:#3C0031"] [style*="letter-spacing"][style*="uppercase"],
+  [style*="background:#20031B"] [style*="letter-spacing"][style*="uppercase"],
+  .footer-col-header,
+  .footer-col-header[style*="color:#FCE7F0"],
+  .footer-nav-link {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.22em !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  [style*="background:#3C0031"] [style*="color:#E4A9C3"],
+  [style*="background:#3C0031"] [style*="color:#FCE7F0"],
+  [style*="background:#3C0031"] [style*="color:#C79FB4"] {
+    color: #FFD4E5 !important;
+    font-weight: 600 !important;
+  }
+
+  @media (max-width: 768px) {
+    [style*="background:#3C0031"] [style*="font-size:10px"],
+    [style*="background:#3C0031"] [style*="font-size:9.5px"],
+    .footer-col-header {
+      font-size: 11px !important;
+      letter-spacing: 0.24em !important;
+      color: #FFFFFF !important;
+    }
+  }
 </style>
 </helmet>
 
@@ -1710,139 +1552,96 @@
 
 <header style="position:sticky;top:0;z-index:60;background:rgba(247, 244, 242, 0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:2px solid #3C0031">
   <div class="nav-header-inner">
-    <a href="#" onClick="{{ goHome }}" class="nav-brand-box" title="Insignia Court">
-      <sc-if value="{{ isWuse }}" hint-placeholder-val="{{ true }}">
-        <img src="./assets/logo-trimmed.png" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
-      </sc-if>
-      <sc-if value="{{ isBranch2 }}" hint-placeholder-val="{{ false }}">
-        <img src="./assets/logo-trimmed.png" alt="Insignia Court Branch II, Abuja" class="brand-logo-img" />
-      </sc-if>
+    <a href="#" onClick="{{ goHome }}" class="nav-brand-box" title="Insignia Court &middot; Wuse II, Abuja">
+      <img src="./assets/logo-trimmed.png" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
     </a>
-    <div class="branch-nav-pill-group">
-      <button type="button" onClick="{{ switchToWuse }}" class="branch-pill-item {{ isWuse ? 'active' : '' }}" title="Flagship Serviced Residence in Wuse II">
-        <span class="branch-dot-active"></span>
-        <span>Wuse II (Open)</span>
-      </button>
-    </div>
 
-    <!-- Branch II Header Navigation (Active when Branch II is selected) -->
-    <sc-if value="{{ isBranch2 }}" hint-placeholder-val="{{ false }}">
-      <nav class="desktop-nav">
-        <a href="#branch2-root" class="desktop-nav-link nav-active">Branch II Overview</a>
-        <a href="#branch2-drone-reel" class="desktop-nav-link">Architectural Reel</a>
-        <a href="#branch2-suites" class="desktop-nav-link">The 4 Suites</a>
-        <a href="#branch2-amenities" class="desktop-nav-link">Enclave Living</a>
-        <a href="#branch2-waitlist-section" class="desktop-nav-link">VIP Waitlist</a>
-      </nav>
-      <div class="nav-actions-right">
-        <button type="button" onClick="{{ switchToWuse }}" class="nav-book-btn" title="Switch to Open Wuse II Flagship">Wuse II (Open Now) &rarr;</button>
-        <a href="#branch2-waitlist-section" class="nav-cta-btn branch2-cta">Join Waitlist</a>
-        <button type="button" onClick="{{ toggleMenu }}" class="mobile-burger-btn" aria-label="Toggle navigation directory drawer">
-          <span class="burger-bars">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-          <span class="burger-label">{{ menuLabel }}</span>
+    <!-- Primary Navigation -->
+    <nav class="desktop-nav">
+      <a href="#" onClick="{{ goRooms }}" class="desktop-nav-link {{ isRooms ? 'nav-active' : '' }}">Rooms</a>
+      <a href="#" onClick="{{ goResidence }}" class="desktop-nav-link {{ isResidence ? 'nav-active' : '' }}">Residence</a>
+      <a href="#" onClick="{{ goWork }}" class="desktop-nav-link {{ isWork ? 'nav-active' : '' }}">Executive Coworking</a>
+
+      <!-- Experience Dropdown Menu -->
+      <div class="nav-dropdown-wrap">
+        <button type="button" class="desktop-nav-link nav-dropdown-trigger {{ isExperience ? 'nav-active' : '' }}" aria-haspopup="true">
+          <span>Experience</span>
+          <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M1 1L5 5L9 1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
-      </div>
-    </sc-if>
+        <div class="nav-dropdown-menu">
+          <div class="dropdown-col">
+            <div class="dropdown-heading">The Residence Spaces</div>
+            <a href="#" onClick="{{ goTea }}" class="dropdown-item">
+              <div class="dropdown-item-title">
+                <span>The Tea Station</span>
+                <span class="dropdown-arrow">&rarr;</span>
+              </div>
+              <div class="dropdown-item-desc">Japanese-inspired station &amp; herbal blends</div>
+            </a>
+            <a href="#" onClick="{{ goDecor }}" class="dropdown-item">
+              <div class="dropdown-item-title">
+                <span>The Art We Live With</span>
+                <span class="dropdown-arrow">&rarr;</span>
+              </div>
+              <div class="dropdown-item-desc">Selected paintings, ceramics &amp; sculpture</div>
+            </a>
+          </div>
 
-    <!-- Wuse II Header Navigation (Active when Wuse II Flagship is selected) -->
-    <sc-if value="{{ isWuse }}" hint-placeholder-val="{{ true }}">
-      <nav class="desktop-nav">
-        <a href="#" onClick="{{ goRooms }}" class="desktop-nav-link {{ isRooms ? 'nav-active' : '' }}">Rooms</a>
-        <a href="#" onClick="{{ goResidence }}" class="desktop-nav-link {{ isResidence ? 'nav-active' : '' }}">Residence</a>
-        <a href="#" onClick="{{ goLocations }}" class="desktop-nav-link {{ isLocations ? 'nav-active' : '' }}">Two Addresses</a>
+          <div class="dropdown-divider"></div>
 
-        <!-- Refined Experience Dropdown Menu -->
-        <div class="nav-dropdown-wrap">
-          <button type="button" class="desktop-nav-link nav-dropdown-trigger {{ isExperience ? 'nav-active' : '' }}" aria-haspopup="true">
-            <span>Experience</span>
-            <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M1 1L5 5L9 1" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="nav-dropdown-menu">
-            <div class="dropdown-col">
-              <div class="dropdown-heading">Curated Spaces</div>
-              <a href="#" onClick="{{ goWork }}" class="dropdown-item">
-                <div class="dropdown-item-title">
-                  <span>Work &amp; Coworking</span>
-                  <span class="dropdown-arrow">&rarr;</span>
-                </div>
-                <div class="dropdown-item-desc">Executive desks &amp; meeting spaces</div>
-              </a>
-              <a href="#" onClick="{{ goTea }}" class="dropdown-item">
-                <div class="dropdown-item-title">
-                  <span>The Tea Station</span>
-                  <span class="dropdown-arrow">&rarr;</span>
-                </div>
-                <div class="dropdown-item-desc">Japanese-inspired ceremonial brewing</div>
-              </a>
-              <a href="#" onClick="{{ goDecor }}" class="dropdown-item">
-                <div class="dropdown-item-title">
-                  <span>The D&eacute;cor Collection</span>
-                  <span class="dropdown-arrow">&rarr;</span>
-                </div>
-                <div class="dropdown-item-desc">Handcrafted ceramics, lighting &amp; brass</div>
-              </a>
-            </div>
-
-            <div class="dropdown-divider"></div>
-
-            <div class="dropdown-col">
-              <div class="dropdown-heading">Enclave &amp; Stays</div>
-              <a href="#" onClick="{{ goStays }}" class="dropdown-item">
-                <div class="dropdown-item-title">
-                  <span>Long Stays &amp; Corporate</span>
-                  <span class="dropdown-arrow">&rarr;</span>
-                </div>
-                <div class="dropdown-item-desc">Extended stays with tailored rates</div>
-              </a>
-              <a href="#" onClick="{{ goHood }}" class="dropdown-item">
-                <div class="dropdown-item-title">
-                  <span>Wuse II Neighbourhood</span>
-                  <span class="dropdown-arrow">&rarr;</span>
-                </div>
-                <div class="dropdown-item-desc">Dining, embassies &amp; peaceful walks</div>
-              </a>
-              <a href="#" onClick="{{ goJournal }}" class="dropdown-item">
-                <div class="dropdown-item-title">
-                  <span>The Journal</span>
-                  <span class="dropdown-arrow">&rarr;</span>
-                </div>
-                <div class="dropdown-item-desc">Design notes &amp; butterfly rooms</div>
-              </a>
-            </div>
+          <div class="dropdown-col">
+            <div class="dropdown-heading">Stays &amp; Stories</div>
+            <a href="#" onClick="{{ goStays }}" class="dropdown-item">
+              <div class="dropdown-item-title">
+                <span>Long Stays &amp; Corporate</span>
+                <span class="dropdown-arrow">&rarr;</span>
+              </div>
+              <div class="dropdown-item-desc">Extended stays with tailored terms</div>
+            </a>
+            <a href="#" onClick="{{ goHood }}" class="dropdown-item">
+              <div class="dropdown-item-title">
+                <span>Neighbourhood</span>
+                <span class="dropdown-arrow">&rarr;</span>
+              </div>
+              <div class="dropdown-item-desc">Business, shopping &amp; leisure destinations</div>
+            </a>
+            <a href="#" onClick="{{ goJournal }}" class="dropdown-item">
+              <div class="dropdown-item-title">
+                <span>Notes from the Residence</span>
+                <span class="dropdown-arrow">&rarr;</span>
+              </div>
+              <div class="dropdown-item-desc">Stories behind the rooms, art &amp; city</div>
+            </a>
           </div>
         </div>
-
-        <a href="#" onClick="{{ goContact }}" class="desktop-nav-link {{ isContact ? 'nav-active' : '' }}">Contact</a>
-      </nav>
-      <div class="nav-actions-right">
-        <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="nav-book-btn" title="Open Instant Booking Web App">Book Online</a>
-        <button type="button" onClick="{{ openEnquiry }}" class="nav-cta-btn">Enquire</button>
-        <button type="button" onClick="{{ toggleMenu }}" class="mobile-burger-btn" aria-label="Toggle navigation directory drawer">
-          <span class="burger-bars">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-          <span class="burger-label">{{ menuLabel }}</span>
-        </button>
       </div>
-    </sc-if>
+
+      <a href="#" onClick="{{ goContact }}" class="desktop-nav-link {{ isContact ? 'nav-active' : '' }}">Contact</a>
+    </nav>
+    <div class="nav-actions-right">
+      <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="nav-book-btn" title="Open Instant Booking Web App">Book Online</a>
+      <button type="button" onClick="{{ openEnquiry }}" class="nav-cta-btn">Enquire</button>
+      <button type="button" onClick="{{ toggleMenu }}" class="mobile-burger-btn" aria-label="Toggle navigation directory drawer">
+        <span class="burger-bars">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="burger-label">{{ menuLabel }}</span>
+      </button>
+    </div>
   </div>
 </header>
 
 <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
   <div class="menu-backdrop-overlay" onClick="{{ closeMenu }}"></div>
   <div class="mobile-menu-drawer">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.2)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.2)">
       <div style="display:flex;align-items:center;gap:8px">
         <span style="display:block;width:3px;height:12px;background:#C4507E"></span>
-        <span style="font-size:10.5px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;font-weight:600">Directory &amp; Concierge</span>
+        <span style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#F7D6E4;font-weight:600">Directory &amp; Concierge</span>
       </div>
       <button type="button" onClick="{{ closeMenu }}" style="border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:#FFFFFF;cursor:pointer;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;display:flex;align-items:center;gap:6px;padding:6px 12px" style-hover="background:#C4507E;border-color:#C4507E">
         <span>Close</span>
@@ -1850,19 +1649,7 @@
       </button>
     </div>
 
-    <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:10px">Select Location</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">
-      <button type="button" onClick="{{ switchToWuse }}" style="border:1px solid {{ isWuse ? '#27AE60' : 'rgba(255,255,255,0.2)' }};background:{{ isWuse ? 'rgba(39,174,96,0.22)' : 'rgba(255,255,255,0.06)' }};color:#FFFFFF;padding:10px 8px;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer">
-        <span style="width:6px;height:6px;border-radius:50%;background:#27AE60"></span>
-        <span>Wuse II (Open)</span>
-      </button>
-      <button type="button" onClick="{{ switchToBranch2 }}" style="border:1px solid {{ isBranch2 ? '#E4A9C3' : 'rgba(255,255,255,0.2)' }};background:{{ isBranch2 ? 'rgba(228,169,195,0.22)' : 'rgba(255,255,255,0.06)' }};color:#E4A9C3;padding:10px 8px;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer">
-        <span style="width:6px;height:6px;border-radius:50%;background:#E4A9C3"></span>
-        <span>Branch II (Soon)</span>
-      </button>
-    </div>
-
-    <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.15)">Navigate</div>
+    <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#F7D6E4;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.15)">Navigate</div>
     <a href="#" onClick="{{ goRooms }}" class="mobile-menu-link">
       <span>Rooms &amp; suites</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
@@ -1872,7 +1659,7 @@
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goWork }}" class="mobile-menu-link">
-      <span>Work &amp; executive coworking</span>
+      <span>Executive Coworking</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goTea }}" class="mobile-menu-link">
@@ -1880,7 +1667,7 @@
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goDecor }}" class="mobile-menu-link">
-      <span>D&eacute;cor collection</span>
+      <span>The Art We Live With</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goStays }}" class="mobile-menu-link">
@@ -1892,7 +1679,7 @@
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goJournal }}" class="mobile-menu-link">
-      <span>Journal</span>
+      <span>Notes from the Residence</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goContact }}" class="mobile-menu-link">
@@ -1906,296 +1693,12 @@
       <a href="{{ waHref }}" target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,0.35);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;text-align:center;display:block;width:100%;min-height:48px;box-sizing:border-box" style-hover="background:rgba(255,255,255,0.1)">WhatsApp the front desk</a>
     </div>
 
-    <div style="margin-top:28px;font-size:12px;line-height:1.6;color:#C79FB4">
-      <div style="font-weight:600;color:#FFFFFF;margin-bottom:2px">Insignia Courts</div>
+    <div style="margin-top:28px;font-size:12px;line-height:1.6;color:#F7D6E4">
+      <div style="font-weight:600;color:#FFFFFF;margin-bottom:2px">Insignia Court</div>
       <div>5 Tanba Street, Wuse II, Abuja &middot; An Insignia Properties Residence</div>
-      <div><a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none">09110111122 (WhatsApp)</a> &middot; <a href="tel:09110111133" style="color:#FFFFFF;text-decoration:none">09110111133</a> &middot; <a href="mailto:stay@insigniacourts.com" style="color:#C79FB4;text-decoration:none">stay@insigniacourts.com</a></div>
+      <div><a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none">09110111122 (WhatsApp)</a> &middot; <a href="tel:09110111133" style="color:#FFFFFF;text-decoration:none">09110111133</a> &middot; <a href="mailto:stay@insigniacourts.com" style="color:#F7D6E4;text-decoration:none">stay@insigniacourts.com</a></div>
     </div>
   </div>
-</sc-if>
-
-<!-- DEDICATED BRANCH II (COMING SOON) EXPERIENCE -->
-<sc-if value="{{ isBranch2 }}" hint-placeholder-val="{{ false }}">
-  <!-- Top Quick-Switch Banner -->
-  <div class="branch2-top-banner">
-    <div class="container-pad" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px">
-      <div style="display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">
-        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E4A9C3;animation:pulseRec 1.6s infinite"></span>
-        <span style="font-weight:600;color:#FFFFFF">Insignia Courts Branch II Preview</span>
-        <span style="opacity:0.65">&middot; Opening Late 2026 &middot; Prime Abuja Enclave</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span style="font-size:11px;color:#E8D6DF">Seeking a room right now?</span>
-        <button type="button" onClick="{{ switchToWuse }}" style="border:1px solid #FFFFFF;background:rgba(255,255,255,0.18);color:#FFFFFF;padding:6px 14px;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer" style-hover="background:#FFFFFF;color:#3C0031">
-          Switch to Wuse II Flagship &rarr;
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <main id="branch2-root">
-    <!-- Section 1: Kinetic Blueprint Hero with Motion Lines -->
-    <section class="branch2-hero-grid" style="color:#FFFFFF;border-bottom:2px solid #3C0031;padding:84px 0 96px">
-      <div class="container-pad" style="margin:0 auto;position:relative;z-index:2">
-        <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.22);padding:7px 16px;border-radius:999px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:28px">
-          <span style="width:7px;height:7px;border-radius:50%;background:#E4A9C3;animation:pulseRec 1.6s infinite"></span>
-          <span style="font-weight:600">New Location Under Development &middot; Opening Late 2026</span>
-        </div>
-
-        <div class="grid-branch2-hero">
-          <div>
-            <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(32px,5.5vw,70px);line-height:1.05;margin:0 0 24px;color:#FFFFFF;letter-spacing:-0.02em">
-              Ten Suites.<br>Private Terraces.<br>A Second Quiet Horizon.
-            </h1>
-            <p style="font-size:clamp(16px,1.2vw,18px);line-height:1.7;color:#E8D6DF;max-width:52ch;margin:0 0 32px">
-              Following the quiet cadence of our flagship in Wuse II, Insignia Courts Branch II expands into an exclusive, low-density enclave in prime Abuja. Designed with double-height garden residences, private heated plunge pools, and a subterranean Hi-Fi listening salon.
-            </p>
-            <div style="display:flex;gap:14px;flex-wrap:wrap">
-              <a href="#branch2-waitlist-section" style="border:0;background:#FFFFFF;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none" style-hover="background:#C4507E;color:#FFFFFF">Join Priority VIP Waitlist &rarr;</a>
-              <a href="#branch2-drone-reel" style="border:1px solid rgba(255,255,255,0.45);background:transparent;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none" style-hover="background:rgba(255,255,255,0.1)">Architectural Preview Reel &darr;</a>
-            </div>
-          </div>
-
-          <div style="background:rgba(20,2,17,0.72);border:1px solid rgba(255,255,255,0.22);padding:32px;backdrop-filter:blur(8px);box-sizing:border-box">
-            <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">Architectural Profile &middot; Branch II</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px">
-              <div>
-                <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:32px;line-height:1;color:#FFFFFF;margin-bottom:4px">10</div>
-                <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C79FB4">Signature Suites</div>
-              </div>
-              <div>
-                <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:32px;line-height:1;color:#FFFFFF;margin-bottom:4px">4.2m</div>
-                <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C79FB4">Ceiling Heights</div>
-              </div>
-              <div>
-                <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:32px;line-height:1;color:#FFFFFF;margin-bottom:4px">4</div>
-                <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C79FB4">Private Plunge Pools</div>
-              </div>
-              <div>
-                <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:32px;line-height:1;color:#FFFFFF;margin-bottom:4px">Q4</div>
-                <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C79FB4">2026 Inception</div>
-              </div>
-            </div>
-            <div style="padding-top:18px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;line-height:1.55;color:#E8D6DF">
-              Inaugural stay invitations will be allocated in order of registration.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: Milestones -->
-    <section style="background:#F7F4F2;border-bottom:2px solid #3C0031;padding:72px 0 80px">
-      <div class="container-pad" style="margin:0 auto">
-        <div style="max-width:680px;margin-bottom:44px">
-          <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#9E3560;margin-bottom:10px">Timeline &amp; Progress</div>
-          <h2 style="font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(26px,3vw,38px);line-height:1.15;margin:0 0 12px;color:#3C0031">
-            Development Milestones
-          </h2>
-          <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0">
-            From foundation excavation to custom fluted millwork, each phase is executed to the exacting standards established at our Wuse II residence.
-          </p>
-        </div>
-
-        <div class="milestone-stepper">
-          <sc-for list="{{ branch2Milestones }}" as="m" hint-placeholder-count="4">
-            <div class="milestone-card milestone-{{ m.status.toLowerCase() }}">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-                <span style="font-family:'Jost',sans-serif;font-weight:400;font-size:24px;color:#3C0031">{{ m.step }}</span>
-                <span style="font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:{{ m.status === 'Done' ? '#27AE60' : (m.status === 'Active' ? '#C4507E' : '#8A6577') }}">
-                  {{{ m.statusLabel }}}
-                </span>
-              </div>
-              <h3 style="font-family:'Jost',sans-serif;font-weight:400;font-size:18px;margin:0 0 8px;color:#3C0031">{{ m.title }}</h3>
-              <p style="font-size:13px;line-height:1.55;color:#5C3A52;margin:0">{{ m.desc }}</p>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: Drone / 3D Render Reel -->
-    <section id="branch2-drone-reel" style="border-bottom:2px solid #3C0031">
-      <div class="drone-viewport">
-        <div class="drone-slot-wrap drone-flying">
-          <img src="{{ branch2CurSrc }}" alt="Insignia Courts Branch II Enclave Preview" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-
-        <!-- Unobtrusive Floating Control Overlay -->
-        <div class="drone-hud-overlay">
-          <!-- Top Row: Enclave Tag & Perspectives -->
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
-            <span class="drone-mobile-hide" style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(6px);border-radius:2px">
-              Architectural Preview &middot; 4K
-            </span>
-
-            <div style="display:inline-flex;background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(8px);border-radius:2px;overflow:hidden">
-              <button type="button" onClick="{{ setBranch2Angle1 }}" class="drone-btn-interactive" style="border:none;background:{{ branch2Angle1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">01 Terraces</button>
-              <button type="button" onClick="{{ setBranch2Angle2 }}" class="drone-btn-interactive" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ branch2Angle2Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">02 Courtyards</button>
-              <button type="button" onClick="{{ setBranch2Angle3 }}" class="drone-btn-interactive" style="border:none;background:{{ branch2Angle3Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600" style-hover="background:#C4507E">03 Pavilion</button>
-            </div>
-          </div>
-
-          <!-- Bottom Row: Subtle Title -->
-          <div class="drone-mobile-hide" style="text-shadow:0 1px 4px rgba(0,0,0,0.9)">
-            <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:16px;color:#FFFFFF">{{ branch2CurTitle }}</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: The 4 Suites -->
-    <section id="branch2-suites" style="background:#F7F4F2;border-bottom:2px solid #3C0031;padding:84px 0 96px">
-      <div class="container-pad" style="margin:0 auto">
-        <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:48px;flex-wrap:wrap;gap:20px">
-          <div>
-            <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#9E3560;margin-bottom:10px">The Next Generation Suites</div>
-            <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,3.8vw,48px);line-height:1.1;margin:0;color:#3C0031">
-              Four Preview Configurations
-            </h2>
-          </div>
-          <a href="#branch2-waitlist-section" style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#9E3560;text-decoration:none" style-hover="color:#3C0031">
-            Register interest for priority access &rarr;
-          </a>
-        </div>
-
-        <div class="grid-2-equal-suites">
-          <sc-for list="{{ branch2Suites }}" as="s" hint-placeholder-count="4">
-            <div class="branch2-suite-card">
-              <div class="branch2-suite-image">
-                <img src="{{ s.photo }}" alt="{{ s.name }}">
-                <div style="position:absolute;top:14px;left:14px;background:#3C0031;color:#FFFFFF;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;padding:5px 10px;font-weight:600">
-                  {{ s.tier }}
-                </div>
-                <div style="position:absolute;bottom:14px;right:14px;background:rgba(20,2,17,0.75);color:#FFFFFF;font-size:10px;letter-spacing:0.14em;padding:5px 10px;backdrop-filter:blur(4px)">
-                  {{ s.size }}
-                </div>
-              </div>
-              <div style="padding:28px;display:flex;flex-direction:column;flex:1">
-                <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 6px;color:#3C0031">{{ s.name }}</h3>
-                <div style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:14px">{{ s.tag }}</div>
-                <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 20px;flex:1">{{ s.desc }}</p>
-
-                <div style="display:flex;flex-wrap:gap;gap:8px;margin-bottom:24px;flex-wrap:wrap">
-                  <sc-for list="{{ s.specs }}" as="spec" hint-placeholder-count="4">
-                    <span style="background:#EDE7E6;color:#3C0031;font-size:10px;letter-spacing:0.06em;padding:4px 8px;border:1px solid #E3D8DC">{{ spec }}</span>
-                  </sc-for>
-                </div>
-
-                <button type="button" onClick="{{ s.register }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:12px 18px;cursor:pointer;text-align:center;width:100%" style-hover="background:#3C0031;color:#FFFFFF">
-                  Register Interest for {{ s.name }} &rarr;
-                </button>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: Signature Enclave Spaces -->
-    <section id="branch2-amenities" style="background:#FFFFFF;border-bottom:2px solid #3C0031;padding:84px 0 96px">
-      <div class="container-pad" style="margin:0 auto">
-        <div style="max-width:680px;margin-bottom:48px">
-          <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#9E3560;margin-bottom:10px">Enclave Living</div>
-          <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,3.8vw,48px);line-height:1.1;margin:0 0 14px;color:#3C0031">
-            Signature Enclave Spaces
-          </h2>
-          <p style="font-size:16px;line-height:1.6;color:#5C3A52;margin:0">
-            In addition to the tea station and executive work desks guests cherish at Wuse II, Branch II introduces dedicated wellness and private diplomatic gathering pavilions.
-          </p>
-        </div>
-
-        <div class="grid-cards-4">
-          <div style="background:#FFFFFF;padding:32px 26px;display:flex;flex-direction:column">
-            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:12px">01 &middot; Wellness</div>
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:20px;margin:0 0 10px;color:#3C0031">Rooftop Lap Plunge Pool</h3>
-            <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0">Heated infinity plunge pool looking toward the Abuja hills, framed by natural teak sun-loungers.</p>
-          </div>
-
-          <div style="background:#FFFFFF;padding:32px 26px;display:flex;flex-direction:column">
-            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:12px">02 &middot; Sound &amp; Thought</div>
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:20px;margin:0 0 10px;color:#3C0031">Subterranean Hi-Fi Salon</h3>
-            <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0">Acoustically tuned listening lounge with analogue vinyl, Japanese tea selection, and library.</p>
-          </div>
-
-          <div style="background:#FFFFFF;padding:32px 26px;display:flex;flex-direction:column">
-            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:12px">03 &middot; State &amp; Industry</div>
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:20px;margin:0 0 10px;color:#3C0031">Diplomatic Private Dining</h3>
-            <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0">Concealed boardroom dining for up to 10 guests with private service ingress and bespoke tasting menus.</p>
-          </div>
-
-          <div style="background:#FFFFFF;padding:32px 26px;display:flex;flex-direction:column">
-            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:12px">04 &middot; Recovery</div>
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:20px;margin:0 0 10px;color:#3C0031">Thermal Contrast Suite</h3>
-            <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0">Private cedar sauna and cold plunge bath available for exclusive private bookings by resident guests.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 6: Priority VIP Waitlist -->
-    <section id="branch2-waitlist-section" style="background:#3C0031;color:#FFFFFF;border-bottom:2px solid #3C0031;padding:84px 0 96px">
-      <div class="container-pad" style="margin:0 auto">
-        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start" class="grid-form-wrap">
-          <div>
-            <div style="font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:#E4A9C3;margin-bottom:16px">Inaugural Allocation</div>
-            <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,4vw,52px);line-height:1.1;margin:0 0 20px;color:#FFFFFF">
-              Join the Priority VIP Waitlist
-            </h2>
-            <p style="font-size:16px;line-height:1.65;color:#E8D6DF;max-width:48ch;margin:0 0 24px">
-              Branch II will operate on an invitation-first basis for its opening quarter in Late 2026. Members of this list receive priority selection of suites and exclusive inaugural preview rates before public announcement.
-            </p>
-            <div style="padding:20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18)">
-              <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#E4A9C3;margin-bottom:4px">Concierge Direct</div>
-              <div style="font-size:13px;color:#FFFFFF">Questions about corporate allocation or diplomatic stays? Reach our front desk on WhatsApp at any time.</div>
-            </div>
-          </div>
-
-          <div style="background:#FFFFFF;color:#3C0031;padding:36px;border:2px solid #FFFFFF">
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;margin:0 0 20px;color:#3C0031">Request VIP Invitation</h3>
-            <div style="display:flex;flex-direction:column;gap:18px">
-              <label style="display:flex;flex-direction:column;gap:6px">
-                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Your Full Name</span>
-                <input type="text" value="{{ waitlist.name }}" onChange="{{ setWaitlistName }}" placeholder="e.g. Adebayo Adeleke" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:10px 0;min-height:44px">
-              </label>
-              <label style="display:flex;flex-direction:column;gap:6px">
-                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">WhatsApp / Phone or Email</span>
-                <input type="text" value="{{ waitlist.contact }}" onChange="{{ setWaitlistContact }}" placeholder="+234..." style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:10px 0;min-height:44px">
-              </label>
-              <label style="display:flex;flex-direction:column;gap:6px">
-                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Suite Preference</span>
-                <input type="text" value="{{ waitlist.suitePref }}" onChange="{{ setWaitlistSuitePref }}" placeholder="e.g. Orion Penthouse or No preference" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:10px 0;min-height:44px">
-              </label>
-              <label style="display:flex;flex-direction:column;gap:6px">
-                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Expected Stay Requirements</span>
-                <textarea rows="2" value="{{ waitlist.note }}" onChange="{{ setWaitlistNote }}" placeholder="e.g. Corporate retreat, extended residential lease, diplomatic brief..." style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:10px 0;resize:vertical"></textarea>
-              </label>
-              <a href="{{ waitlistWaComposed }}" target="_blank" rel="noopener" style="background:#3C0031;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;min-height:48px;display:flex;align-items:center;justify-content:center;text-decoration:none;margin-top:6px;text-align:center" style-hover="background:#C4507E">
-                Submit VIP Registration via WhatsApp &rarr;
-              </a>
-              <a href="{{ waitlistMailComposed }}" style="border:1px solid #3C0031;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 24px;min-height:48px;display:flex;align-items:center;justify-content:center;text-decoration:none;text-align:center" style-hover="background:#F7F4F2">
-                Submit by Email
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 7: Immediate Stay Switcher Callout -->
-    <section style="background:#EDE7E6;border-bottom:2px solid #3C0031;padding:48px 0">
-      <div class="container-pad" style="margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
-        <div>
-          <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#8A6577;margin-bottom:4px">Immediate Availability</div>
-          <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;color:#3C0031">Need a room today in Abuja?</div>
-          <div style="font-size:14px;color:#5C3A52;margin-top:2px">Our flagship residence in Wuse II has six butterfly suites welcoming guests.</div>
-        </div>
-        <button type="button" onClick="{{ switchToWuse }}" style="border:0;background:#3C0031;color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;white-space:nowrap" style-hover="background:#C4507E">
-          Switch to Wuse II Flagship &rarr;
-        </button>
-      </div>
-    </section>
-  </main>
 </sc-if>
 
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
@@ -2334,24 +1837,24 @@
           <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-tea-card" shape="rect" src="https://images.pexels.com/photos/302896/pexels-photo-302896.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="Tea station &mdash; still life"></image-slot></div>
           <div style="padding:24px">
             <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">The Tea Station</h3>
-            <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">A Japanese-inspired tea station, available when available. Sit with it or take it up to your room.</p>
+            <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">A Japanese-inspired tea station featuring regional botanicals and classic blends. Enjoy a cup in the lounge or carry one up to your room.</p>
             <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Read more &rarr;</span>
           </div>
         </a>
         <a href="#" onClick="{{ goDecor }}" style="background:#F7F4F2;display:flex;flex-direction:column;color:#3C0031" style-hover="background:#FFFFFF">
-          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-decor-card" shape="rect" src="https://images.pexels.com/photos/6707631/pexels-photo-6707631.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="D&eacute;cor collection &mdash; object or vignette"></image-slot></div>
+          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-decor-card" shape="rect" src="https://images.pexels.com/photos/6707631/pexels-photo-6707631.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="The Art We Live With &mdash; gallery vignette"></image-slot></div>
           <div style="padding:24px">
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">The D&eacute;cor Collection</h3>
-            <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">A curated collection lives throughout the residence. Select pieces are available to purchase.</p>
-            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">See the collection &rarr;</span>
+            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">The Art We Live With</h3>
+            <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Collected, commissioned and created close to home. The story of the art living alongside us, with selected pieces available for acquisition.</p>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Explore the art &rarr;</span>
           </div>
         </a>
         <a href="#" onClick="{{ goWork }}" style="background:#F7F4F2;display:flex;flex-direction:column;color:#3C0031" style-hover="background:#FFFFFF">
-          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-work-card" shape="rect" src="./assets/space.jpeg" placeholder="Coworking &mdash; desk or meeting room"></image-slot></div>
+          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-work-card" shape="rect" src="./assets/space.jpeg" placeholder="Executive Coworking &mdash; desk or meeting room"></image-slot></div>
           <div style="padding:24px">
-            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">Work &amp; Meetings</h3>
-            <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Our partner boutique coworking space is available to guests at preferred rates. Pre-booking is required.</p>
-            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Arrange a desk &rarr;</span>
+            <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">Executive Coworking</h3>
+            <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Our partner boutique coworking space in Wuse II is available to guests at preferred rates. Day passes and dedicated monthly desks arranged on request.</p>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Discover coworking &rarr;</span>
           </div>
         </a>
       </div>
@@ -2814,8 +2317,8 @@
     <div class="container-pad" style="background:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;justify-content:center">
       <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Within the residence</div>
       <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4.2vw,66px);line-height:1.05;margin:0 0 24px;color:#3C0031">The Tea Station</h1>
-      <p style="font-size:clamp(16px,1.3vw,20px);line-height:1.62;color:#3C0031;margin:0 0 18px;max-width:46ch">Within the residence, you&rsquo;ll find a Japanese-inspired tea station and a curated d&eacute;cor collection, with select pieces available for purchase.</p>
-      <p style="font-size:clamp(14px,1.1vw,17px);line-height:1.7;color:#5C3A52;margin:0;max-width:52ch">It sits where it makes sense to sit: between the entrance and the lounge, available when available. Take a cup up to your room, or stay with it a while. Nobody will hurry you.</p>
+      <p style="font-size:clamp(16px,1.3vw,20px);line-height:1.62;color:#3C0031;margin:0 0 18px;max-width:46ch">Within the residence, you&rsquo;ll find a Japanese-inspired tea station offering handcrafted regional botanicals alongside classic whole-leaf teas.</p>
+      <p style="font-size:clamp(14px,1.1vw,17px);line-height:1.7;color:#5C3A52;margin:0;max-width:52ch">Located on the ground floor between the entrance and the lounge, the Tea Station welcomes you to enjoy a freshly brewed cup or carry one to your room. Take your time; nobody will hurry you.</p>
     </div>
     <div style="position:relative;min-height:360px;background:#EDE7E6"><image-slot id="ic-tea-hero" shape="rect" src="https://images.pexels.com/photos/2079438/pexels-photo-2079438.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="Tea station &mdash; wide"></image-slot></div>
   </section>
@@ -2824,16 +2327,16 @@
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px">
       <div class="grid-cards-3" style="background:#3C0031">
         <div style="background:#F7F4F2;padding:34px 28px">
-          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">Room &amp; Tea Corner Selection</h3>
-          <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">A regular selection of tea bags will be provided in the rooms; black, green, chamomile, etc., while our signature herbal ones will be at the general tea corner.</p>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">Classic &amp; Herbal Selections</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">A selection of fine teas &mdash; including black, green, and calming chamomile &mdash; is prepared in every room, complemented by our signature herbal blends at the ground-floor tea corner.</p>
         </div>
         <div style="background:#F7F4F2;padding:34px 28px">
           <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">In your room</h3>
           <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">Select rooms carry a coffee and tea corner; the executive rooms and suites include a fitted kitchenette.</p>
         </div>
         <div style="background:#F7F4F2;padding:34px 28px">
-          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">Ask, and it is arranged</h3>
-          <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">Tea can be sent up with breakfast, or set out for a meeting. Speak to the team the evening before.</p>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">Arranged to your schedule</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">Tea can be served alongside morning breakfast, or set out for meetings upon prior request with the concierge.</p>
         </div>
       </div>
     </div>
@@ -2879,10 +2382,13 @@
   <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
     <div class="grid-split-header">
       <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Within the residence</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">The D&eacute;cor<br>Collection</h1>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">The Art We Live With</div>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">The Art We<br>Live With</h1>
       </div>
-      <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Nothing here is here by accident. The pieces you live with during your stay were chosen one at a time, and a number of them can leave with you. Ask at reception and we will tell you where a piece came from and what it costs.</p>
+      <div>
+        <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0 0 14px;max-width:56ch">The artworks at Insignia Court didn&rsquo;t arrive as a single collection. Some were discovered and brought home. Others were commissioned. And some of the paintings on our walls were created by members of our own family.</p>
+        <p style="font-size:clamp(14px,1.1vw,16px);line-height:1.65;color:#5C3A52;margin:0;max-width:56ch">Because this is a collection that continues to evolve, a few selected pieces may occasionally be available for acquisition. If something catches your eye during your stay, you are always welcome to ask us about it. Some pieces, of course, are simply part of the family story and will remain that way.</p>
+      </div>
     </div>
   </section>
   <section style="border-bottom:2px solid #3C0031">
@@ -2892,11 +2398,12 @@
           <div style="background:#FFFFFF;display:flex;flex-direction:column">
             <div style="position:relative;aspect-ratio:1/1;background:#EDE7E6"><image-slot id="{{ piece.slot }}" shape="rect" src="{{ piece.photo }}" placeholder="{{ piece.slotLabel }}"></image-slot></div>
             <div style="padding:20px;display:flex;flex-direction:column;gap:8px;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#C4507E;font-weight:600">{{ piece.category }}</span>
               <h3 style="font-family:'Jost',sans-serif;font-weight:400;font-size:17px;margin:0;color:#3C0031">{{ piece.name }}</h3>
               <p style="font-size:14px;line-height:1.55;color:#5C3A52;margin:0;flex:1">{{ piece.note }}</p>
               <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;row-gap:8px;flex-wrap:wrap;margin-top:8px">
-                <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#8A6577;white-space:nowrap">{{ piece.status }}</span>
-                <button type="button" onClick="{{ piece.enquire }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;cursor:pointer;text-align:left" style-hover="background:#3C0031;color:#FFFFFF">Enquire</button>
+                <span style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#8A6577;font-weight:600;white-space:nowrap">{{ piece.status }}</span>
+                <button type="button" onClick="{{ piece.enquire }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;cursor:pointer;text-align:left" style-hover="background:#3C0031;color:#FFFFFF">Ask About Piece</button>
               </div>
             </div>
           </div>
@@ -2906,8 +2413,11 @@
   </section>
   <section style="background:#F2DCE5;border-bottom:2px solid #3C0031">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:56px;padding-bottom:56px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
-      <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(22px,2.4vw,34px);line-height:1.25;margin:0;color:#3C0031;max-width:28ch">Pieces are one-off. When something goes, it goes.</p>
-      <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 34px;cursor:pointer;text-align:center" style-hover="background:#C4507E">Ask about a piece</button>
+      <div>
+        <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(22px,2.4vw,34px);line-height:1.25;margin:0 0 8px;color:#3C0031;max-width:32ch">Living alongside art that inspires.</h3>
+        <p style="font-size:14.5px;color:#5C3A52;margin:0;max-width:48ch">Selected artworks and artisanal ceramics are available for private acquisition. Family originals remain in the residence story.</p>
+      </div>
+      <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 34px;cursor:pointer;text-align:center" style-hover="background:#C4507E">Inquire About Acquisition</button>
     </div>
   </section>
 </main>
@@ -2918,7 +2428,7 @@
   <section class="grid-2-equal">
     <div style="position:relative;min-height:360px;background:#EDE7E6"><image-slot id="ic-work-hero" shape="rect" src="./assets/space.jpeg" placeholder="Executive Coworking &mdash; Wuse II, Abuja"></image-slot></div>
     <div class="container-pad" style="background:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;justify-content:center">
-      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Work &amp; Meetings &middot; Preferred Resident Rates</div>
+      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Executive Coworking &middot; Preferred Resident Rates</div>
       <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0 0 22px;color:#3C0031">Executive Coworking<br>&amp; Meeting Suites</h1>
       <p style="font-size:clamp(16px,1.3vw,20px);line-height:1.62;color:#3C0031;margin:0 0 16px;max-width:46ch">For work and meetings, our partner boutique coworking space in Wuse II is available at preferred guest rates.</p>
       <p style="font-size:clamp(14px,1.1vw,17px);line-height:1.7;color:#5C3A52;margin:0 0 28px;max-width:50ch">Every room at Insignia Courts is arranged to support both relaxation and productivity. When your day requires more &mdash; dedicated hot desks, private executive suites, or a 12-person boardroom with 4K screens &mdash; our concierge arranges it with direct room billing.</p>
@@ -3032,90 +2542,6 @@
       <div>
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">Errand &amp; Driver Support</div>
         <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Neighborhood drop-offs across Wuse II and Abuja central business district, with document dispatch handled on request.</p>
-      </div>
-    </div>
-  </section>
-</main>
-</sc-if>
-
-<sc-if value="{{ isLocations }}" hint-placeholder-val="{{ false }}">
-<main>
-  <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
-    <div class="grid-split-header">
-      <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">The Collection</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Two addresses<br>in Abuja</h1>
-      </div>
-      <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Insignia Courts operates a flagship serviced residence in Wuse II, with a second boutique location currently under curation in prime Abuja. Each property is created to offer peace, considered comfort, and attentive coordination.</p>
-    </div>
-  </section>
-
-  <section style="border-bottom:2px solid #3C0031">
-    <div class="container-pad section-pad" style="max-width:1440px;margin:0 auto">
-      <div class="grid-2-equal" style="border:2px solid #3C0031;background:#3C0031;gap:2px">
-        <!-- Branch 01: Wuse II -->
-        <div style="background:#FFFFFF;display:flex;flex-direction:column;justify-content:space-between;padding:44px 36px">
-          <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
-              <span style="display:inline-flex;align-items:center;gap:6px;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#1E7E34;background:#E8F5E9;padding:5px 12px;border-radius:4px;font-weight:600">
-                <span style="width:6px;height:6px;border-radius:50%;background:#27AE60"></span>Now Welcoming Guests
-              </span>
-              <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A6577">Flagship Residence</span>
-            </div>
-            <h2 style="font-family:'Jost',sans-serif;font-weight:300;font-size:32px;line-height:1.15;margin:0 0 14px;color:#3C0031">Insignia Court &middot; Wuse II</h2>
-            <p style="font-size:15px;line-height:1.65;color:#5C3A52;margin:0 0 24px">Set in the heart of Abuja&rsquo;s prime business and leisure district in Wuse II. Six quiet rooms and suites, Japanese-inspired tea station, curated d&eacute;cor, daily breakfast, and errand support.</p>
-            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
-              <div style="padding:10px 0;border-bottom:1px solid #E3D8DC;font-size:14px;color:#3C0031;display:flex;justify-content:space-between">
-                <span style="color:#8A6577">Accommodations:</span>
-                <span style="font-weight:500">6 Rooms &amp; Suites (Atala, Junonia, Lyria, Evania, Morpho, Papilio)</span>
-              </div>
-              <div style="padding:10px 0;border-bottom:1px solid #E3D8DC;font-size:14px;color:#3C0031;display:flex;justify-content:space-between">
-                <span style="color:#8A6577">Amenities:</span>
-                <span style="font-weight:500">Japanese Tea Station, Curated Décor, 24/7 Controlled Security</span>
-              </div>
-              <div style="padding:10px 0;border-bottom:1px solid #E3D8DC;font-size:14px;color:#3C0031;display:flex;justify-content:space-between">
-                <span style="color:#8A6577">Coworking:</span>
-                <span style="font-weight:500">Partner Executive Workspace in Wuse II at preferred rates</span>
-              </div>
-            </div>
-          </div>
-          <div class="btn-responsive-row" style="display:flex;gap:14px;flex-wrap:wrap">
-            <a href="{{ bookingUrl }}" target="_blank" rel="noopener" style="border:0;background:#3C0031;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none" style-hover="background:#C4507E">Book Wuse II Online &rarr;</a>
-            <button type="button" onClick="{{ goRooms }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 26px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#3C0031;color:#FFFFFF">Explore Rooms</button>
-          </div>
-        </div>
-
-        <!-- Branch 02: Coming Soon -->
-        <div style="background:#FDF8FA;display:flex;flex-direction:column;justify-content:space-between;padding:44px 36px">
-          <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
-              <span style="display:inline-flex;align-items:center;gap:6px;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#9E3560;background:#FCE4EC;padding:5px 12px;border-radius:4px;font-weight:600">
-                <span style="width:6px;height:6px;border-radius:50%;background:#C4507E"></span>Opening Late 2026
-              </span>
-              <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A6577">Location 02</span>
-            </div>
-            <h2 style="font-family:'Jost',sans-serif;font-weight:300;font-size:32px;line-height:1.15;margin:0 0 14px;color:#3C0031">Branch II &middot; Prime Abuja</h2>
-            <p style="font-size:15px;line-height:1.65;color:#5C3A52;margin:0 0 24px">Our second serviced residence in Abuja is being prepared with the same quiet care. Featuring expansive executive living suites, a private courtyard garden, and tailored corporate amenities.</p>
-            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
-              <div style="padding:10px 0;border-bottom:1px solid #E3D8DC;font-size:14px;color:#3C0031;display:flex;justify-content:space-between">
-                <span style="color:#8A6577">Status:</span>
-                <span style="font-weight:500;color:#9E3560">Under Architectural Curation &amp; Outfitting</span>
-              </div>
-              <div style="padding:10px 0;border-bottom:1px solid #E3D8DC;font-size:14px;color:#3C0031;display:flex;justify-content:space-between">
-                <span style="color:#8A6577">Curated Features:</span>
-                <span style="font-weight:500">Expanded Long-Stay Suites, Private Meeting Garden</span>
-              </div>
-              <div style="padding:10px 0;border-bottom:1px solid #E3D8DC;font-size:14px;color:#3C0031;display:flex;justify-content:space-between">
-                <span style="color:#8A6577">Founding Guest List:</span>
-                <span style="font-weight:500">Priority reservations and corporate standing terms</span>
-              </div>
-            </div>
-          </div>
-          <div class="btn-responsive-row" style="display:flex;gap:14px;flex-wrap:wrap">
-            <button type="button" onClick="{{ openBranch2Modal }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#3C0031">Join Priority Waitlist &rarr;</button>
-            <button type="button" onClick="{{ openEnquiry }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 26px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#3C0031;color:#FFFFFF">General Enquiry</button>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -3268,25 +2694,27 @@
   <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
     <div class="grid-split-header">
       <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Journal</div>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Notes from the Residence</div>
         <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Notes from<br>the residence</h1>
       </div>
-      <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Occasional writing on the house, the neighbourhood, and the things we keep in it.</p>
+      <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Stories behind our butterfly rooms, the living art collection, and the hidden history linking Abuja and Suleja.</p>
     </div>
   </section>
   <section style="border-bottom:2px solid #3C0031">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:56px;padding-bottom:56px">
       <div class="grid-cards-3">
         <sc-for list="{{ journal }}" as="post" hint-placeholder-count="3">
-          <a href="#" style="background:#FFFFFF;display:flex;flex-direction:column;color:#3C0031" style-hover="background:#FDF8FA">
+          <div onClick="{{ post.read }}" style="background:#FFFFFF;display:flex;flex-direction:column;color:#3C0031;cursor:pointer;border:1px solid #E3D8DC;transition:all 0.2s ease" style-hover="background:#FDF8FA;border-color:#3C0031">
             <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="{{ post.slot }}" shape="rect" src="{{ post.photo }}" placeholder="{{ post.slotLabel }}"></image-slot></div>
-            <div style="padding:22px 20px 28px;display:flex;flex-direction:column;gap:10px;flex:1">
-              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">{{ post.date }} &middot; {{ post.kind }}</span>
+            <div style="padding:24px 22px 28px;display:flex;flex-direction:column;gap:10px;flex:1">
+              <span style="font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:#C4507E;font-weight:700">{{ post.kind }}</span>
               <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;line-height:1.2;margin:0;color:#3C0031">{{ post.title }}</h3>
               <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0;flex:1">{{ post.standfirst }}</p>
-              <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Read &rarr;</span>
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-top:4px">
+                <span>READ &rarr;</span>
+              </div>
             </div>
-          </a>
+          </div>
         </sc-for>
       </div>
     </div>
@@ -3299,25 +2727,25 @@
   <section class="grid-contact-wrap">
     <div class="container-pad" style="background:#3C0031;color:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;gap:36px">
       <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:18px">Contact</div>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#FCE7F0;font-weight:700;margin-bottom:18px">Contact</div>
         <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#FFFFFF">We are easy<br>to reach</h1>
       </div>
       <div style="display:flex;flex-direction:column">
         <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,0.25)">
-          <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;margin-bottom:6px">Address</div>
+          <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#FCE7F0;font-weight:700;margin-bottom:6px">Address</div>
           <p style="font-size:16px;line-height:1.5;margin:0;color:#FFFFFF">Insignia Court, Wuse II<br>5 Tanba Street, Wuse II<br>Abuja, Nigeria</p>
         </div>
         <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,0.25)">
-          <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;margin-bottom:6px">Reservations &amp; Enquiries</div>
+          <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#FCE7F0;font-weight:700;margin-bottom:6px">Reservations &amp; Enquiries</div>
           <p style="font-size:16px;line-height:1.6;margin:0;color:#FFFFFF">
-            <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none" style-hover="color:#E4A9C3">09110111122 (WhatsApp)</a><br>
-            <a href="tel:09110111133" style="color:#FFFFFF;text-decoration:none" style-hover="color:#E4A9C3">09110111133 (Phone)</a><br>
-            <a href="mailto:stay@insigniacourts.com" style="color:#E4A9C3;text-decoration:none" style-hover="color:#FFFFFF">stay@insigniacourts.com</a>
+            <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none" style-hover="color:#FCE7F0">09110111122 (WhatsApp)</a><br>
+            <a href="tel:09110111133" style="color:#FFFFFF;text-decoration:none" style-hover="color:#FCE7F0">09110111133 (Phone)</a><br>
+            <a href="mailto:stay@insigniacourts.com" style="color:#FCE7F0;text-decoration:none" style-hover="color:#FFFFFF">stay@insigniacourts.com</a>
           </p>
         </div>
         <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,0.25);border-bottom:1px solid rgba(255,255,255,0.25)">
-          <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;margin-bottom:6px">Check In / Out</div>
-          <p style="font-size:16px;line-height:1.5;margin:0;color:#FFFFFF">2pm / 12pm<br><span style="font-size:13.5px;color:#E8D6DF">Early available on request and subject to availability</span></p>
+          <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#FCE7F0;font-weight:700;margin-bottom:6px">Check In / Out</div>
+          <p style="font-size:16px;line-height:1.5;margin:0;color:#FFFFFF">2pm / 12pm<br><span style="font-size:13.5px;color:#FFFFFF;opacity:0.9">Early check-in available on request and subject to availability</span></p>
         </div>
       </div>
       <a href="{{ waHref }}" target="_blank" rel="noopener" style="align-self:flex-start;background:#C4507E;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 32px;text-align:center" style-hover="background:#FFFFFF;color:#3C0031">WhatsApp the front desk</a>
@@ -3383,27 +2811,27 @@
       <div class="footer-col-header">Stay</div>
       <button type="button" onClick="{{ goRooms }}" class="footer-nav-link">Rooms &amp; suites</button>
       <button type="button" onClick="{{ goResidence }}" class="footer-nav-link">The residence</button>
-      <button type="button" onClick="{{ goWork }}" class="footer-nav-link">Work &amp; meetings</button>
+      <button type="button" onClick="{{ goWork }}" class="footer-nav-link">Executive Coworking</button>
       <button type="button" onClick="{{ goStays }}" class="footer-nav-link">Long stays &amp; corporate</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="footer-col-header">Within</div>
       <button type="button" onClick="{{ goTea }}" class="footer-nav-link">The Tea Station</button>
-      <button type="button" onClick="{{ goDecor }}" class="footer-nav-link">D&eacute;cor collection</button>
+      <button type="button" onClick="{{ goDecor }}" class="footer-nav-link">The Art We Live With</button>
       <button type="button" onClick="{{ goHood }}" class="footer-nav-link">Neighbourhood</button>
-      <button type="button" onClick="{{ goJournal }}" class="footer-nav-link">Journal</button>
+      <button type="button" onClick="{{ goJournal }}" class="footer-nav-link">Notes from the Residence</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="footer-col-header">Reach us</div>
       <a href="{{ bookingUrl }}" target="_blank" rel="noopener" style="font-size:14px;color:#FFB5D2;font-weight:600" style-hover="color:#FFFFFF">Instant Online Booking &rarr;</a>
       <button type="button" onClick="{{ goContact }}" class="footer-nav-link">Contact &amp; Directions</button>
-      <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="font-size:14px;color:#FFFFFF;text-decoration:none" style-hover="color:#E4A9C3">09110111122 (WhatsApp)</a>
-      <a href="tel:09110111133" style="font-size:14px;color:#E8D6DF;text-decoration:none" style-hover="color:#FFFFFF">09110111133 (Direct Line)</a>
-      <a href="mailto:stay@insigniacourts.com" style="font-size:14px;color:#E8D6DF;text-decoration:none" style-hover="color:#FFFFFF">stay@insigniacourts.com</a>
+      <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="font-size:14px;color:#FFFFFF;text-decoration:none" style-hover="color:#FCE7F0">09110111122 (WhatsApp)</a>
+      <a href="tel:09110111133" style="font-size:14px;color:#FFFFFF;text-decoration:none" style-hover="color:#FCE7F0">09110111133 (Direct Line)</a>
+      <a href="mailto:stay@insigniacourts.com" style="font-size:14px;color:#FCE7F0;text-decoration:none" style-hover="color:#FFFFFF">stay@insigniacourts.com</a>
     </div>
   </div>
-  <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:20px;padding-bottom:36px;border-top:1px solid rgba(255,255,255,0.22);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:#C79FB4">
-    <span>&copy; 2026 Insignia Courts &mdash; Insignia Court, Wuse II &mdash; An Insignia Properties Residence</span>
+  <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:20px;padding-bottom:36px;border-top:1px solid rgba(255,255,255,0.22);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:#FCE7F0">
+    <span>&copy; 2026 Insignia Court &mdash; Insignia Court, Wuse II &mdash; An Insignia Properties Residence</span>
     <span>Abuja, Nigeria</span>
   </div>
 </footer>
@@ -3466,61 +2894,30 @@
   </div>
 </sc-if>
 
-<!-- Branch II Coming Soon Drawer -->
-<sc-if value="{{ branch2ModalOpen }}" hint-placeholder-val="{{ false }}">
-  <div style="position:fixed;inset:0;z-index:95;background:rgba(42,0,35,0.65);backdrop-filter:blur(6px);display:flex;justify-content:flex-end;animation:backdropIn 0.25s ease-out" onClick="{{ closeBranch2Modal }}">
-    <div class="drawer-container-box" onClick="{{ stop }}" style="width:min(580px,100%);height:100%;background:#F7F4F2;border-left:2px solid #3C0031;overflow-y:auto;animation:drawerSlideIn 0.3s cubic-bezier(0.16,1,0.3,1)">
-      <div class="drawer-header" style="display:flex;justify-content:space-between;align-items:center;padding:24px 36px;border-bottom:2px solid #3C0031;position:sticky;top:0;background:#F7F4F2;z-index:2">
-        <span style="display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#9E3560;font-weight:600">
-          <span style="width:7px;height:7px;border-radius:50%;background:#C4507E"></span>Branch II &middot; Coming Soon
+<!-- Notes from the Residence Article Reader Drawer -->
+<sc-if value="{{ articleModalOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:95;background:rgba(42,0,35,0.65);backdrop-filter:blur(6px);display:flex;justify-content:flex-end;animation:backdropIn 0.25s ease-out" onClick="{{ closeArticle }}">
+    <div class="drawer-container-box" onClick="{{ stop }}" style="width:min(660px,100%);height:100%;background:#F7F4F2;border-left:2px solid #3C0031;overflow-y:auto;animation:drawerSlideIn 0.3s cubic-bezier(0.16,1,0.3,1);display:flex;flex-direction:column">
+      <div class="drawer-header" style="display:flex;justify-content:space-between;align-items:center;padding:22px 32px;border-bottom:2px solid #3C0031;position:sticky;top:0;background:#F7F4F2;z-index:2">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9E3560;font-weight:600">
+          <span style="width:7px;height:7px;border-radius:50%;background:#C4507E"></span>Notes from the Residence &middot; {{ articleCategory }}
         </span>
-        <button type="button" onClick="{{ closeBranch2Modal }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;min-height:44px;min-width:44px;cursor:pointer" style-hover="background:#3C0031;color:#FFFFFF">Close</button>
+        <button type="button" onClick="{{ closeArticle }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;min-height:44px;min-width:44px;cursor:pointer" style-hover="background:#3C0031;color:#FFFFFF">Close</button>
       </div>
-      <div class="drawer-inner" style="padding:36px">
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#8A6577;margin-bottom:8px">Location II &middot; Abuja</div>
-        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,3.2vw,42px);line-height:1.08;margin:0 0 16px;color:#3C0031">The Second Residence</h2>
-        <p style="font-size:15px;line-height:1.65;color:#5C3A52;margin:0 0 20px">Following our flagship serviced residence in Wuse II, Insignia Formahaus is preparing a second boutique residence in prime Abuja. Designed with the same understated elegance, expanded executive suites, and serene private spaces.</p>
+      <div class="drawer-inner" style="padding:36px 32px 56px;max-width:580px">
+        <div style="font-size:10.5px;letter-spacing:0.25em;text-transform:uppercase;color:#C4507E;font-weight:700;margin-bottom:12px">{{ articleCategory }}</div>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,42px);line-height:1.12;margin:0 0 16px;color:#3C0031">{{ articleTitle }}</h1>
+        <p style="font-size:16.5px;line-height:1.65;color:#5C3A52;font-style:italic;margin:0 0 24px;padding-bottom:20px;border-bottom:1px solid #E3D8DC">{{ articleStandfirst }}</p>
 
-        <div style="background:#FFFFFF;border:1px solid #E3D8DC;padding:20px;margin-bottom:28px;display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="font-size:11px;font-weight:600;color:#C4507E;letter-spacing:0.14em;text-transform:uppercase">Anticipated Opening:</span>
-            <span style="font-size:14px;color:#3C0031;font-weight:500">Late 2026</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="font-size:11px;font-weight:600;color:#C4507E;letter-spacing:0.14em;text-transform:uppercase">Key Offerings:</span>
-            <span style="font-size:14px;color:#5C3A52">Expanded Suites, Courtyard Lounge, Executive Ateliers</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="font-size:11px;font-weight:600;color:#C4507E;letter-spacing:0.14em;text-transform:uppercase">Status:</span>
-            <span style="font-size:14px;color:#1E7E34;font-weight:500">Architectural Curation &amp; Outfitting</span>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:18px;font-size:15.5px;line-height:1.75;color:#3C0031">
+          <sc-for list="{{ articleParagraphs }}" as="para" hint-placeholder-count="10">
+            <p style="margin:0">{{ para }}</p>
+          </sc-for>
         </div>
 
-        <div style="border-top:2px solid #3C0031;padding-top:28px">
-          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">Join the Priority Pre-Opening List</h3>
-          <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 24px">Founding guests receive advance booking priority, tailored corporate rates, and private invitations to pre-launch viewings.</p>
-
-          <div style="display:flex;flex-direction:column;gap:18px">
-            <label style="display:flex;flex-direction:column;gap:6px">
-              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Your Name</span>
-              <input type="text" value="{{ waitlist.name }}" onChange="{{ setWaitlistName }}" placeholder="e.g. Aliyu Bello" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:10px 0;min-height:44px">
-            </label>
-            <label style="display:flex;flex-direction:column;gap:6px">
-              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Email Address or Phone</span>
-              <input type="text" value="{{ waitlist.contact }}" onChange="{{ setWaitlistContact }}" placeholder="email@domain.com or phone" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:10px 0;min-height:44px">
-            </label>
-            <label style="display:flex;flex-direction:column;gap:6px">
-              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Stay Interest / Corporate Requirements</span>
-              <textarea rows="3" value="{{ waitlist.note }}" onChange="{{ setWaitlistNote }}" placeholder="Anticipated visit, room preference, or corporate account requirement" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:10px 0;resize:vertical"></textarea>
-            </label>
-
-            <a href="{{ waitlistWaComposed }}" target="_blank" rel="noopener" style="background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 28px;min-height:48px;display:flex;align-items:center;justify-content:center;margin-top:8px;text-align:center;text-decoration:none" style-hover="background:#C4507E">Register via WhatsApp Concierge &rarr;</a>
-            <a href="{{ waitlistMailComposed }}" style="border:1px solid #3C0031;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 28px;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none" style-hover="background:#3C0031;color:#FFFFFF">Register by Email</a>
-          </div>
-        </div>
-
-        <div style="margin-top:36px;padding-top:24px;border-top:1px solid #E3D8DC;font-size:13px;color:#8A6577">
-          Looking for immediate accommodation in Abuja? Our <a href="#" onClick="{{ goRoomsFromModal }}" style="color:#9E3560;font-weight:600;text-decoration:underline">Wuse II Flagship Residence</a> is welcoming guests today.
+        <div style="margin-top:36px;padding-top:24px;border-top:2px solid #3C0031;display:flex;gap:12px;flex-wrap:wrap">
+          <button type="button" onClick="{{ closeArticle }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;cursor:pointer" style-hover="background:#3C0031;color:#FFFFFF">&larr; Back to Stories</button>
+          <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;cursor:pointer" style-hover="background:#3C0031">Enquire about a stay</button>
         </div>
       </div>
     </div>
@@ -3633,128 +3030,95 @@ const SERVICES = [
 ];
 
 const DECOR = [
-  { key:'d1', name:'Glass tea tumbler', note:'Double-walled, four to a set. Used at the tea station.', status:'Available', px:1638280 },
-  { key:'d2', name:'Ceramic ring vase', note:'Matte white, cut for a single stem.', status:'Available', px:4207892 },
-  { key:'d3', name:'Pair of reading chairs', note:'Reupholstered, with a fringed floor lamp.', status:'One remaining', px:1148955 },
-  { key:'d4', name:'Dried pampas, tall', note:'Cut and dried locally. Sold by the stem.', status:'Available', px:6707631 },
-  { key:'d5', name:'Moulded lounge chair', note:'Single-form seat, matte black.', status:'Made to order', px:2762247 },
-  { key:'d6', name:'Ceramic vase, tall', note:'Matte glaze. Two heights.', status:'Available', px:6707631 },
-  { key:'d7', name:'Porcelain cup set', note:'Four cups, unglazed foot. Used at the tea station.', status:'One remaining', px:302896 },
-  { key:'d8', name:'Modular crate shelf', note:'Iroko crates, wall-mounted in any run.', status:'Available', px:1090638 }
+  { key:'d1', name:'Sunlit Veranda, Morning Study', category:'Family Original', note:'Original acrylic on textured linen canvas by a family artist, celebrating natural Sahelian morning light and architectural shadow.', status:'Family Collection • On Display', px:6707631 },
+  { key:'d2', name:'Sahel Horizons (Triptych)', category:'Commissioned Artwork', note:'Commissioned mineral pigment and clay series reflecting the Abuja plateau topography and ancient rocky ridges.', status:'Available for Acquisition', px:4207892 },
+  { key:'d3', name:'Earth & Ochre Vessel', category:'Artisanal Ceramic', note:'Hand-thrown stoneware vessel with unglazed iron-wash finish, created in collaboration with local master potters.', status:'Available for Acquisition', px:1638280 },
+  { key:'d4', name:'Rhythm of the Enclave', category:'Family Original', note:'Mixed media on unprimed canvas capturing quiet domestic rhythms and evening breeze through open courtyards.', status:'Family Collection • On Display', px:1148955 },
+  { key:'d5', name:'Indigo & Clay Study No. 4', category:'Selected Acquisition', note:'Naturally dyed textile composition stretched over cedar stretcher bars, sourced across Northern Nigeria.', status:'Available for Acquisition', px:2762247 },
+  { key:'d6', name:'Handcrafted Infusion Cup Set', category:'Artisanal Ceramic', note:'Artisanal four-cup stoneware set with raw unglazed foot, designed for mindful tea moments at the ground-floor station.', status:'Available for Acquisition', px:302896 },
+  { key:'d7', name:'Abuja Monolith Study', category:'Commissioned Artwork', note:'Sculptural carved iroko wood maquette commissioned for the central residential gallery and mezzanine.', status:'Family Collection • On Display', px:1090638 },
+  { key:'d8', name:'Botanical Silhouette in Terracotta', category:'Selected Acquisition', note:'Monotype print framed in solid walnut. A minimalist study of indigenous flora by an Abuja printmaker.', status:'Available for Acquisition', px:5490298 }
 ];
 
 const HOOD = [
-  { name:'Business', items:['Central Business District','Ministries and agencies','Embassy row, Asokoro','Corporate offices, Maitama','ECOWAS Secretariat'] },
-  { name:'Shopping', items:['Jabi Lake Mall','Ceddi Plaza','Wuse Market','Silverbird Entertainment Centre','Grocers and pharmacies nearby'] },
-  { name:'Leisure', items:['Millennium Park','Jabi Lakefront','Abuja National Mosque','National Christian Centre','Restaurants across Wuse II and Maitama'] }
+  { name:'Business', items:['Central Business District','Federal Secretariat/Three Arms Zone','Federal Capital Territory Administration Secretariat','Garki District','Embassies & Diplomatic Missions'] },
+  { name:'Shopping', items:['Jabi Lake Mall','Ceddi Plaza','Wuse Market','Banex & Emab Plazas','H-Medix Supermarkets'] },
+  { name:'Leisure', items:['Millennium Park','Trukadero by CityBowl','City Park','Art Tech District','Farm City Game Arena'] }
 ];
 
 const JOURNAL = [
-  { key:'j1', date:'June 2026', kind:'The house', title:'Why the rooms are named after butterflies', px:5490298,
-    standfirst:'Atala, Junonia, Lyria, Evania, Morpho, Papilio. Six names, chosen for temperament rather than taxonomy, and what each one asks of a room.' },
-  { key:'j2', date:'May 2026', kind:'Neighbourhood', title:'A short walk, a long lunch', px:5490917,
-    standfirst:'Where the team actually eats when the working day runs over. Four tables within fifteen minutes of the front door.' },
-  { key:'j3', date:'April 2026', kind:'The collection', title:'Notes on the tea station', px:302896,
-    standfirst:'What we keep, how it is brewed, and why a Japanese-inspired station sits well in a residence in Abuja.' }
-];
-
-const BRANCH2_SUITES = [
   {
-    key: 'orion',
-    name: 'The Orion Penthouse',
-    size: '140 m² / 1,506 sq ft',
-    tier: 'Rooftop Penthouse',
-    tag: 'Private Plunge Pool & Sky Terrace',
-    photo: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    desc: 'Top-tier duplex sanctuary featuring a private heated rooftop plunge pool, panoramic terrace looking onto the green Abuja ridges, bespoke kitchenette, and travertine bathroom.',
-    specs: ['Private heated plunge pool', 'Panoramic ridge-view terrace', 'Bespoke kitchenette & bar', 'Walk-in dressing atelier', 'Dedicated 24/7 butler']
+    key: 'butterflies',
+    kind: 'The Residence',
+    date: 'The Residence',
+    title: 'Why the Rooms Are Named After Butterflies',
+    standfirst: 'Atala, Junonia, Lyria, Evania, Morpho, Papilio. The story behind the names at Insignia Court.',
+    px: 5490298,
+    paragraphs: [
+      'There are six rooms at Insignia Court, and none of them has a number.',
+      'The names all come from butterflies.',
+      'The idea began with what the butterfly represents: transformation, lightness and the possibility of becoming something different. It seemed fitting for a residence; a place that is never defined entirely by its walls, but also by the people who pass through it and the life that happens within.',
+      'So, when it came to naming the rooms, numbers felt a little too ordinary. We wanted each one to have an identity of its own while still belonging to the same story.',
+      'We found our vocabulary in butterflies.',
+      'Atala is small and striking, dark-winged with flashes of colour. Junonia belongs to a family known for distinctive markings and character. Morpho brings to mind the extraordinary blue for which its butterflies are known, while Papilio takes its name from the genus that includes the graceful swallowtails. Lyria and Evania complete our collection of six.',
+      'The connection was never intended to be literal. It is quieter than that.',
+      'It is in the idea that individual things can belong together without needing to look the same.',
+      'That is how we think about the rooms at Insignia Court. Each has its own proportions, details and character, while remaining part of one residence and one approach to hospitality.',
+      'A residence also changes slightly with every person who occupies it. One guest arrives for work, another for a celebration, and another simply looking for a few quiet days away. For a little while, the room becomes theirs.',
+      'Then they leave, and it waits for another story.',
+      'Six butterflies. Six rooms. One residence.'
+    ]
   },
   {
-    key: 'sylvia',
-    name: 'The Sylvia Courtyard Suite',
-    size: '85 m² / 915 sq ft',
-    tier: 'Executive Residence',
-    tag: 'Double-Height Atrium & Stone Bath',
-    photo: 'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    desc: 'An architectural statement with 4.2-metre soaring ceilings, soundproof acoustic glass opening to a private pocket courtyard garden, and an artisanal stone soaking bath.',
-    specs: ['4.2m double-height ceiling', 'Private pocket garden', 'Integrated library desk', 'Acoustic triple-glazed glass', 'Rainfall shower & stone bath']
+    key: 'art-we-live-with',
+    kind: 'The Collection',
+    date: 'The Collection',
+    title: 'The Art We Live With',
+    standfirst: 'Collected, commissioned and sometimes created close to home. The story of the art that lives alongside us at Insignia Court.',
+    px: 6707631,
+    paragraphs: [
+      'The artworks at Insignia Court didn’t arrive as a single collection.',
+      'Some were discovered and brought home. Others were commissioned. And some of the paintings on our walls were created by members of our own family.',
+      'They come from different hands, places and moments, but each has found a place here because there was something about it that held our attention.',
+      'We have always thought art should do more than simply occupy a space.',
+      'It can change the mood of a room, introduce colour where it is least expected, make a quiet corner more interesting, or simply give you something new to notice each time you pass.',
+      'That is how the collection at Insignia Court has grown; gradually and personally.',
+      'There isn’t one style that every piece has to follow. Some works are expressive and immediately noticeable; others are quieter and reveal themselves slowly. What matters is how each one sits within its surroundings and what it brings to the space.',
+      'Nature, colour, texture and everyday life appear in different ways throughout the collection. But rather than asking every work to tell the same story, we prefer to let each retain its own character.',
+      'Perhaps that is part of the pleasure of living with art.',
+      'You don’t experience it only once. A piece you barely noticed on arrival may catch you differently the following morning. Another may become the thing you remember about a particular room.',
+      'And because this is a collection that continues to evolve, a few selected pieces may occasionally be available for acquisition. If something catches your eye during your stay, you are always welcome to ask us about it.',
+      'Some pieces, of course, are simply part of the family story and will remain that way.',
+      'The collection will continue to change. New pieces will arrive, others may find new homes, and the spaces will evolve with them.',
+      'That feels right to us.',
+      'After all, a home needn’t remain exactly the same to remain itself.'
+    ]
   },
   {
-    key: 'zenobia',
-    name: 'The Zenobia Diplomatic Suite',
-    size: '115 m² / 1,238 sq ft',
-    tier: 'Diplomatic Residence',
-    tag: 'Private Boardroom Dining & Master Lounge',
-    photo: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    desc: 'Conceived for diplomatic delegations, governmental briefs, and senior executives, complete with a private 6-person dining boardroom and separate service entrance.',
-    specs: ['Private dining boardroom for 6', 'Separate service & butler ingress', 'Secure file safe & desk', 'Full chef kitchenette', 'Dual vanity master suite']
-  },
-  {
-    key: 'astraea',
-    name: 'The Astraea Garden Suite',
-    size: '75 m² / 807 sq ft',
-    tier: 'Quiet Sanctuary',
-    tag: 'Zen Tea Garden & Meditation Terrace',
-    photo: 'https://images.pexels.com/photos/2029731/pexels-photo-2029731.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    desc: 'A calming ground-level retreat framed by bamboo landscaping, water features, and an open-air Japanese tea platform for morning contemplation and effortless rest.',
-    specs: ['Direct water courtyard access', 'Japanese tea platform', 'King bed with organic linens', 'Private meditation garden nook', 'Whisper-quiet acoustic design']
+    key: 'abuja-suleja',
+    kind: 'Did You Know?',
+    date: 'Did You Know?',
+    title: 'The Story Hidden in Abuja and Suleja',
+    standfirst: 'Abuja was once somewhere else and two familiar place names carry a story stretching back almost two centuries.',
+    px: 2462015,
+    paragraphs: [
+      'Here’s something even some people who know Abuja well may not know:',
+      'The name Abuja originally belonged to the town we now call Suleja.',
+      'The story goes back to the early nineteenth century and a ruler named Jatau, who became known as Abu Ja. According to the traditional account, the nickname referred to his light complexion - ja meaning red in Hausa - giving us “Abu the red” or “Abu the fair.”',
+      'When a new emirate capital was established in 1829, it was named Abuja after him.',
+      'And Abuja it remained for about 150 years.',
+      'Then Nigeria began creating a new Federal Capital. Much of the territory selected came from the old Abuja area, and in 1979 Abuja was adopted for the proposed capital.',
+      'The original town therefore needed a new identity.',
+      'It became Suleja, in honour of the then Emir, Suleiman Barau.',
+      'Some historical accounts go a little further, explaining Suleja as a combination of Sule, from Suleiman, and ja, carried over from Abuja - allowing a small piece of the old name to survive in the new one.',
+      'So behind two familiar places lies one connected story:',
+      'Abu Ja → Abuja → Suleja.',
+      'Today’s Abuja and Suleja are distinct, but their names preserve the history that links them.',
+      'Sometimes a place name is more than a label.',
+      'It is a little piece of history hiding in plain sight.'
+    ]
   }
 ];
-
-const BRANCH2_MILESTONES = [
-  {
-    step: '01',
-    status: 'Done',
-    statusLabel: 'Completed &bull; Q4 2025',
-    title: 'Site Enclave & Masterplan',
-    desc: 'Acquisition of an exclusive, low-density residential enclave in prime Abuja with generous setbacks, ancient shade trees, and discrete perimeter security.'
-  },
-  {
-    step: '02',
-    status: 'Done',
-    statusLabel: 'Completed &bull; Q2 2026',
-    title: 'Architectural Shell & Framing',
-    desc: 'Reinforced concrete post-tensioned slab construction, cantilevered terraces, and central water courtyard structural excavation completed.'
-  },
-  {
-    step: '03',
-    status: 'Active',
-    statusLabel: 'Active Now &bull; Q3 2026',
-    title: 'Artisan Millwork & Interiors',
-    desc: 'Custom travertine slabs, hand-finished fluted walnut joinery, Japanese tea pavilion joinery, and private plunge pool waterproofing.'
-  },
-  {
-    step: '04',
-    status: 'Upcoming',
-    statusLabel: 'Opening &bull; Late 2026',
-    title: 'VIP Inaugural Previews',
-    desc: 'Private soft-launch previews exclusively for registered waitlist members prior to official public reservations opening.'
-  }
-];
-
-const BRANCH2_ANGLES = {
-  1: {
-    title: 'Perspective 01 &middot; Cantilevered Terraces &amp; Rooftop Pool',
-    src: 'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=2400',
-    alt: '160m',
-    gimbal: '-32&deg;',
-    label: '01 Facade & Pool'
-  },
-  2: {
-    title: 'Perspective 02 &middot; Zen Water Courtyard &amp; Enclave Gardens',
-    src: 'https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=2400',
-    alt: '120m',
-    gimbal: '-45&deg;',
-    label: '02 Water Courtyard'
-  },
-  3: {
-    title: 'Perspective 03 &middot; Subterranean Lounge &amp; Diplomatic Pavilion',
-    src: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=2400',
-    alt: '140m',
-    gimbal: '-25&deg;',
-    label: '03 Diplomatic Pavilion'
-  }
-};
 
 const SPACES = [
   {
@@ -3801,18 +3165,26 @@ const SPACES = [
 
 class Component extends DCLogic {
   state = {
-    location: 'wuse',
-    page: 'home', roomKey: 'atala', enquiryOpen: false, menuOpen: false, branch2ModalOpen: false,
+    page: 'home', roomKey: 'atala', enquiryOpen: false, menuOpen: false,
+    articleModalOpen: false, activeArticleKey: 'butterflies',
     droneAngle: 1, droneMotion: true, droneMode: 'video', droneMuted: true,
     dronePhase: 'video',
     hoodSlide: 0,
     hoodMuted: true,
-    branch2Angle: 1,
     spaceSlide: 0,
     workMediaMode: 'video',
     workVideoMuted: true,
-    f: { name:'', contact:'', checkin:'', checkout:'', room:'No preference', note:'' },
-    waitlist: { name:'', contact:'', note:'', suitePref:'No preference' }
+    f: { name:'', contact:'', checkin:'', checkout:'', room:'No preference', note:'' }
+  };
+
+  openArticle = (key) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ articleModalOpen: true, activeArticleKey: key });
+  };
+
+  closeArticle = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ articleModalOpen: false });
   };
 
   spaceTimer = null;
@@ -4097,47 +3469,6 @@ class Component extends DCLogic {
     this.setState({ hoodMuted: nextMuted });
   };
 
-  switchToWuse = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.scrollToTop();
-    this.setState({ location: 'wuse', page: 'home', menuOpen: false, branch2ModalOpen: false }, () => {
-      this.scrollToTop();
-      setTimeout(this.scrollToTop, 50);
-      setTimeout(this.scrollToTop, 150);
-    });
-    setTimeout(this.scrollToTop, 50);
-  };
-
-  switchToBranch2 = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.scrollToTop();
-    this.setState({ location: 'branch2', menuOpen: false, branch2ModalOpen: false }, () => {
-      this.scrollToTop();
-      setTimeout(this.scrollToTop, 50);
-      setTimeout(this.scrollToTop, 150);
-    });
-    setTimeout(this.scrollToTop, 50);
-  };
-
-  setBranch2Angle = (n) => (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.setState({ branch2Angle: n });
-  };
-
-  prefillWaitlistSuite = (name) => (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.setState(s => ({
-      location: 'branch2',
-      waitlist: { ...s.waitlist, suitePref: name }
-    }));
-    const el = typeof document !== 'undefined' ? document.getElementById('branch2-waitlist-section') : null;
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else if (typeof window !== 'undefined') {
-      window.scrollTo(0, 1600);
-    }
-  };
-
   setDroneAngle = (n) => (e) => {
     if (e && e.preventDefault) e.preventDefault();
     this.setState({ droneAngle: n });
@@ -4194,11 +3525,10 @@ class Component extends DCLogic {
     }
     this.scrollToTop();
     this.setState(s => ({
-      location: 'wuse',
       page,
       roomKey: roomKey || s.roomKey,
       menuOpen: false,
-      branch2ModalOpen: false
+      articleModalOpen: false
     }), () => {
       this.scrollToTop();
       requestAnimationFrame(this.scrollToTop);
@@ -4237,41 +3567,16 @@ class Component extends DCLogic {
     this.setState(s => ({ enquiryOpen: true, menuOpen: false, f: { ...s.f, room: room || s.f.room } }));
   };
 
-  openBranch2Modal = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.switchToBranch2(e);
-  };
-
-  closeBranch2Modal = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.setState({ branch2ModalOpen: false });
-  };
-
-  goRoomsFromModal = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    this.scrollToTop();
-    this.setState({ branch2ModalOpen: false, location: 'wuse', page: 'rooms' }, () => {
-      this.scrollToTop();
-      setTimeout(this.scrollToTop, 50);
-    });
-    setTimeout(this.scrollToTop, 50);
-  };
-
   set = (k) => (e) => {
     const v = e.target.value;
     this.setState(s => ({ f: { ...s.f, [k]: v } }));
-  };
-
-  setWaitlist = (k) => (e) => {
-    const v = e.target.value;
-    this.setState(s => ({ waitlist: { ...s.waitlist, [k]: v } }));
   };
 
   message() {
     const f = this.state.f;
     const raw = (this.props && this.props.whatsapp) ? this.props.whatsapp : '2349110111122';
     const phone = (raw === '2348000000000' || !raw) ? '2349110111122' : raw;
-    const L = ['Hello Insignia Courts — I would like to enquire about a stay.'];
+    const L = ['Hello Insignia Court — I would like to enquire about a stay.'];
     if (f.name) L.push('Name: ' + f.name);
     if (f.contact) L.push('Contact: ' + f.contact);
     if (f.checkin || f.checkout) L.push('Dates: ' + (f.checkin || '?') + ' to ' + (f.checkout || '?'));
@@ -4280,22 +3585,9 @@ class Component extends DCLogic {
     return { phone, body: L.join('\n') };
   }
 
-  waitlistMessage() {
-    const w = this.state.waitlist;
-    const raw = (this.props && this.props.whatsapp) ? this.props.whatsapp : '2349110111122';
-    const phone = (raw === '2348000000000' || !raw) ? '2349110111122' : raw;
-    const L = ['*PRIORITY VIP WAITLIST — INSIGNIA COURTS BRANCH II*'];
-    if (w.name) L.push('Name: ' + w.name);
-    if (w.contact) L.push('Contact: ' + w.contact);
-    if (w.suitePref) L.push('Preferred Suite: ' + w.suitePref);
-    if (w.note) L.push('Stay requirement / Special Note: ' + w.note);
-    L.push('Location: Branch II (Opening Late 2026 in Prime Abuja)');
-    return { phone, body: L.join('\n') };
-  }
-
   renderVals() {
     try {
-      const { page, roomKey, enquiryOpen, menuOpen, branch2ModalOpen, f, waitlist } = this.state || {};
+      const { page, roomKey, enquiryOpen, menuOpen, articleModalOpen, activeArticleKey, f } = this.state || {};
       const accent = (this.props && this.props.accent) ? this.props.accent : '#C4507E';
       const bookingUrl = (this.props && this.props.bookingUrl) ? this.props.bookingUrl : 'https://booking.insigniacourts.com';
       const safeRoomKey = roomKey || 'atala';
@@ -4314,9 +3606,12 @@ class Component extends DCLogic {
       }));
       const room = withHandlers.find(r => r.key === safeRoomKey) || withHandlers[0];
       const msg = this.message ? this.message() : { phone:'2349110111122', body:'' };
-      const wMsg = this.waitlistMessage ? this.waitlistMessage() : { phone:'2349110111122', body:'' };
       const wa = 'https://wa.me/' + (msg.phone || '2349110111122');
       const options = ['No preference'].concat(ROOMS.map(r => r.name + ' — ' + r.tag));
+
+      const curArticleKey = activeArticleKey || 'butterflies';
+      const currentArticle = JOURNAL.find(a => a.key === curArticleKey) || JOURNAL[0];
+      const curPage = page || 'home';
 
       const droneAngles = {
         1: {
@@ -4360,51 +3655,25 @@ class Component extends DCLogic {
         pick: (e) => { if (this.setSpaceSlide) this.setSpaceSlide(idx)(e); }
       }));
 
-      const isWuse = ((this.state && this.state.location) || 'wuse') === 'wuse';
-      const isBranch2 = ((this.state && this.state.location) || 'wuse') === 'branch2';
-      const activeBranch2Angle = (this.state && this.state.branch2Angle) || 1;
-      const curBranch2Angle = BRANCH2_ANGLES[activeBranch2Angle] || BRANCH2_ANGLES[1];
-
       return {
-        location: (this.state && this.state.location) || 'wuse',
-        isWuse,
-        isBranch2,
-        isHome: isWuse && page === 'home',
-        isRooms: isWuse && page === 'rooms',
-        isRoom: isWuse && page === 'room',
-        isResidence: isWuse && page === 'residence',
-        isTea: isWuse && page === 'tea',
-        isDecor: isWuse && page === 'decor',
-        isWork: isWuse && page === 'work',
-        isLocations: isWuse && page === 'locations',
-        isStays: isWuse && page === 'stays',
-        isHood: isWuse && page === 'hood',
-        isJournal: isWuse && page === 'journal',
-        isContact: isWuse && page === 'contact',
-        isExperience: isWuse && ['work', 'tea', 'decor', 'stays', 'hood', 'journal'].includes(page),
-        switchToWuse: this.switchToWuse,
-        switchToBranch2: this.switchToBranch2,
-        branch2Suites: BRANCH2_SUITES.map(s => ({ ...s, register: (e) => { if (this.prefillWaitlistSuite) this.prefillWaitlistSuite(s.name)(e); } })),
-        branch2Milestones: BRANCH2_MILESTONES,
-        branch2Angle: activeBranch2Angle,
-        branch2Angle1Bg: activeBranch2Angle === 1 ? '#C4507E' : 'transparent',
-        branch2Angle2Bg: activeBranch2Angle === 2 ? '#C4507E' : 'transparent',
-        branch2Angle3Bg: activeBranch2Angle === 3 ? '#C4507E' : 'transparent',
-        branch2CurTitle: curBranch2Angle.title,
-        branch2CurSrc: curBranch2Angle.src,
-        branch2CurAlt: curBranch2Angle.alt,
-        branch2CurGimbal: curBranch2Angle.gimbal,
-        setBranch2Angle1: (e) => { if (this.setBranch2Angle) this.setBranch2Angle(1)(e); },
-        setBranch2Angle2: (e) => { if (this.setBranch2Angle) this.setBranch2Angle(2)(e); },
-        setBranch2Angle3: (e) => { if (this.setBranch2Angle) this.setBranch2Angle(3)(e); },
-        setWaitlistSuitePref: (e) => { if (this.setWaitlist) this.setWaitlist('suitePref')(e); },
+        isHome: curPage === 'home',
+        isRooms: curPage === 'rooms',
+        isRoom: curPage === 'room',
+        isResidence: curPage === 'residence',
+        isTea: curPage === 'tea',
+        isDecor: curPage === 'decor',
+        isWork: curPage === 'work',
+        isStays: curPage === 'stays',
+        isHood: curPage === 'hood',
+        isJournal: curPage === 'journal',
+        isContact: curPage === 'contact',
+        isExperience: ['work', 'tea', 'decor', 'stays', 'hood', 'journal'].includes(curPage),
         goHome: (e) => { if (this.go) this.go('home')(e); },
         goRooms: (e) => { if (this.go) this.go('rooms')(e); },
         goResidence: (e) => { if (this.go) this.go('residence')(e); },
         goTea: (e) => { if (this.go) this.go('tea')(e); },
         goDecor: (e) => { if (this.go) this.go('decor')(e); },
         goWork: (e) => { if (this.go) this.go('work')(e); },
-        goLocations: (e) => { if (this.go) this.go('locations')(e); },
         goStays: (e) => { if (this.go) this.go('stays')(e); },
         goHood: (e) => { if (this.go) this.go('hood')(e); },
         goJournal: (e) => { if (this.go) this.go('journal')(e); },
@@ -4416,16 +3685,25 @@ class Component extends DCLogic {
         otherRooms: withHandlers.filter(r => r.key !== safeRoomKey).slice(0, 3),
         enquireThisRoom: (e) => { if (this.openEnquiry) this.openEnquiry(room.name)(e); },
         services: SERVICES,
-        decor: DECOR.map(d => ({ ...d, slot: 'ic-decor-' + d.key, slotLabel: d.name, photo: PX(d.px, 900), enquire: (e) => { if (this.openEnquiry) this.openEnquiry('Décor — ' + d.name)(e); } })),
+        decor: DECOR.map(d => ({ ...d, slot: 'ic-decor-' + d.key, slotLabel: d.name, photo: PX(d.px, 900), enquire: (e) => { if (this.openEnquiry) this.openEnquiry('The Art We Live With — ' + d.name)(e); } })),
         hood: HOOD,
-        journal: JOURNAL.map(p => ({ ...p, slot: 'ic-journal-' + p.key, slotLabel: p.title, photo: PX(p.px, 1000) })),
+        journal: JOURNAL.map(p => ({
+          ...p,
+          slot: 'ic-journal-' + p.key,
+          slotLabel: p.title,
+          photo: PX(p.px, 1000),
+          read: (e) => { if (this.openArticle) this.openArticle(p.key)(e); }
+        })),
+        articleModalOpen: !!articleModalOpen,
+        articleTitle: currentArticle.title,
+        articleCategory: currentArticle.kind,
+        articleStandfirst: currentArticle.standfirst,
+        articleParagraphs: currentArticle.paragraphs,
+        openArticle: (key) => (e) => { if (this.openArticle) this.openArticle(key)(e); },
+        closeArticle: (e) => { if (this.closeArticle) this.closeArticle(e); },
         enquiryOpen,
         openEnquiry: (e) => { if (this.openEnquiry) this.openEnquiry()(e); },
         closeEnquiry: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ enquiryOpen: false }); },
-        branch2ModalOpen,
-        openBranch2Modal: this.openBranch2Modal,
-        closeBranch2Modal: this.closeBranch2Modal,
-        goRoomsFromModal: this.goRoomsFromModal,
         menuOpen,
         toggleMenu: this.toggleMenu,
         closeMenu: this.closeMenu,
@@ -4438,10 +3716,6 @@ class Component extends DCLogic {
         setCheckout: (e) => { if (this.set) this.set('checkout')(e); },
         setRoom: (e) => { if (this.set) this.set('room')(e); },
         setNote: (e) => { if (this.set) this.set('note')(e); },
-        waitlist: waitlist || {},
-        setWaitlistName: (e) => { if (this.setWaitlist) this.setWaitlist('name')(e); },
-        setWaitlistContact: (e) => { if (this.setWaitlist) this.setWaitlist('contact')(e); },
-        setWaitlistNote: (e) => { if (this.setWaitlist) this.setWaitlist('note')(e); },
         roomOptions: options,
         roomChoices: options.map(o => ({
           label: o,
@@ -4452,12 +3726,8 @@ class Component extends DCLogic {
         waHref: wa,
         waComposed: wa + '?text=' + encodeURIComponent(msg.body),
         mailComposed: 'mailto:' + ((this.props && this.props.email) || 'stay@insigniacourts.com') +
-          '?subject=' + encodeURIComponent('Stay enquiry — Insignia Courts') +
+          '?subject=' + encodeURIComponent('Stay enquiry — Insignia Court') +
           '&body=' + encodeURIComponent(msg.body),
-        waitlistWaComposed: wa + '?text=' + encodeURIComponent(wMsg.body),
-        waitlistMailComposed: 'mailto:' + ((this.props && this.props.email) || 'stay@insigniacourts.com') +
-          '?subject=' + encodeURIComponent('Priority Waitlist — Insignia Courts Branch II') +
-          '&body=' + encodeURIComponent(wMsg.body),
         aerialSrc: curDrone.src,
         droneAngle: activeDroneAngle,
         droneMotion,
