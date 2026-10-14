@@ -1084,6 +1084,7 @@
       padding: 40px 16px 32px !important;
       gap: 24px !important;
     }
+    .grid-cards-2,
     .grid-cards-3,
     .grid-cards-4 {
       grid-template-columns: 1fr !important;
@@ -2683,11 +2684,19 @@
   </section>
   <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:40px;padding-bottom:40px">
-      <div class="grid-cards-3" style="border:none">
-        <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG1 }}" shape="rect" src="{{ room.g1 }}" placeholder="Detail &mdash; bed or seating"></image-slot></div>
-        <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG2 }}" shape="rect" src="{{ room.g2 }}" placeholder="Detail &mdash; bathroom"></image-slot></div>
-        <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG3 }}" shape="rect" src="{{ room.g3 }}" placeholder="Detail &mdash; desk or kitchenette"></image-slot></div>
-      </div>
+      <sc-if value="{{ room.hasG3 }}" hint-placeholder-val="{{ true }}">
+        <div class="grid-cards-3" style="border:none">
+          <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG1 }}" shape="rect" src="{{ room.g1 }}" placeholder="Detail &mdash; bed or seating"></image-slot></div>
+          <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG2 }}" shape="rect" src="{{ room.g2 }}" placeholder="Detail &mdash; bathroom"></image-slot></div>
+          <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG3 }}" shape="rect" src="{{ room.g3 }}" placeholder="Detail &mdash; desk or kitchenette"></image-slot></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ room.isG2Only }}" hint-placeholder-val="{{ false }}">
+        <div class="grid-cards-2" style="border:none">
+          <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG1 }}" shape="rect" src="{{ room.g1 }}" placeholder="Detail &mdash; room interior"></image-slot></div>
+          <div style="position:relative;aspect-ratio:4/3;background:#EDE7E6"><image-slot id="{{ room.slotG2 }}" shape="rect" src="{{ room.g2 }}" placeholder="Detail &mdash; bathroom"></image-slot></div>
+        </div>
+      </sc-if>
     </div>
   </section>
   <section style="background:#3C0031;color:#FFFFFF;border-bottom:2px solid #3C0031">
