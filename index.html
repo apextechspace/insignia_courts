@@ -3546,15 +3546,15 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2348000000000&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;stay@insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;bookingUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://booking.insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Booking&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C4507E&quot;,&quot;options&quot;:[&quot;#C4507E&quot;,&quot;#9E3560&quot;,&quot;#3C0031&quot;,&quot;#B8446E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
-const PX = (id, w) => 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=' + (w || 1400);
+const PX = (id, w) => typeof id === 'string' ? id : ('https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=' + (w || 1400));
 
 const PHOTOS = {
-  atala:   { main:3659683, wide:3659683, g:[5490300, 6438752, 6707631] },
-  junonia: { main:2029731, wide:2029731, g:[5490298, 3315291, 6707631] },
-  lyria:   { main:7061063, wide:7061063, g:[1457842, 6032424, 7534566] },
-  evania:  { main:1743231, wide:1743229, g:[7534561, 3315291, 7534566] },
-  morpho:  { main:164595,  wide:276724,  g:[1457842, 6032424, 7534566] },
-  papilio: { main:6394711, wide:3634741, g:[6707628, 6438752, 7534566] }
+  atala:   { main:'./assets/atala_standard.jpg', wide:'./assets/atala_standard.jpg', g:[5490300, 6438752, 6707631] },
+  junonia: { main:'./assets/junonia_standard.jpg', wide:'./assets/junonia_standard.jpg', g:[5490298, 3315291, 6707631] },
+  lyria:   { main:'./assets/lyria_executive.jpg', wide:'./assets/lyria_executive.jpg', g:[1457842, 6032424, 7534566] },
+  evania:  { main:'./assets/evania_executive.jpg', wide:'./assets/evania_executive.jpg', g:[7534561, 3315291, 7534566] },
+  morpho:  { main:'./assets/morpho_suite.jpg',  wide:'./assets/morpho_suite.jpg',  g:['./assets/morpho_suite0.jpg', './assets/morpho_suite000.jpg', './assets/morpho_suite0000.jpg'] },
+  papilio: { main:'./assets/papilio_suite.jpg', wide:'./assets/papilio_suite.jpg', g:['./assets/papilio_suite0.jpg', './assets/papilio_suite00.jpg', './assets/suite papilio.jpg'] }
 };
 
 const ROOMS = [
