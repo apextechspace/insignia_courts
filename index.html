@@ -276,6 +276,70 @@
     box-sizing: border-box;
   }
 
+  /* The Residence Luxury Bento Hero Layout */
+  .residence-bento-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
+    grid-template-rows: minmax(360px, auto) 340px;
+    gap: 2px;
+    background: #3C0031;
+    border-bottom: 2px solid #3C0031;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .residence-bento-text {
+    grid-column: 1;
+    grid-row: 1;
+    background: #FFFFFF;
+    padding: 68px 52px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .residence-bento-suite {
+    grid-column: 1;
+    grid-row: 2;
+    position: relative;
+    overflow: hidden;
+    background: #EDE7E6;
+    min-height: 320px;
+  }
+  .residence-bento-foyer {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position: relative;
+    overflow: hidden;
+    background: #EDE7E6;
+    min-height: 100%;
+  }
+  .bento-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+    background: rgba(60, 0, 49, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #FFFFFF;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    pointer-events: none;
+    border-left: 2px solid #C4507E;
+  }
+  .residence-bento-foyer:hover image-slot,
+  .residence-bento-suite:hover image-slot {
+    transform: scale(1.02);
+  }
+  .residence-bento-foyer image-slot,
+  .residence-bento-suite image-slot {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   .grid-split-header {
     max-width: 1440px;
     margin: 0 auto;
@@ -941,6 +1005,31 @@
       overflow: hidden !important;
       box-sizing: border-box !important;
     }
+    .residence-bento-hero {
+      grid-template-columns: minmax(0, 1fr) !important;
+      grid-template-rows: auto !important;
+      gap: 2px !important;
+    }
+    .residence-bento-text {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+      padding: 52px 28px !important;
+      order: 1 !important;
+    }
+    .residence-bento-foyer {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+      min-height: 380px !important;
+      aspect-ratio: 4/3 !important;
+      order: 2 !important;
+    }
+    .residence-bento-suite {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+      min-height: 300px !important;
+      aspect-ratio: 4/3 !important;
+      order: 3 !important;
+    }
     .stat-item {
       padding: 24px 16px;
     }
@@ -1569,8 +1658,8 @@
 
     <!-- Primary Navigation -->
     <nav class="desktop-nav">
-      <a href="#" onClick="{{ goRooms }}" class="desktop-nav-link {{ isRooms ? 'nav-active' : '' }}">Rooms</a>
-      <a href="#" onClick="{{ goResidence }}" class="desktop-nav-link {{ isResidence ? 'nav-active' : '' }}">Residence</a>
+      <a href="#" onClick="{{ goRooms }}" class="desktop-nav-link {{ isRooms ? 'nav-active' : '' }}">Rooms &amp; Suites</a>
+      <a href="#" onClick="{{ goResidence }}" class="desktop-nav-link {{ isResidence ? 'nav-active' : '' }}">The Residence</a>
       <a href="#" onClick="{{ goWork }}" class="desktop-nav-link {{ isWork ? 'nav-active' : '' }}">Executive Coworking</a>
 
       <!-- Experience Dropdown Menu -->
@@ -1662,11 +1751,11 @@
 
     <div style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#F7D6E4;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.15)">Navigate</div>
     <a href="#" onClick="{{ goRooms }}" class="mobile-menu-link">
-      <span>Rooms &amp; suites</span>
+      <span>Rooms &amp; Suites</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goResidence }}" class="mobile-menu-link">
-      <span>The residence</span>
+      <span>The Residence</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goWork }}" class="mobile-menu-link">
@@ -1682,7 +1771,7 @@
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goStays }}" class="mobile-menu-link">
-      <span>Long stays &amp; corporate</span>
+      <span>Long Stays &amp; Corporate</span>
       <span style="font-size:12px;opacity:0.6">&rarr;</span>
     </a>
     <a href="#" onClick="{{ goHood }}" class="mobile-menu-link">
@@ -1700,8 +1789,8 @@
 
     <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
       <a href="{{ bookingUrl }}" target="_blank" rel="noopener" style="border:0;background:#FFFFFF;color:#3C0031;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;text-align:center;display:block;width:100%;min-height:48px;box-sizing:border-box" style-hover="background:#F7F4F2">Book Online &rarr;</a>
-      <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;cursor:pointer;text-align:center;width:100%;min-height:48px" style-hover="background:#FFFFFF;color:#3C0031">Enquire about a stay</button>
-      <a href="{{ waHref }}" target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,0.35);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;text-align:center;display:block;width:100%;min-height:48px;box-sizing:border-box" style-hover="background:rgba(255,255,255,0.1)">WhatsApp the front desk</a>
+      <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;cursor:pointer;text-align:center;width:100%;min-height:48px" style-hover="background:#FFFFFF;color:#3C0031">Enquire About a Stay</button>
+      <a href="{{ waHref }}" target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,0.35);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;text-align:center;display:block;width:100%;min-height:48px;box-sizing:border-box" style-hover="background:rgba(255,255,255,0.1)">WhatsApp the Front Desk</a>
     </div>
 
     <div style="margin-top:28px;font-size:12px;line-height:1.6;color:#F7D6E4">
@@ -1728,8 +1817,8 @@
         <p style="font-size:clamp(14px,1.15vw,16px);line-height:1.65;color:#E4A9C3;max-width:48ch;margin:0">A little work with your stay? We&rsquo;ve got a space for that too. Just around the corner, our executive coworking space offers hot desks, front desk support and a 5-person meeting room, available with advance booking.</p>
       </div>
       <div class="btn-responsive-row" style="display:flex;flex-wrap:wrap;gap:14px">
-        <button type="button" onClick="{{ goRooms }}" style="border:0;background:#FFFFFF;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box" style-hover="background:#C4507E;color:#FFFFFF">See the rooms &rarr;</button>
-        <button type="button" onClick="{{ openEnquiry }}" style="border:1px solid rgba(255,255,255,0.45);background:transparent;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box" style-hover="background:rgba(255,255,255,0.1)">Enquire about a stay</button>
+        <button type="button" onClick="{{ goRooms }}" style="border:0;background:#FFFFFF;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box" style-hover="background:#C4507E;color:#FFFFFF">See the Rooms &rarr;</button>
+        <button type="button" onClick="{{ openEnquiry }}" style="border:1px solid rgba(255,255,255,0.45);background:transparent;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;cursor:pointer;text-align:center;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box" style-hover="background:rgba(255,255,255,0.1)">Enquire About a Stay</button>
       </div>
     </div>
     <div class="grid-hero-image">
@@ -1741,19 +1830,19 @@
     <div class="grid-stats">
       <div class="stat-item">
         <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:34px;line-height:1;margin-bottom:8px">06</div>
-        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Rooms and suites</div>
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Rooms &amp; Suites</div>
       </div>
       <div class="stat-item">
         <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:34px;line-height:1;margin-bottom:8px">24h</div>
-        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Controlled access, on site</div>
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Controlled Access, on Site</div>
       </div>
       <div class="stat-item">
         <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:34px;line-height:1;margin-bottom:8px">03</div>
-        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Tiers &mdash; standard, executive, suite</div>
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Tiers &mdash; Standard, Executive, Suite</div>
       </div>
       <div class="stat-item">
         <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:34px;line-height:1;margin-bottom:8px">CBD</div>
-        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Business and leisure, close by</div>
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">Business and Leisure, Close by</div>
       </div>
     </div>
   </section>
@@ -1761,13 +1850,13 @@
   <section style="border-bottom:2px solid #3C0031">
     <div class="grid-residence-intro">
       <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">The residence</div>
-        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.15;letter-spacing:-0.01em;margin:0;color:#3C0031">Prepared, not performed</h2>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">The Residence</div>
+        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.15;letter-spacing:-0.01em;margin:0;color:#3C0031">Prepared, Not Performed</h2>
       </div>
       <div>
         <p style="font-size:clamp(17px,1.4vw,20px);line-height:1.62;margin:0 0 22px;color:#3C0031;text-wrap:pretty">Set in the heart of Abuja&rsquo;s prime business and leisure district, Insignia Court, Wuse II offers a thoughtfully prepared serviced residence designed for comfort and convenience.</p>
         <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.7;margin:0 0 34px;color:#5C3A52;max-width:62ch;text-wrap:pretty">Each room and suite is arranged to support both relaxation and productivity, with select spaces featuring a fitted kitchenette or coffee and tea corner. Our team remains available to support you and ensure a comfortable, well-coordinated stay.</p>
-        <a href="#" onClick="{{ goResidence }}" style="display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;border-bottom:2px solid #C4507E;padding-bottom:6px" style-hover="color:#3C0031">Everything included &rarr;</a>
+        <a href="#" onClick="{{ goResidence }}" style="display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;border-bottom:2px solid #C4507E;padding-bottom:6px" style-hover="color:#3C0031">Everything Included &rarr;</a>
       </div>
     </div>
   </section>
@@ -1831,7 +1920,7 @@
               </div>
               <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#C4507E">{{ room.tag }}</div>
               <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0;flex:1">{{ room.line1 }}</p>
-              <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-top:6px">View room &rarr;</span>
+              <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-top:6px">View Room &rarr;</span>
             </div>
           </a>
         </sc-for>
@@ -1841,23 +1930,23 @@
 
   <section style="border-bottom:2px solid #3C0031">
     <div class="container-pad section-pad" style="max-width:1440px;margin:0 auto">
-      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:16px">Within the residence</div>
-      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 44px;color:#3C0031">Three things worth the detour</h2>
+      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:16px">Within the Residence</div>
+      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 44px;color:#3C0031">Three Things Worth the Detour</h2>
       <div class="grid-cards-3" style="background:#3C0031">
         <a href="#" onClick="{{ goTea }}" style="background:#F7F4F2;padding:0;display:flex;flex-direction:column;color:#3C0031" style-hover="background:#FFFFFF">
-          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-tea-card" shape="rect" src="https://images.pexels.com/photos/302896/pexels-photo-302896.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="Tea station &mdash; still life"></image-slot></div>
+          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-tea-card" shape="rect" src="./assets/tea station.jpeg" placeholder="The Tea Station &mdash; ground floor"></image-slot></div>
           <div style="padding:24px">
             <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">The Tea Station</h3>
             <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">A Japanese-inspired tea station featuring regional botanicals and classic blends. Enjoy a cup in the lounge or carry one up to your room.</p>
-            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Read more &rarr;</span>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Read More &rarr;</span>
           </div>
         </a>
         <a href="#" onClick="{{ goDecor }}" style="background:#F7F4F2;display:flex;flex-direction:column;color:#3C0031" style-hover="background:#FFFFFF">
-          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-decor-card" shape="rect" src="https://images.pexels.com/photos/6707631/pexels-photo-6707631.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="The Art We Live With &mdash; gallery vignette"></image-slot></div>
+          <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-decor-card" shape="rect" src="./assets/Highlights/art_we_live.jpeg" placeholder="The Art We Live With &mdash; gallery vignette"></image-slot></div>
           <div style="padding:24px">
             <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">The Art We Live With</h3>
             <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Collected, commissioned and created close to home. The story of the art living alongside us, with selected pieces available for acquisition.</p>
-            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Explore the art &rarr;</span>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Explore the Art &rarr;</span>
           </div>
         </a>
         <a href="#" onClick="{{ goWork }}" style="background:#F7F4F2;display:flex;flex-direction:column;color:#3C0031" style-hover="background:#FFFFFF">
@@ -1865,7 +1954,7 @@
           <div style="padding:24px">
             <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;margin:0 0 10px;color:#3C0031">Executive Coworking</h3>
             <p style="font-size:15px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Our partner boutique coworking space in Wuse II is available to guests at preferred rates. Day passes and dedicated monthly desks arranged on request.</p>
-            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Discover coworking &rarr;</span>
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560">Discover Coworking &rarr;</span>
           </div>
         </a>
       </div>
@@ -2116,7 +2205,7 @@
             <div>
               <strong style="color:#3C0031">Reserve Your Workspace Today</strong> &bull; Call / WhatsApp: <a href="tel:09110111122" style="color:#9E3560;font-weight:600;text-decoration:none">09110111122</a> | <a href="tel:09110111133" style="color:#9E3560;font-weight:600;text-decoration:none">09110111133</a>
             </div>
-            <span style="font-size:11px;color:#C4507E;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Limited seats available</span>
+            <span style="font-size:11px;color:#C4507E;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Limited Seats Available</span>
           </div>
         </div>
 
@@ -2136,12 +2225,12 @@
     <div class="container-pad grid-home-cta" style="margin:0 auto;padding-top:72px;padding-bottom:72px;align-items:end">
       <div>
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:18px">Enquire</div>
-        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,4vw,54px);line-height:1.1;margin:0 0 18px;color:#FFFFFF;overflow-wrap:break-word">Tell us your dates.<br>We will do the rest.</h2>
+        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,4vw,54px);line-height:1.1;margin:0 0 18px;color:#FFFFFF;overflow-wrap:break-word">Tell Us Your Dates.<br>We Will Do the Rest.</h2>
         <p style="font-size:16px;line-height:1.65;color:#E8D6DF;max-width:48ch;margin:0">Rates are shared on enquiry and depend on the room, the length of stay, and the season. Reply usually comes the same day.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;align-items:stretch;width:100%">
-        <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;cursor:pointer;text-align:center;width:100%;box-sizing:border-box" style-hover="background:#FFFFFF;color:#3C0031">Start an enquiry</button>
-        <a href="{{ waHref }}" target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,0.45);color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;text-align:center;width:100%;box-sizing:border-box;display:block" style-hover="background:rgba(255,255,255,0.1)">Message us on WhatsApp</a>
+        <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;cursor:pointer;text-align:center;width:100%;box-sizing:border-box" style-hover="background:#FFFFFF;color:#3C0031">Start an Enquiry</button>
+        <a href="{{ waHref }}" target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,0.45);color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;text-align:center;width:100%;box-sizing:border-box;display:block" style-hover="background:rgba(255,255,255,0.1)">Message Us on WhatsApp</a>
       </div>
     </div>
   </section>
@@ -2153,8 +2242,8 @@
   <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
     <div class="grid-split-header">
       <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Rooms &amp; suites</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Six rooms,<br>three temperaments</h1>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Rooms &amp; Suites</div>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Six Rooms,<br>Three Temperaments</h1>
       </div>
       <p style="font-size:clamp(15px,1.2vw,17px);line-height:1.7;color:#5C3A52;margin:0;max-width:56ch">Standard rooms are calm and easy. Executive rooms carry more presence without raising their voice. The two suites are statement spaces &mdash; quietly. Every room is serviced daily, secured by controlled access, and arranged for both rest and work.</p>
     </div>
@@ -2180,7 +2269,7 @@
               <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.6;color:#5C3A52;margin:0 0 24px;max-width:46ch">{{ room.line2 }}</p>
               <div class="btn-responsive-row" style="display:flex;gap:12px;flex-wrap:wrap">
                 <a href="{{ bookingUrl }}" target="_blank" rel="noopener" style="border:0;background:#3C0031;color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;text-decoration:none" style-hover="background:#C4507E">Book Online &rarr;</a>
-                <button type="button" onClick="{{ room.open }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-align:center" style-hover="background:#3C0031;color:#FFFFFF">Room detail</button>
+                <button type="button" onClick="{{ room.open }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-align:center" style-hover="background:#3C0031;color:#FFFFFF">Room Details</button>
                 <button type="button" onClick="{{ room.enquire }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 20px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-align:center" style-hover="background:#C4507E;color:#FFFFFF">Enquire</button>
               </div>
             </div>
@@ -2196,7 +2285,7 @@
 <main>
   <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:22px;padding-bottom:22px;display:flex;gap:12px;align-items:center;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A6577">
-      <a href="#" onClick="{{ goRooms }}" style="color:#9E3560">Rooms</a>
+      <a href="#" onClick="{{ goRooms }}" style="color:#9E3560">Rooms &amp; Suites</a>
       <span>/</span>
       <span>{{ room.name }}</span>
     </div>
@@ -2223,7 +2312,7 @@
   </section>
   <section style="border-bottom:2px solid #3C0031">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px;display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:48px;align-items:start">
-      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:30px;line-height:1.1;margin:0;color:#3C0031">In the room</h2>
+      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:30px;line-height:1.1;margin:0;color:#3C0031">In the Room</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:2px;background:#E3D8DC;border:2px solid #3C0031">
         <sc-for list="{{ room.features }}" as="feature" hint-placeholder-count="8">
           <div style="background:#FFFFFF;padding:18px 20px;font-size:14px;color:#3C0031">{{ feature }}</div>
@@ -2252,7 +2341,7 @@
     <div class="container-pad room-bottom-cta" style="max-width:1440px;margin:0 auto;padding-top:48px;padding-bottom:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
       <div class="room-bottom-cta-text">
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:6px">{{ room.tier }} Room &middot; {{ room.name }} ({{ room.tag }})</div>
-        <h3 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(24px,2.5vw,36px);margin:0;color:#FFFFFF">Ready to reserve {{ room.name }}?</h3>
+        <h3 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(24px,2.5vw,36px);margin:0;color:#FFFFFF">Ready to Reserve {{ room.name }}?</h3>
       </div>
       <div class="btn-responsive-row room-btn-row" style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="{{ bookingUrl }}" target="_blank" rel="noopener" class="room-cta-btn room-cta-primary" style="border:1.5px solid #FFFFFF;background:#FFFFFF;color:#3C0031;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:15px 26px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;white-space:nowrap;line-height:1.2;text-decoration:none;transition:all 0.2s ease" style-hover="background:#C4507E;color:#FFFFFF;border-color:#C4507E">Book Online &rarr;</a>
@@ -2262,7 +2351,7 @@
   </section>
   <section style="border-bottom:2px solid #3C0031">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px">
-      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:28px">Other rooms</div>
+      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:28px">Other Rooms</div>
       <div class="grid-cards-3">
         <sc-for list="{{ otherRooms }}" as="other" hint-placeholder-count="3">
           <a href="#" onClick="{{ other.open }}" style="background:#F7F4F2;padding:26px;display:flex;flex-direction:column;gap:8px;color:#3C0031" style-hover="background:#FFFFFF">
@@ -2279,20 +2368,27 @@
 
 <sc-if value="{{ isResidence }}" hint-placeholder-val="{{ false }}">
 <main>
-  <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
-    <div class="grid-split-header">
-      <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">The residence</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Everything<br>already arranged</h1>
+  <section class="residence-bento-hero">
+    <div class="residence-bento-text">
+      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">The Residence</div>
+      <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,3.8vw,58px);line-height:1.06;margin:0 0 20px;color:#3C0031">Everything<br>Already Arranged</h1>
+      <p style="font-size:clamp(16px,1.25vw,19px);line-height:1.65;color:#3C0031;margin:0 0 16px;max-width:52ch">Guests have access to an in-house breakfast offering, other dining options for partner restaurants, laundry service, and neighbourhood errand support.</p>
+      <p style="font-size:clamp(14px,1.05vw,16.5px);line-height:1.7;color:#5C3A52;margin:0 0 24px;max-width:52ch">From day-to-day comforts to bespoke concierge coordination, every element is prepared so you can settle in with ease.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid #E3D8DC">
+        <span style="font-size:10.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560">In-House Dining</span>
+        <span style="color:#C4507E">&bull;</span>
+        <span style="font-size:10.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560">Concierge &amp; Errands</span>
+        <span style="color:#C4507E">&bull;</span>
+        <span style="font-size:10.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560">Daily Servicing</span>
       </div>
-      <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Guests have access to an in-house breakfast offering, other dining options for partner restaurants, laundry service, and neighbourhood errand support.</p>
     </div>
-  </section>
-  <section style="border-bottom:2px solid #3C0031">
-    <div class="container-pad" style="max-width:1440px;margin:0 auto">
-      <div style="position:relative;aspect-ratio:21/8;min-height:220px;background:#EDE7E6;border-left:2px solid #E3D8DC;border-right:2px solid #E3D8DC">
-        <image-slot id="ic-res-hero" shape="rect" src="https://images.pexels.com/photos/6480707/pexels-photo-6480707.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800" placeholder="Residence &mdash; lounge, lobby or courtyard, wide"></image-slot>
-      </div>
+    <div class="residence-bento-suite">
+      <image-slot id="ic-res-suite" shape="rect" src="./assets/everythingarr2.png" placeholder="The Residence &mdash; In-Room Living &amp; Refreshment Station"></image-slot>
+      <div class="bento-badge">In-Room Station &amp; Wardrobe</div>
+    </div>
+    <div class="residence-bento-foyer">
+      <image-slot id="ic-res-foyer" shape="rect" src="./assets/Highlights/evrything arranged.png" placeholder="The Residence &mdash; Arrival Foyer &amp; Console"></image-slot>
+      <div class="bento-badge">Arrival Foyer &amp; Console</div>
     </div>
   </section>
   <section style="border-bottom:2px solid #3C0031">
@@ -2315,15 +2411,15 @@
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px;display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:40px">
       <div>
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">Security</div>
-        <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">The property is secured with controlled access and on-site personnel.</p>
+        <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Round-the-clock controlled access, private gated entry, and professional on-site personnel day and night.</p>
       </div>
       <div>
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">Location</div>
-        <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Conveniently located close to key business, shopping, and leisure destinations in Abuja.</p>
+        <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Conveniently located in Wuse II, close to key business, diplomatic, and leisure destinations in Abuja.</p>
       </div>
       <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">Service</div>
-        <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Our team remains available to support you and ensure a comfortable, well-coordinated stay.</p>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">Dedicated Service</div>
+        <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Our front desk and concierge team remain available around the clock to ensure a comfortable, well-coordinated stay.</p>
       </div>
     </div>
   </section>
@@ -2334,12 +2430,12 @@
 <main>
   <section class="grid-2-equal">
     <div class="container-pad" style="background:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;justify-content:center">
-      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Within the residence</div>
+      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Within the Residence</div>
       <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4.2vw,66px);line-height:1.05;margin:0 0 24px;color:#3C0031">The Tea Station</h1>
       <p style="font-size:clamp(16px,1.3vw,20px);line-height:1.62;color:#3C0031;margin:0 0 18px;max-width:46ch">Within the residence, you&rsquo;ll find a Japanese-inspired tea station offering handcrafted regional botanicals alongside classic whole-leaf teas.</p>
       <p style="font-size:clamp(14px,1.1vw,17px);line-height:1.7;color:#5C3A52;margin:0;max-width:52ch">Located on the ground floor between the entrance and the lounge, the Tea Station welcomes you to enjoy a freshly brewed cup or carry one to your room. Take your time; nobody will hurry you.</p>
     </div>
-    <div style="position:relative;min-height:360px;background:#EDE7E6"><image-slot id="ic-tea-hero" shape="rect" src="https://images.pexels.com/photos/2079438/pexels-photo-2079438.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="Tea station &mdash; wide"></image-slot></div>
+    <div style="position:relative;min-height:360px;background:#EDE7E6"><image-slot id="ic-tea-hero" shape="rect" src="./assets/tea station.jpeg" placeholder="The Tea Station &mdash; ground floor"></image-slot></div>
   </section>
   <!-- Part 1: Hospitality & Tea Placement Cards -->
   <section style="border-bottom:2px solid #3C0031">
@@ -2350,11 +2446,11 @@
           <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">A selection of fine teas &mdash; including black, green, and calming chamomile &mdash; is prepared in every room, complemented by our signature herbal blends at the ground-floor tea corner.</p>
         </div>
         <div style="background:#F7F4F2;padding:34px 28px">
-          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">In your room</h3>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">In Your Room</h3>
           <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">Select rooms carry a coffee and tea corner; the executive rooms and suites include a fitted kitchenette.</p>
         </div>
         <div style="background:#F7F4F2;padding:34px 28px">
-          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">Arranged to your schedule</h3>
+          <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:21px;margin:0 0 12px;color:#3C0031">Arranged to Your Schedule</h3>
           <p style="font-size:14.5px;line-height:1.65;color:#5C3A52;margin:0">Tea can be served alongside morning breakfast, or set out for meetings upon prior request with the concierge.</p>
         </div>
       </div>
@@ -2365,7 +2461,7 @@
   <section style="border-bottom:2px solid #3C0031;background:#FAF8F7">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px">
       <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:14px">At the General Tea Corner &middot; Three Signature Herbal Infusions</div>
-      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 36px;color:#3C0031">Crafted for calm, warmth, and rest</h2>
+      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 36px;color:#3C0031">Crafted for Calm, Warmth, and Rest</h2>
       <div class="grid-cards-3" style="background:#3C0031">
         <div style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column">
           <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:600;margin-bottom:8px">Golden Herbal Infusion</div>
@@ -2389,7 +2485,7 @@
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:36px;padding-bottom:36px">
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:2px;background:#E3D8DC">
         <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-tea-2" shape="rect" src="https://images.pexels.com/photos/230477/pexels-photo-230477.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="Tea &mdash; detail, cups or kettle"></image-slot></div>
-        <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-tea-3" shape="rect" src="https://images.pexels.com/photos/5490298/pexels-photo-5490298.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" placeholder="Tea &mdash; guest at the station"></image-slot></div>
+        <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6"><image-slot id="ic-tea-3" shape="rect" src="./assets/teastation.png" placeholder="The Tea Station &mdash; seating and staircase"></image-slot></div>
       </div>
     </div>
   </section>
@@ -2460,7 +2556,7 @@
   <section style="border-bottom:2px solid #3C0031">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px">
       <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:14px">Partner Facilities &middot; Wuse II, Abuja</div>
-      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 44px;color:#3C0031">Spaces designed for clarity and execution</h2>
+      <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 44px;color:#3C0031">Spaces Designed for Clarity and Execution</h2>
       <div class="grid-cards-4" style="background:#3C0031">
         <div style="background:#F7F4F2;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between">
           <div>
@@ -2572,8 +2668,8 @@
   <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
     <div class="grid-split-header">
       <div>
-        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Long stays &amp; corporate</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">For weeks,<br>not nights</h1>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Long Stays &amp; Corporate</div>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">For Weeks,<br>Not Nights</h1>
       </div>
       <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">A serviced residence answers a longer stay better than a hotel does. Kitchenettes in the executive rooms and suites, laundry on site, errands handled, and a rate that reflects the length of the booking rather than the calendar.</p>
     </div>
@@ -2602,10 +2698,10 @@
   <section style="background:#3C0031;color:#FFFFFF;border-bottom:2px solid #3C0031">
     <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px;display:flex;justify-content:space-between;align-items:center;gap:36px;flex-wrap:wrap">
       <div>
-        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(26px,3vw,44px);line-height:1.1;margin:0 0 12px;color:#FFFFFF">Talk to us about a corporate account</h2>
+        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(26px,3vw,44px);line-height:1.1;margin:0 0 12px;color:#FFFFFF">Talk to Us About a Corporate Account</h2>
         <p style="font-size:15px;line-height:1.6;color:#E8D6DF;margin:0;max-width:52ch">Send the shape of your requirement &mdash; how many rooms, how often, which weeks &mdash; and we will come back with terms.</p>
       </div>
-      <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 34px;cursor:pointer;text-align:center" style-hover="background:#FFFFFF;color:#3C0031">Start the conversation</button>
+      <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 34px;cursor:pointer;text-align:center" style-hover="background:#FFFFFF;color:#3C0031">Start the Conversation</button>
     </div>
   </section>
 </main>
@@ -2617,7 +2713,7 @@
     <div class="grid-split-header">
       <div>
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Neighbourhood</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Close to<br>what you came for</h1>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Close to<br>What You Came For</h1>
       </div>
       <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Conveniently located close to key business, shopping, and leisure destinations in Abuja. If you need something from the neighbourhood and would rather not go yourself, our errand support will handle it.</p>
     </div>
@@ -2714,7 +2810,7 @@
     <div class="grid-split-header">
       <div>
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">Notes from the Residence</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Notes from<br>the residence</h1>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">Notes from<br>the Residence</h1>
       </div>
       <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Stories behind our butterfly rooms, the living art collection, and the hidden history linking Abuja and Suleja.</p>
     </div>
@@ -2730,7 +2826,7 @@
               <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:22px;line-height:1.2;margin:0;color:#3C0031">{{ post.title }}</h3>
               <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0;flex:1">{{ post.standfirst }}</p>
               <div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-top:4px">
-                <span>READ &rarr;</span>
+                <span>Read &rarr;</span>
               </div>
             </div>
           </div>
@@ -2747,7 +2843,7 @@
     <div class="container-pad" style="background:#3C0031;color:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;gap:36px">
       <div>
         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#FCE7F0;font-weight:700;margin-bottom:18px">Contact</div>
-        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#FFFFFF">We are easy<br>to reach</h1>
+        <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#FFFFFF">We Are Easy<br>to Reach</h1>
       </div>
       <div style="display:flex;flex-direction:column">
         <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,0.25)">
@@ -2767,10 +2863,10 @@
           <p style="font-size:16px;line-height:1.5;margin:0;color:#FFFFFF">2pm / 12pm<br><span style="font-size:13.5px;color:#FFFFFF;opacity:0.9">Early check-in available on request and subject to availability</span></p>
         </div>
       </div>
-      <a href="{{ waHref }}" target="_blank" rel="noopener" style="align-self:flex-start;background:#C4507E;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 32px;text-align:center" style-hover="background:#FFFFFF;color:#3C0031">WhatsApp the front desk</a>
+      <a href="{{ waHref }}" target="_blank" rel="noopener" style="align-self:flex-start;background:#C4507E;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 32px;text-align:center" style-hover="background:#FFFFFF;color:#3C0031">WhatsApp the Front Desk</a>
     </div>
     <div class="container-pad" style="background:#FFFFFF;padding-top:64px;padding-bottom:64px">
-      <h2 style="font-family:'Jost',sans-serif;font-weight:300;font-size:26px;margin:0 0 8px;color:#3C0031">Send an enquiry</h2>
+      <h2 style="font-family:'Jost',sans-serif;font-weight:300;font-size:26px;margin:0 0 8px;color:#3C0031">Send an Enquiry</h2>
       <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 28px;max-width:44ch">Rates depend on the room, the length of stay and the season. Tell us the shape of the trip and we will reply with options.</p>
       <div style="display:flex;flex-direction:column;gap:20px;max-width:520px">
         <label style="display:flex;flex-direction:column;gap:6px">
@@ -2778,7 +2874,7 @@
           <input type="text" value="{{ f.name }}" onChange="{{ setName }}" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:8px 0">
         </label>
         <label style="display:flex;flex-direction:column;gap:6px">
-          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Email or phone</span>
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Email or Phone</span>
           <input type="text" value="{{ f.contact }}" onChange="{{ setContact }}" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:8px 0">
         </label>
         <div class="grid-form-dates">
@@ -2800,12 +2896,12 @@
           </select>
         </label>
         <label style="display:flex;flex-direction:column;gap:6px">
-          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Anything else</span>
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Anything Else</span>
           <textarea rows="3" value="{{ f.note }}" onChange="{{ setNote }}" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:8px 0;resize:vertical"></textarea>
         </label>
         <div class="btn-responsive-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
           <a href="{{ waComposed }}" target="_blank" rel="noopener" style="background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-align:center" style-hover="background:#C4507E">Send via WhatsApp</a>
-          <a href="{{ mailComposed }}" style="border:1px solid #3C0031;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-align:center" style-hover="background:#3C0031;color:#FFFFFF">Send by email</a>
+          <a href="{{ mailComposed }}" style="border:1px solid #3C0031;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-align:center" style-hover="background:#3C0031;color:#FFFFFF">Send by Email</a>
         </div>
       </div>
     </div>
@@ -2828,10 +2924,10 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="footer-col-header">Stay</div>
-      <button type="button" onClick="{{ goRooms }}" class="footer-nav-link">Rooms &amp; suites</button>
-      <button type="button" onClick="{{ goResidence }}" class="footer-nav-link">The residence</button>
+      <button type="button" onClick="{{ goRooms }}" class="footer-nav-link">Rooms &amp; Suites</button>
+      <button type="button" onClick="{{ goResidence }}" class="footer-nav-link">The Residence</button>
       <button type="button" onClick="{{ goWork }}" class="footer-nav-link">Executive Coworking</button>
-      <button type="button" onClick="{{ goStays }}" class="footer-nav-link">Long stays &amp; corporate</button>
+      <button type="button" onClick="{{ goStays }}" class="footer-nav-link">Long Stays &amp; Corporate</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="footer-col-header">Within</div>
@@ -2841,7 +2937,7 @@
       <button type="button" onClick="{{ goJournal }}" class="footer-nav-link">Notes from the Residence</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="footer-col-header">Reach us</div>
+      <div class="footer-col-header">Reach Us</div>
       <a href="{{ bookingUrl }}" target="_blank" rel="noopener" style="font-size:14px;color:#FFB5D2;font-weight:600" style-hover="color:#FFFFFF">Instant Online Booking &rarr;</a>
       <button type="button" onClick="{{ goContact }}" class="footer-nav-link">Contact &amp; Directions</button>
       <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="font-size:14px;color:#FFFFFF;text-decoration:none" style-hover="color:#FCE7F0">09110111122 (WhatsApp)</a>
@@ -2872,7 +2968,7 @@
           <a href="{{ bookingUrl }}" target="_blank" rel="noopener" style="background:#3C0031;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:10px 16px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center" style-hover="background:#C4507E">Book Online &rarr;</a>
         </div>
 
-        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,3vw,38px);line-height:1.08;margin:0 0 12px;color:#3C0031">Tell us your dates</h2>
+        <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,3vw,38px);line-height:1.08;margin:0 0 12px;color:#3C0031">Tell Us Your Dates</h2>
         <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 28px">Rates are shared on enquiry. We reply on WhatsApp or by email, usually the same day.</p>
         <div style="display:flex;flex-direction:column;gap:20px">
           <label style="display:flex;flex-direction:column;gap:6px">
@@ -2880,7 +2976,7 @@
             <input type="text" value="{{ f.name }}" onChange="{{ setName }}" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:10px 0;min-height:44px">
           </label>
           <label style="display:flex;flex-direction:column;gap:6px">
-            <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Email or phone</span>
+            <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Email or Phone</span>
             <input type="text" value="{{ f.contact }}" onChange="{{ setContact }}" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:10px 0;min-height:44px">
           </label>
           <div class="grid-form-dates">
@@ -2902,11 +2998,11 @@
             </div>
           </div>
           <label style="display:flex;flex-direction:column;gap:6px">
-            <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Anything else</span>
+            <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Anything Else</span>
             <textarea rows="3" value="{{ f.note }}" onChange="{{ setNote }}" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:16px;color:#3C0031;padding:10px 0;resize:vertical"></textarea>
           </label>
           <a href="{{ waComposed }}" target="_blank" rel="noopener" style="background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 28px;min-height:48px;display:flex;align-items:center;justify-content:center;margin-top:6px;text-align:center" style-hover="background:#C4507E">Send via WhatsApp</a>
-          <a href="{{ mailComposed }}" style="border:1px solid #3C0031;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 28px;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center" style-hover="background:#3C0031;color:#FFFFFF">Send by email</a>
+          <a href="{{ mailComposed }}" style="border:1px solid #3C0031;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 28px;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center" style-hover="background:#3C0031;color:#FFFFFF">Send by Email</a>
         </div>
       </div>
     </div>
@@ -2928,6 +3024,8 @@
         <h1 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,42px);line-height:1.12;margin:0 0 16px;color:#3C0031">{{ articleTitle }}</h1>
         <p style="font-size:16.5px;line-height:1.65;color:#5C3A52;font-style:italic;margin:0 0 24px;padding-bottom:20px;border-bottom:1px solid #E3D8DC">{{ articleStandfirst }}</p>
 
+        <img src="{{ articlePhoto }}" alt="{{ articleTitle }}" style="width:100%;height:auto;max-height:440px;object-fit:cover;display:block;margin:0 0 24px;border:1px solid #E3D8DC">
+
         <div style="display:flex;flex-direction:column;gap:18px;font-size:15.5px;line-height:1.75;color:#3C0031">
           <sc-for list="{{ articleParagraphs }}" as="para" hint-placeholder-count="10">
             <p style="margin:0">{{ para }}</p>
@@ -2936,7 +3034,7 @@
 
         <div style="margin-top:36px;padding-top:24px;border-top:2px solid #3C0031;display:flex;gap:12px;flex-wrap:wrap">
           <button type="button" onClick="{{ closeArticle }}" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;cursor:pointer" style-hover="background:#3C0031;color:#FFFFFF">&larr; Back to Stories</button>
-          <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;cursor:pointer" style-hover="background:#3C0031">Enquire about a stay</button>
+          <button type="button" onClick="{{ openEnquiry }}" style="border:0;background:#C4507E;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;cursor:pointer" style-hover="background:#3C0031">Enquire About a Stay</button>
         </div>
       </div>
     </div>
@@ -2970,7 +3068,7 @@
     </svg>
     <span>Book</span>
   </a>
-  <button type="button" onClick="{{ openEnquiry }}" class="bottom-tab-item" title="Enquire about a stay">
+  <button type="button" onClick="{{ openEnquiry }}" class="bottom-tab-item" title="Enquire About a Stay">
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
       <line x1="8" y1="9" x2="16" y2="9"/>
@@ -3038,25 +3136,25 @@ const TIERS = [
 ];
 
 const SERVICES = [
-  { num:'01', title:'In-house breakfast', body:'Served each morning in the residence. Continental and Nigerian, with dietary requests taken the evening before.' },
-  { num:'02', title:'Partner restaurants', body:'Other dining options for partner restaurants — ordered in, or a table booked for you.' },
+  { num:'01', title:'In-House Breakfast', body:'Served each morning in the residence. Continental and Nigerian, with dietary requests taken the evening before.' },
+  { num:'02', title:'Partner Restaurants', body:'Other dining options for partner restaurants — ordered in, or a table booked for you.' },
   { num:'03', title:'Laundry', body:'Same-day laundry and pressing. Included on weekly and monthly stays.' },
-  { num:'04', title:'Errand support', body:'Neighbourhood errand support: pharmacy, groceries, deliveries, documents.' },
-  { num:'05', title:'Coworking at guest rates', body:'Our partner boutique coworking space is available at preferred guest rates, booked through the front desk.' },
-  { num:'06', title:'Wellness on request', body:'For relaxation, massage therapies and other wellness services can be arranged on request.' },
-  { num:'07', title:'Kitchenette or tea corner', body:'Select spaces feature a fitted kitchenette or coffee and tea corner. All guests have the tea station downstairs.' },
-  { num:'08', title:'Controlled access', body:'The property is secured with controlled access and on-site personnel, day and night.' }
+  { num:'04', title:'Errand Support', body:'Neighbourhood errand support: pharmacy, groceries, deliveries, documents.' },
+  { num:'05', title:'Coworking at Guest Rates', body:'Our partner boutique coworking space is available at preferred guest rates, booked through the front desk.' },
+  { num:'06', title:'Wellness on Request', body:'For relaxation, massage therapies and other wellness services can be arranged on request.' },
+  { num:'07', title:'Kitchenette or Tea Corner', body:'Select spaces feature a fitted kitchenette or coffee and tea corner. All guests have the tea station downstairs.' },
+  { num:'08', title:'Daily Housekeeping', body:'Attentive daily room servicing, fresh linen, and evening turndown arranged discreetly around your schedule.' }
 ];
 
 const DECOR = [
-  { key:'d1', name:'Sunlit Veranda, Morning Study', category:'Family Original', note:'Original acrylic on textured linen canvas by a family artist, celebrating natural Sahelian morning light and architectural shadow.', status:'Family Collection • On Display', px:6707631 },
-  { key:'d2', name:'Sahel Horizons (Triptych)', category:'Commissioned Artwork', note:'Commissioned mineral pigment and clay series reflecting the Abuja plateau topography and ancient rocky ridges.', status:'Available for Acquisition', px:4207892 },
-  { key:'d3', name:'Earth & Ochre Vessel', category:'Artisanal Ceramic', note:'Hand-thrown stoneware vessel with unglazed iron-wash finish, created in collaboration with local master potters.', status:'Available for Acquisition', px:1638280 },
+  { key:'d1', name:'Lavender Studies in Ochre', category:'Family Original', note:'Original acrylic on textured linen canvas by a family artist, celebrating natural Sahelian morning light and botanical shadow.', status:'Family Collection • On Display', px:'./assets/Highlights/art_we_live.jpeg' },
+  { key:'d2', name:'Sahel Horizons & Terracotta Relief', category:'Commissioned Artwork', note:'Multi-layered mixed media shadowbox relief featuring pointillist metallic topography, terracotta slab, and sculpted ivory labyrinth.', status:'Available for Acquisition', px:'./assets/Highlights/items/product3.png' },
+  { key:'d3', name:'Burnished Terracotta Ring Vase', category:'Artisanal Ceramic', note:'Hand-thrown circular ring stoneware vessel with burnished metallic terracotta finish and grooved pedestal base.', status:'Available for Acquisition', px:'./assets/Highlights/items/product2.png' },
   { key:'d4', name:'Rhythm of the Enclave', category:'Family Original', note:'Mixed media on unprimed canvas capturing quiet domestic rhythms and evening breeze through open courtyards.', status:'Family Collection • On Display', px:1148955 },
   { key:'d5', name:'Indigo & Clay Study No. 4', category:'Selected Acquisition', note:'Naturally dyed textile composition stretched over cedar stretcher bars, sourced across Northern Nigeria.', status:'Available for Acquisition', px:2762247 },
-  { key:'d6', name:'Handcrafted Infusion Cup Set', category:'Artisanal Ceramic', note:'Artisanal four-cup stoneware set with raw unglazed foot, designed for mindful tea moments at the ground-floor station.', status:'Available for Acquisition', px:302896 },
+  { key:'d6', name:'Sculptural Ceramic Trio', category:'Artisanal Ceramic', note:'Curated triad of contemporary organic hollow-form stoneware vases in matte azure, deep indigo, and warm terracotta.', status:'Available for Acquisition', px:'./assets/Highlights/items/product4.png' },
   { key:'d7', name:'Abuja Monolith Study', category:'Commissioned Artwork', note:'Sculptural carved iroko wood maquette commissioned for the central residential gallery and mezzanine.', status:'Family Collection • On Display', px:1090638 },
-  { key:'d8', name:'Botanical Silhouette in Terracotta', category:'Selected Acquisition', note:'Monotype print framed in solid walnut. A minimalist study of indigenous flora by an Abuja printmaker.', status:'Available for Acquisition', px:5490298 }
+  { key:'d8', name:'Orbit & Terracotta String Sculpture', category:'Selected Acquisition', note:'Architectural three-dimensional string and brass pin relief composition framed in a matte black shadowbox with terracotta crescent.', status:'Available for Acquisition', px:'./assets/Highlights/items/product1.png' }
 ];
 
 const HOOD = [
@@ -3072,7 +3170,7 @@ const JOURNAL = [
     date: 'The Residence',
     title: 'Why the Rooms Are Named After Butterflies',
     standfirst: 'Atala, Junonia, Lyria, Evania, Morpho, Papilio. The story behind the names at Insignia Court.',
-    px: 5490298,
+    px: './assets/Highlights/why named after btfly.png',
     paragraphs: [
       'There are six rooms at Insignia Court, and none of them has a number.',
       'The names all come from butterflies.',
@@ -3094,7 +3192,7 @@ const JOURNAL = [
     date: 'The Collection',
     title: 'The Art We Live With',
     standfirst: 'Collected, commissioned and sometimes created close to home. The story of the art that lives alongside us at Insignia Court.',
-    px: 6707631,
+    px: './assets/Highlights/art_we_live.jpeg',
     paragraphs: [
       'The artworks at Insignia Court didn’t arrive as a single collection.',
       'Some were discovered and brought home. Others were commissioned. And some of the paintings on our walls were created by members of our own family.',
@@ -3718,6 +3816,7 @@ class Component extends DCLogic {
         articleCategory: currentArticle.kind,
         articleStandfirst: currentArticle.standfirst,
         articleParagraphs: currentArticle.paragraphs,
+        articlePhoto: PX(currentArticle.px, 1200),
         openArticle: (key) => (e) => { if (this.openArticle) this.openArticle(key)(e); },
         closeArticle: (e) => { if (this.closeArticle) this.closeArticle(e); },
         enquiryOpen,
