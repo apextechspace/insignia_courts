@@ -126,6 +126,118 @@
     [data-burger] { padding:0 8px !important; }
     [data-cta] { padding:0 16px !important; }
   }
+
+  /* HERO AUTOMATIC CROSSFADE & KEN BURNS MOTION */
+  .hero-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 540px;
+    background: #180514;
+    overflow: hidden;
+  }
+  .hero-slide-item {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    overflow: hidden;
+  }
+  .hero-slide-item:first-child {
+    opacity: 1;
+    visibility: visible;
+  }
+  .hero-slide-item.hero-slide-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2;
+  }
+  .hero-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+    display: block;
+    transform: scale(1);
+    transform-origin: center center;
+    transition: transform 6.5s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+  }
+  .hero-slide-item.hero-slide-active .hero-ken-burns {
+    transform: scale(1.055) translate(-0.6%, -0.4%);
+  }
+  .hero-vignette-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,2,17,0.25) 0%, transparent 40%, rgba(20,2,17,0.82) 100%);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .hero-ambient-hud {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px 36px;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+  .hero-ambient-caption {
+    margin-bottom: 14px;
+  }
+  .hero-ambient-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(20, 2, 17, 0.76);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #F7D6E4;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 2px solid #C4507E;
+    margin-bottom: 6px;
+  }
+  .hero-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #27AE60;
+  }
+  .hero-ambient-title {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(16px, 1.4vw, 22px);
+    color: #FFFFFF;
+    line-height: 1.25;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+  }
+  .hero-ambient-indicators {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .hero-dash-pill {
+    width: 24px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 2px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-dash-pill.dash-active {
+    background: #C4507E;
+    width: 44px;
+  }
 </style>
 </helmet>
 
@@ -196,8 +308,27 @@
         <button type="button" onClick="{{ goRooms }}" style="border:1px solid rgba(255,255,255,0.45);background:transparent;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 34px;cursor:pointer;text-align:left" style-hover="background:rgba(255,255,255,0.1)">See the Rooms &rarr;</button>
       </div>
     </div>
-    <div data-minh style="position:relative;min-height:640px;background:#EDE7E6">
-      <image-slot id="ic-hero" shape="rect" src="https://images.pexels.com/photos/7534561/pexels-photo-7534561.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800" placeholder="Hero &mdash; the residence, wide interior or facade"></image-slot>
+    <div data-minh class="hero-viewport" aria-label="Insignia Court Residence Showcase">
+      <sc-for list="{{ heroSlides }}" as="hs">
+        <div class="hero-slide-item {{ hs.active ? 'hero-slide-active' : '' }}">
+          <img src="{{ hs.src }}" alt="{{ hs.title }}" class="hero-slide-img {{ hs.active ? 'hero-ken-burns' : '' }}" />
+        </div>
+      </sc-for>
+      <div class="hero-vignette-scrim"></div>
+      <div class="hero-ambient-hud">
+        <div class="hero-ambient-caption">
+          <div class="hero-ambient-tag">
+            <span class="hero-pulse-dot"></span>
+            <span>{{ curHero.tag }}</span>
+          </div>
+          <div class="hero-ambient-title">{{ curHero.title }}</div>
+        </div>
+        <div class="hero-ambient-indicators" aria-hidden="true">
+          <sc-for list="{{ heroSlides }}" as="hs">
+            <span class="hero-dash-pill {{ hs.active ? 'dash-active' : '' }}"></span>
+          </sc-for>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -817,14 +948,9 @@
 <footer style="background:#3C0031;color:#FFFFFF">
   <div data-pad data-foot style="max-width:1440px;margin:0 auto;padding:70px 40px 40px;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
     <div>
-      <span style="display:flex;align-items:flex-end;gap:6px;margin-bottom:8px;color:#FFFFFF">
-        <span style="display:flex;align-items:flex-end;gap:3px;padding-bottom:3px">
-          <span style="display:block;width:3px;height:11px;background:#C4507E"></span>
-          <span style="display:block;width:3px;height:19px;background:#FFFFFF"></span>
-        </span>
-        <span style="font-family:'Jost',sans-serif;font-weight:300;font-size:23px;letter-spacing:0.05em;line-height:1">INSIGNIA</span>
-      </span>
-      <div style="font-size:9px;letter-spacing:0.34em;text-transform:uppercase;color:#E4A9C3;padding-left:19px;margin-bottom:24px">Courts &middot; Abuja</div>
+      <a href="#" onClick="{{ goHome }}" style="display:inline-block;text-decoration:none;margin-bottom:20px" title="Insignia Courts &mdash; Return to Home">
+        <img src="./assets/logo-white.png" alt="Insignia Court Wuse II, Abuja" style="height:44px;width:auto;max-width:200px;display:block;object-fit:contain" />
+      </a>
       <p style="font-size:15px;line-height:1.6;color:#E8D6DF;margin:0;max-width:36ch">A thoughtfully prepared serviced residence in the heart of Abuja&rsquo;s prime business and leisure district.</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px">
@@ -910,6 +1036,27 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2349110111122&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;stay@insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C4507E&quot;,&quot;options&quot;:[&quot;#C4507E&quot;,&quot;#9E3560&quot;,&quot;#3C0031&quot;,&quot;#B8446E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
 const PX = (id, w) => typeof id === 'string' ? id : ('https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=' + (w || 1400));
 
+const HERO_SLIDES = [
+  {
+    key: 'entrance',
+    src: './assets/hero/entrance.jpg',
+    tag: 'RECEPTION & FOYER',
+    title: 'Arrival at Insignia Court &middot; Wuse II'
+  },
+  {
+    key: 'tea',
+    src: './assets/hero/hero 2.png',
+    tag: 'THE RESIDENCE SPACES',
+    title: 'The Tea Station &amp; Ground Floor Gallery'
+  },
+  {
+    key: 'stairs',
+    src: './assets/hero/stairs walk.jpg',
+    tag: 'RESIDENTIAL ENCLAVE',
+    title: 'Upper Residence Landing &amp; Private Suites'
+  }
+];
+
 const PHOTOS = {
   atala:   { main:'./assets/atala_standard.jpg', wide:'./assets/atala_standard.jpg', g:[5490300, 6438752, 6492403] },
   junonia: { main:'./assets/junonia_standard.jpg', wide:'./assets/junonia_standard.jpg', g:[5490298, 3315291, 3958963] },
@@ -992,7 +1139,30 @@ const JOURNAL = [
 class Component extends DCLogic {
   state = {
     page: 'home', roomKey: 'atala', enquiryOpen: false, menuOpen: false,
+    heroSlide: 0,
     f: { name:'', contact:'', checkin:'', checkout:'', room:'No preference', note:'' }
+  };
+
+  heroTimer = null;
+
+  startHeroAutoSlide = () => {
+    this.stopHeroAutoSlide();
+    if (typeof window !== 'undefined') {
+      this.heroTimer = window.setInterval(() => {
+        if ((!this.state || this.state.page === 'home') && (typeof document === 'undefined' || !document.hidden)) {
+          this.setState(s => ({
+            heroSlide: ((s.heroSlide || 0) + 1) % HERO_SLIDES.length
+          }));
+        }
+      }, 5500);
+    }
+  };
+
+  stopHeroAutoSlide = () => {
+    if (this.heroTimer) {
+      if (typeof window !== 'undefined') window.clearInterval(this.heroTimer);
+      this.heroTimer = null;
+    }
   };
 
   scrollToTop = () => {
@@ -1013,6 +1183,7 @@ class Component extends DCLogic {
       try { history.scrollRestoration = 'manual'; } catch (e) {}
     }
     this.scrollToTop();
+    this.startHeroAutoSlide();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -1022,7 +1193,16 @@ class Component extends DCLogic {
       setTimeout(this.scrollToTop, 20);
       setTimeout(this.scrollToTop, 100);
       setTimeout(this.scrollToTop, 250);
+      if (this.state && this.state.page === 'home') {
+        this.startHeroAutoSlide();
+      } else {
+        this.stopHeroAutoSlide();
+      }
     }
+  }
+
+  componentWillUnmount() {
+    this.stopHeroAutoSlide();
   }
 
   go = (page, roomKey) => (e) => {
@@ -1094,8 +1274,20 @@ class Component extends DCLogic {
     const wa = 'https://wa.me/' + (msg.phone || '2349110111122');
     const options = ['No preference'].concat(ROOMS.map(r => r.name + ' — ' + r.tag));
 
+    const activeHeroSlide = this.state.heroSlide || 0;
+    const curHero = HERO_SLIDES[activeHeroSlide] || HERO_SLIDES[0];
+    const heroSlides = HERO_SLIDES.map((hs, idx) => ({
+      ...hs,
+      active: activeHeroSlide === idx
+    }));
+
     return {
-      isHome: page === 'home', isRooms: page === 'rooms', isRoom: page === 'room',
+      isHome: page === 'home',
+      curHero,
+      heroSlides,
+      heroSlide: activeHeroSlide,
+      heroCounter: (activeHeroSlide + 1) + ' / ' + HERO_SLIDES.length,
+      isRooms: page === 'rooms', isRoom: page === 'room',
       isResidence: page === 'residence', isTea: page === 'tea', isDecor: page === 'decor',
       isWork: page === 'work', isStays: page === 'stays', isHood: page === 'hood',
       isJournal: page === 'journal', isContact: page === 'contact',
