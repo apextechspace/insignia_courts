@@ -486,6 +486,104 @@
           font-weight: 500;
           margin-left: 8px;
         }
+
+        .decor-grid-card {
+          position: relative;
+          background: #FFFFFF;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .decor-image-container {
+          position: relative;
+          aspect-ratio: 1 / 1;
+          background: #EDE7E6;
+          cursor: pointer;
+          overflow: hidden;
+        }
+
+        .decor-card-wide .decor-image-container {
+          aspect-ratio: 2 / 1;
+        }
+
+        @media (min-width: 1081px) {
+          .decor-card-wide {
+            grid-column: span 2;
+          }
+        }
+
+        .decor-image-container image-slot,
+        .decor-image-container img {
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .decor-image-container:hover image-slot,
+        .decor-image-container:hover img {
+          transform: scale(1.05);
+        }
+
+        .decor-image-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(60, 0, 49, 0) 40%, rgba(60, 0, 49, 0.68) 100%);
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-start;
+          padding: 16px;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        .decor-image-container:hover .decor-image-overlay {
+          opacity: 1;
+        }
+
+        .decor-zoom-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: #3C0031;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          padding: 6px 14px;
+          border-radius: 999px;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+          transform: translateY(6px);
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .decor-image-container:hover .decor-zoom-badge {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 860px) {
+          .decor-modal-dialog {
+            grid-template-columns: minmax(0, 1fr) !important;
+            max-height: 92vh !important;
+            overflow-y: auto !important;
+          }
+
+          .decor-modal-dialog > div:first-child {
+            min-height: 280px !important;
+            max-height: 380px !important;
+          }
+
+          .decor-card-wide {
+            grid-column: span 1 !important;
+          }
+
+          .decor-card-wide .decor-image-container {
+            aspect-ratio: 1 / 1 !important;
+          }
+        }
       </style>
     </helmet>
 
