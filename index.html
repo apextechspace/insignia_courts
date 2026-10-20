@@ -1882,37 +1882,142 @@
           margin-left: 8px;
         }
 
-        /* CINEMATIC DRONE VIEWPORT & HUD */
-        @keyframes droneFlight {
-          0% {
-            transform: scale(1) translate(0%, 0%);
-          }
+        /* ARCHITECTURAL BUILDING HIGHLIGHTS VIEWPORT & SLIDESHOW */
+        @keyframes buildingProgress {
+          0% { width: 0%; }
+          100% { width: 100%; }
+        }
 
-          30% {
-            transform: scale(1.05) translate(-1.4%, -0.8%);
-          }
+        .building-viewport {
+          position: relative;
+          aspect-ratio: 21/9;
+          min-height: 480px;
+          background: #180514;
+          overflow: hidden;
+        }
 
-          60% {
-            transform: scale(1.08) translate(1.2%, -1.2%);
-          }
-
-          85% {
-            transform: scale(1.04) translate(-0.8%, 0.8%);
-          }
-
-          100% {
-            transform: scale(1) translate(0%, 0%);
+        @media (max-width: 900px) {
+          .building-viewport {
+            aspect-ratio: 16/10;
+            min-height: 380px;
           }
         }
 
-        @keyframes pulseRec {
+        @media (max-width: 600px) {
+          .building-viewport {
+            aspect-ratio: 4/3;
+            min-height: 340px;
+          }
+        }
 
-          0%,
-          100% {
+        .building-slide-item {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 1;
+          overflow: hidden;
+          will-change: opacity, transform;
+        }
+
+        .building-slide-item.building-slide-active {
+          opacity: 1 !important;
+          visibility: visible !important;
+          z-index: 2;
+        }
+
+        .building-slide-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+          display: block;
+          pointer-events: none;
+          transform: scale(1.001);
+          transition: transform 6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .building-slide-item.building-slide-active .building-slide-img {
+          transform: scale(1.05);
+        }
+
+        .building-hud-overlay {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 22px 28px;
+          background: linear-gradient(180deg, rgba(20, 2, 17, 0.58) 0%, transparent 26%, transparent 64%, rgba(20, 2, 17, 0.9) 100%);
+          box-sizing: border-box;
+          z-index: 4;
+        }
+
+        @media (max-width: 768px) {
+          .building-hud-overlay {
+            padding: 14px 16px;
+            background: linear-gradient(180deg, rgba(20, 2, 17, 0.68) 0%, transparent 22%, transparent 58%, rgba(20, 2, 17, 0.94) 100%);
+          }
+        }
+
+        .building-progress-bar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 3px;
+          background: #C4507E;
+          z-index: 5;
+          box-shadow: 0 0 10px rgba(196, 80, 126, 0.85);
+          animation: buildingProgress 4.5s linear infinite;
+        }
+
+        .building-viewport:hover .building-progress-bar {
+          animation-play-state: paused;
+        }
+
+        .building-btn-interactive {
+          pointer-events: auto;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .building-pill-btn {
+          pointer-events: auto;
+          cursor: pointer;
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          background: rgba(20, 2, 17, 0.72);
+          color: #E8D6DF;
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          font-weight: 600;
+          padding: 6px 12px;
+          border-radius: 2px;
+          backdrop-filter: blur(8px);
+          white-space: nowrap;
+          transition: all 0.2s ease;
+        }
+        .building-pill-btn:hover {
+          background: #C4507E;
+          color: #FFFFFF;
+          border-color: #C4507E;
+        }
+        .building-pill-btn.pill-active {
+          background: #C4507E;
+          color: #FFFFFF;
+          border-color: #C4507E;
+          box-shadow: 0 2px 10px rgba(196, 80, 126, 0.5);
+        }
+
+        @keyframes pulseRec {
+          0%, 100% {
             opacity: 1;
             transform: scale(1);
           }
-
           50% {
             opacity: 0.35;
             transform: scale(0.85);
@@ -1940,18 +2045,6 @@
             aspect-ratio: 16/10;
             min-height: 320px;
           }
-        }
-
-        image-slot#ic-aerial {
-          width: 100%;
-          height: 100%;
-          display: block;
-          transform-origin: center center;
-          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        image-slot#ic-aerial.drone-flying {
-          animation: droneFlight 26s ease-in-out infinite alternate;
         }
 
         .hood-slider-track {
@@ -2667,100 +2760,120 @@
           </section>
 
           <section id="drone-reel" style="border-bottom:2px solid #3C0031">
-            <!-- View Switcher & Telemetry Bar -->
+            <!-- View Switcher & Curated Architecture Bar -->
             <div
               style="background:#20031B;border-bottom:1px solid rgba(255,255,255,0.15);padding:10px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
               <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
                 <span
                   style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);padding:5px 12px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#FFFFFF;font-weight:600">
                   <span
-                    style="width:7px;height:7px;border-radius:50%;background:#E74C3C;animation:pulseRec 1.6s infinite"></span>
-                  <span>Abuja Flyover &middot; 4K UHD</span>
+                    style="width:7px;height:7px;border-radius:50%;background:#C4507E;box-shadow:0 0 6px #C4507E"></span>
+                  <span>Building &amp; Residence Highlights</span>
                 </span>
                 <span
                   style="color:#E4A9C3;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500">
-                  5 Tanba Street, Wuse II &middot; Plus Code: 3FH9+F52
+                  5 Tanba Street, Wuse II &middot; Insignia Court
+                </span>
+                <span
+                  style="background:rgba(196,80,126,0.2);border:1px solid rgba(196,80,126,0.4);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;padding:3px 9px;border-radius:2px">
+                  {{ buildingCounter }}
                 </span>
               </div>
 
-              <!-- Professional Mode Switcher: 4K Drone Video | Interactive Map | Split Dual View -->
+              <!-- Professional Mode Switcher: Changing Photos | Enclave Map | Split Dual View | Real Video -->
               <div
                 style="display:inline-flex;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.25);border-radius:4px;overflow:hidden">
-                <button type="button" onClick="{{ setDroneVideoMode }}"
-                  class="drone-mode-tab {{ isDroneVideo ? 'tab-active' : '' }}" title="View 4K Drone Aerial Sequence">
-                  <span>📹 4K Video Flyover</span>
+                <button type="button" onClick="{{ setBuildingGalleryMode }}"
+                  class="drone-mode-tab {{ isBuildingGallery ? 'tab-active' : '' }}" title="View Changing Building Photos">
+                  <span>📸 Architecture Gallery</span>
                 </button>
-                <button type="button" onClick="{{ setDroneMapMode }}"
-                  class="drone-mode-tab {{ isDroneMap ? 'tab-active' : '' }}"
+                <button type="button" onClick="{{ setBuildingMapMode }}"
+                  class="drone-mode-tab {{ isBuildingMap ? 'tab-active' : '' }}"
                   style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2)"
                   title="View Interactive Satellite & Enclave Map">
-                  <span>🗺️ Interactive Map</span>
+                  <span>🗺️ Enclave Map</span>
                 </button>
-                <button type="button" onClick="{{ setDroneSplitMode }}"
-                  class="drone-mode-tab {{ isDroneSplit ? 'tab-active' : '' }}" title="View Video and Map Side-by-Side">
-                  <span>◫ Dual View (Video + Map)</span>
+                <button type="button" onClick="{{ setBuildingSplitMode }}"
+                  class="drone-mode-tab {{ isBuildingSplit ? 'tab-active' : '' }}" title="View Gallery and Map Side-by-Side">
+                  <span>◫ Dual View</span>
+                </button>
+                <button type="button" onClick="{{ setBuildingVideoMode }}"
+                  class="drone-mode-tab {{ isBuildingVideo ? 'tab-active' : '' }}"
+                  style="border-left:1px solid rgba(255,255,255,0.2)"
+                  title="Watch Authentic Building Video">
+                  <span>🎥 Building Video</span>
                 </button>
               </div>
             </div>
 
-            <!-- Mode 1: 4K Drone Video (Cinematic Immersive) -->
-            <sc-if value="{{ isDroneVideo }}" hint-placeholder-val="{{ true }}">
-              <div class="drone-viewport">
-                <!-- Real Abuja Drone Video Sequence with Fallbacks -->
-                <video id="ic-drone-video" autoplay muted playsinline poster="{{ aerialSrc }}"
-                  class="{{ isDroneShowingVideo ? 'drone-media-visible' : 'drone-media-hidden' }}"
-                  style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:2;transition:opacity 0.8s ease;touch-action:pan-y">
-                  <source src="./assets/earthtostreet.mp4" type="video/mp4">
-                  <source src="/assets/earthtostreet.mp4" type="video/mp4">
-                </video>
+            <!-- Mode 1: Changing Building Images Showcase (Continuous Auto-Slide Crossfade) -->
+            <sc-if value="{{ isBuildingGallery }}" hint-placeholder-val="{{ true }}">
+              <div class="building-viewport" onMouseEnter="{{ pauseBuildingSlide }}" onMouseLeave="{{ resumeBuildingSlide }}">
+                <!-- Animated Progress Bar at Top indicating continuous picture change -->
+                <div class="building-progress-bar"></div>
 
-                <!-- Atmospheric Fallback & Still Photo Canvas -->
-                <image-slot id="ic-aerial" class="{{ droneMotionClass }}" shape="rect" src="{{ aerialSrc }}"
-                  placeholder="Aerial &mdash; Insignia Courts, Wuse II from above (Cinematic Drone View)"
-                  style="position:relative;z-index:1;width:100%;height:100%;display:block"></image-slot>
+                <!-- Changing Pictures Layer: High-Res Real Highlights Photos with Smooth Crossfade -->
+                <sc-for list="{{ buildingSlides }}" as="bs">
+                  <div class="building-slide-item {{ bs.activeClass }}">
+                    <img src="{{ bs.src }}" alt="{{ bs.title }}" class="building-slide-img" />
+                  </div>
+                </sc-for>
 
-                <!-- Unobtrusive Floating Control Overlay -->
-                <div class="drone-hud-overlay" style="z-index:3">
-                  <!-- Top Row: Audio Mute/Unmute & Current Mode Badge -->
-                  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                <!-- Cinematic HUD Overlay with Luxury Architectural Typography & Interactive Navigation -->
+                <div class="building-hud-overlay">
+                  <!-- Top Row: Slide Counter, Auto-Slide Pause/Resume, & Prev/Next Chevrons -->
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
                     <div
-                      style="background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.25);padding:6px 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#E4A9C3;font-weight:600;backdrop-filter:blur(8px);display:inline-flex;align-items:center">
-                      <span
-                        style="display:inline-block;width:6px;height:6px;border-radius:50%;background:{{ droneDotBg }};animation:{{ droneDotAnim }};margin-right:6px"></span>
-                      <span>{{ droneBadgeLabel }}</span>
+                      style="background:rgba(20,2,17,0.82);border:1px solid rgba(255,255,255,0.25);padding:6px 14px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#FFFFFF;font-weight:600;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:8px">
+                      <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#C4507E;box-shadow:0 0 6px #C4507E"></span>
+                      <span>{{ buildingCounter }} &middot; Real Architecture Showcase</span>
                     </div>
-                    <button type="button" onClick="{{ toggleDroneAudio }}" class="drone-btn-interactive"
-                      style="border:1px solid rgba(255,255,255,0.3);background:rgba(20,2,17,0.75);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:6px 12px;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px);border-radius:2px"
-                      style-hover="background:#C4507E;border-color:#C4507E" title="Toggle audio">
-                      <span>{{ droneAudioLabel }}</span>
-                    </button>
+
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <button type="button" onClick="{{ toggleBuildingAutoPlay }}" class="building-btn-interactive"
+                        style="border:1px solid rgba(255,255,255,0.3);background:rgba(20,2,17,0.78);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:6px 12px;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px);border-radius:2px"
+                        style-hover="background:#C4507E;border-color:#C4507E"
+                        title="{{ buildingAutoPlay ? 'Pause auto-changing images' : 'Resume auto-changing images' }}">
+                        <span>{{ buildingAutoPlay ? '❚❚ Pause Auto-Slide' : '▶ Play Auto-Slide' }}</span>
+                      </button>
+
+                      <div style="display:inline-flex;background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.3);border-radius:2px;overflow:hidden">
+                        <button type="button" onClick="{{ prevBuildingSlide }}" class="building-btn-interactive"
+                          style="border:none;background:transparent;color:#FFFFFF;padding:6px 12px;font-size:14px;font-weight:bold"
+                          style-hover="background:#C4507E" title="Previous photo">&larr;</button>
+                        <button type="button" onClick="{{ nextBuildingSlide }}" class="building-btn-interactive"
+                          style="border-left:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;border-right:none;background:transparent;color:#FFFFFF;padding:6px 12px;font-size:14px;font-weight:bold"
+                          style-hover="background:#C4507E" title="Next photo">&rarr;</button>
+                      </div>
+                    </div>
                   </div>
 
-                  <!-- Bottom Row: Clean perspective switcher and subtle caption, nothing covering center -->
-                  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
-                    <div class="drone-mobile-hide" style="text-shadow:0 1px 4px rgba(0,0,0,0.9)">
+                  <!-- Bottom Area: Space Title, Architectural Narrative, and Perspective Quick-Pills -->
+                  <div style="display:flex;flex-direction:column;gap:14px">
+                    <div style="max-width:700px;text-shadow:0 1px 6px rgba(0,0,0,0.95)">
                       <div
-                        style="font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;margin-bottom:2px">
-                        5 Tanba, Wuse II</div>
-                      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:16px;color:#FFFFFF">{{
-                        droneTitle }}</div>
+                        style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#E4A9C3;font-weight:600;margin-bottom:4px">
+                        {{ curBuilding.tag }} &middot; 5 Tanba Street, Wuse II
+                      </div>
+                      <h3
+                        style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;line-height:1.25;color:#FFFFFF;margin:0 0 6px">
+                        {{ curBuilding.title }}
+                      </h3>
+                      <p class="drone-mobile-hide"
+                        style="font-size:13.5px;line-height:1.55;color:#E8D6DF;margin:0">
+                        {{ curBuilding.desc }}
+                      </p>
                     </div>
 
-                    <!-- Perspective Switcher: clean glass pill -->
-                    <div
-                      style="display:inline-flex;background:rgba(20,2,17,0.78);border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(8px);border-radius:2px;overflow:hidden">
-                      <button type="button" onClick="{{ setDroneVideoPhase }}" class="drone-btn-interactive"
-                        style="border:none;background:{{ droneVideoPhaseBg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600"
-                        style-hover="background:#C4507E">📹 Flyover</button>
-                      <button type="button" onClick="{{ setDrone1 }}" class="drone-btn-interactive"
-                        style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;background:{{ drone1Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600"
-                        style-hover="background:#C4507E">01 Overhead</button>
-                      <button type="button" onClick="{{ setDrone2 }}" class="drone-btn-interactive"
-                        style="border-right:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;border-left:none;background:{{ drone2Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600"
-                        style-hover="background:#C4507E">02 Terraces</button>
-                      <button type="button" onClick="{{ setDrone3 }}" class="drone-btn-interactive"
-                        style="border:none;background:{{ drone3Bg }};color:#FFFFFF;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 11px;font-weight:600"
-                        style-hover="background:#C4507E">03 Courtyard</button>
+                    <!-- Fast Perspective Selector Pills -->
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;overflow-x:auto;padding-bottom:2px">
+                      <sc-for list="{{ buildingSlides }}" as="bs">
+                        <button type="button" onClick="{{ bs.pick }}"
+                          class="building-pill-btn {{ bs.active ? 'pill-active' : '' }}"
+                          title="{{ bs.title }}">
+                          <span>{{ bs.shortLabel }}</span>
+                        </button>
+                      </sc-for>
                     </div>
                   </div>
                 </div>
@@ -2768,7 +2881,7 @@
             </sc-if>
 
             <!-- Mode 2: Interactive Enclave Map & Directions -->
-            <sc-if value="{{ isDroneMap }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ isBuildingMap }}" hint-placeholder-val="{{ false }}">
               <div class="drone-map-container" style="min-height:500px;position:relative">
                 <iframe class="drone-map-iframe"
                   src="https://maps.google.com/maps?q=5+Tanba+Street,+Wuse+II,+Abuja,+Nigeria&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -2798,31 +2911,43 @@
                       style-hover="background:#FFFFFF;color:#3C0031">
                       Open in Google Maps &rarr;
                     </a>
-                    <button type="button" onClick="{{ setDroneVideoMode }}"
+                    <button type="button" onClick="{{ setBuildingGalleryMode }}"
                       style="border:1px solid rgba(255,255,255,0.35);background:transparent;color:#FFFFFF;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;padding:10px 16px;cursor:pointer"
                       style-hover="background:rgba(255,255,255,0.15)">
-                      Watch 4K Video Flyover
+                      View Building Photos &rarr;
                     </button>
                   </div>
                 </div>
               </div>
             </sc-if>
 
-            <!-- Mode 3: Dual View (Video + Map Side-by-Side) -->
-            <sc-if value="{{ isDroneSplit }}" hint-placeholder-val="{{ false }}">
+            <!-- Mode 3: Dual View (Changing Photos + Map Side-by-Side) -->
+            <sc-if value="{{ isBuildingSplit }}" hint-placeholder-val="{{ false }}">
               <div class="drone-split-grid">
-                <!-- Left: 4K Drone Video -->
+                <!-- Left: Auto-Changing Building Photo Slideshow -->
                 <div style="position:relative;min-height:480px;background:#180514;overflow:hidden">
-                  <video autoplay muted loop playsinline poster="{{ aerialSrc }}"
-                    style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1;pointer-events:none;touch-action:pan-y">
-                    <source src="./assets/earthtostreet.mp4" type="video/mp4">
-                    <source src="/assets/earthtostreet.mp4" type="video/mp4">
-                  </video>
+                  <sc-for list="{{ buildingSlides }}" as="bs">
+                    <div class="building-slide-item {{ bs.activeClass }}">
+                      <img src="{{ bs.src }}" alt="{{ bs.title }}" class="building-slide-img" />
+                    </div>
+                  </sc-for>
                   <div
                     style="position:absolute;top:16px;left:16px;z-index:3;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.22);padding:6px 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#FFFFFF;font-weight:600">
                     <span
-                      style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#E74C3C;animation:pulseRec 1.6s infinite;margin-right:6px"></span>
-                    4K Flyover Sequence
+                      style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#C4507E;margin-right:6px"></span>
+                    {{ curBuilding.title }}
+                  </div>
+                  <div
+                    style="position:absolute;bottom:16px;left:16px;right:16px;z-index:3;background:rgba(20,2,17,0.88);border:1px solid rgba(255,255,255,0.2);padding:10px 14px;display:flex;justify-content:space-between;align-items:center">
+                    <span style="font-size:11px;color:#E4A9C3;letter-spacing:0.12em">{{ buildingCounter }} &middot; Real Architecture</span>
+                    <div style="display:flex;gap:6px">
+                      <button type="button" onClick="{{ prevBuildingSlide }}" class="building-btn-interactive"
+                        style="border:1px solid rgba(255,255,255,0.3);background:transparent;color:#FFFFFF;padding:3px 8px;font-size:12px"
+                        style-hover="background:#C4507E">&larr;</button>
+                      <button type="button" onClick="{{ nextBuildingSlide }}" class="building-btn-interactive"
+                        style="border:1px solid rgba(255,255,255,0.3);background:transparent;color:#FFFFFF;padding:3px 8px;font-size:12px"
+                        style-hover="background:#C4507E">&rarr;</button>
+                    </div>
                   </div>
                 </div>
 
@@ -2835,8 +2960,7 @@
                   <div
                     style="position:absolute;bottom:16px;left:16px;right:16px;background:rgba(20,2,17,0.9);border:1px solid rgba(255,255,255,0.2);padding:14px 18px;backdrop-filter:blur(8px);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;z-index:4">
                     <div>
-                      <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E4A9C3">Enclave
-                        Address</div>
+                      <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E4A9C3">Enclave Address</div>
                       <div style="font-size:13px;color:#FFFFFF;font-weight:500">5 Tanba Street, Wuse II, Abuja</div>
                     </div>
                     <a href="https://maps.google.com/?q=5+Tanba+Street,+Wuse+II,+Abuja" target="_blank" rel="noopener"
@@ -2844,6 +2968,34 @@
                       style-hover="background:#FFFFFF;color:#3C0031">
                       Directions &rarr;
                     </a>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- Mode 4: Real Building Video -->
+            <sc-if value="{{ isBuildingVideo }}" hint-placeholder-val="{{ false }}">
+              <div class="building-viewport" style="background:#140211;position:relative">
+                <video id="ic-building-video" autoplay muted loop playsinline
+                  style="width:100%;height:100%;object-fit:cover;display:block">
+                  <source src="./assets/videos/entrance.mp4" type="video/mp4">
+                  <source src="/assets/videos/entrance.mp4" type="video/mp4">
+                </video>
+                <div class="building-hud-overlay">
+                  <div style="display:flex;justify-content:space-between;align-items:center">
+                    <span
+                      style="background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.25);padding:6px 14px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#FFFFFF;font-weight:600">
+                      🎥 Insignia Court &middot; Authentic Entrance Video
+                    </span>
+                    <button type="button" onClick="{{ toggleBuildingVideoAudio }}" class="building-btn-interactive"
+                      style="border:1px solid rgba(255,255,255,0.3);background:rgba(20,2,17,0.8);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:6px 12px"
+                      style-hover="background:#C4507E">
+                      <span>{{ buildingVideoAudioLabel }}</span>
+                    </button>
+                  </div>
+                  <div style="text-shadow:0 1px 4px rgba(0,0,0,0.9)">
+                    <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#E4A9C3">Real Residence Footage</div>
+                    <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:20px;color:#FFFFFF">Arrival at 5 Tanba Street, Wuse II</div>
                   </div>
                 </div>
               </div>
@@ -2892,10 +3044,12 @@
                       {{ curSpace.title }}</div>
                   </div>
 
-                  <!-- Sleek Auto-Slide Progress Indicators (Pure Visual Rhythm) -->
+                  <!-- Sleek Auto-Slide Progress Indicators (Pure Visual Rhythm & Clickable) -->
                   <div style="display:flex;align-items:center;gap:6px">
                     <sc-for list="{{ spaces }}" as="sp">
-                      <span class="space-dash-pill {{ sp.active ? 'dash-active' : '' }}"></span>
+                      <button type="button" onClick="{{ sp.pick }}"
+                        class="space-dash-pill {{ sp.active ? 'dash-active' : '' }}"
+                        title="{{ sp.title }}" style="border:none;cursor:pointer"></button>
                     </sc-for>
                   </div>
                 </div>
@@ -3659,64 +3813,72 @@
             </div>
           </section>
 
-          <!-- Workspace Video Reel Section (Gliding 4K Walkthrough) -->
+          <!-- Executive Workspace Clean Photo Carousel Section (Same Carousel as Homepage) -->
           <section id="workspace-reel" style="border-bottom:2px solid #3C0031;background:#180514">
-            <div class="drone-viewport" style="min-height:380px">
-              <!-- HTML5 Workspace Video (Plays continuously on infinite loop) -->
-              <video id="ic-work-video" autoplay muted loop playsinline poster="./assets/space4.jpeg"
-                onended="this.currentTime=0; this.play();"
-                onpause="if (this.currentTime >= (this.duration || 1) - 0.5) { this.currentTime = 0; this.play(); }"
-                style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:1;pointer-events:none;touch-action:pan-y">
-                <source src="./assets/Camera_gliding_through_modern_of…_20260927135450.mp4" type="video/mp4">
-                <source src="/assets/Camera_gliding_through_modern_of…_20260927135450.mp4" type="video/mp4">
-                <source src="./assets/Camera_gliding_through_modern_of%E2%80%A6_20260927135450.mp4" type="video/mp4">
-                <source src="./workspace-view.mp4" type="video/mp4">
-                <source src="./uploads/workspace-view.mp4" type="video/mp4">
-              </video>
+            <div class="space-carousel-box"
+              style="position:relative;min-height:500px;background:#180514;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+              <!-- Active Space Slide Image with Soft Vignette -->
+              <div style="position:absolute;inset:0;z-index:1;overflow:hidden">
+                <img src="{{ curSpace.src }}" alt="{{ curSpace.title }}"
+                  style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);pointer-events:none;touch-action:pan-y">
+                <div
+                  style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,2,17,0.4) 0%, transparent 45%, rgba(20,2,17,0.82) 100%);pointer-events:none">
+                </div>
+              </div>
 
-              <image-slot id="ic-work-reel-slot" shape="rect" src="./assets/space4.jpeg"
-                placeholder="Workspace &amp; Boardrooms &mdash; Wuse II, Abuja"
-                style="position:relative;z-index:0;opacity:0.96"></image-slot>
-
-              <div class="drone-hud-overlay">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
-                  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                    <span
-                      style="display:inline-flex;align-items:center;gap:7px;background:rgba(20,2,17,0.85);border:1px solid rgba(255,255,255,0.25);padding:6px 12px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#FFFFFF;font-weight:600;backdrop-filter:blur(6px)">
-                      <span
-                        style="width:7px;height:7px;border-radius:50%;background:#C4507E;animation:pulseRec 1.6s infinite"></span>
-                      <span>Coworking Reel &middot; 4K Tour</span>
-                    </span>
-                    <span
-                      style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px)">
-                      Executive Desks &middot; Private Suites &middot; 12-Seat Boardroom
-                    </span>
-                  </div>
-
-                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                    <button type="button" onClick="{{ toggleWorkAudio }}" class="drone-btn-interactive"
-                      style="border:1px solid rgba(255,255,255,0.35);background:rgba(20,2,17,0.85);color:#FFFFFF;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;display:inline-flex;align-items:center;gap:7px;backdrop-filter:blur(6px);cursor:pointer"
-                      style-hover="background:#C4507E;border-color:#C4507E" title="Toggle audio on workspace video">
-                      <span>{{ workAudioLabel }}</span>
-                    </button>
-                  </div>
+              <!-- Top Bar: Minimal Status Badge & Photo Counter -->
+              <div
+                style="position:relative;z-index:3;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                  <span
+                    style="display:inline-flex;align-items:center;gap:7px;background:rgba(20,2,17,0.75);color:#FFFFFF;padding:6px 14px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#27AE60"></span>
+                    <span>Resident Preferred Partner &middot; Wuse II</span>
+                  </span>
+                  <span class="drone-mobile-hide"
+                    style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px)">
+                    Executive Desks &middot; Private Suites &middot; 12-Seat Boardroom
+                  </span>
                 </div>
 
-                <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
-                  <div>
-                    <div
-                      style="font-size:9.5px;letter-spacing:0.25em;text-transform:uppercase;color:#E4A9C3;margin-bottom:4px">
-                      Partner Workspace Enclave &middot; Wuse II</div>
-                    <div
-                      style="font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(16px,1.6vw,22px);color:#FFFFFF;text-shadow:0 1px 4px rgba(0,0,0,0.9)">
-                      Private Executive Offices &amp; 100Mb/s Fiber Hot Desks</div>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span
+                    style="background:rgba(20,2,17,0.75);color:#E4A9C3;font-size:10.5px;letter-spacing:0.18em;font-weight:600;padding:6px 14px;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
+                    {{ spaceCounter }}
+                  </span>
+                  <div style="display:inline-flex;background:rgba(20,2,17,0.75);border:1px solid rgba(255,255,255,0.25);border-radius:2px;overflow:hidden">
+                    <button type="button" onClick="{{ prevSpaceSlide }}" class="building-btn-interactive"
+                      style="border:none;background:transparent;color:#FFFFFF;padding:6px 12px;font-size:14px;font-weight:bold"
+                      style-hover="background:#C4507E" title="Previous space">&larr;</button>
+                    <button type="button" onClick="{{ nextSpaceSlide }}" class="building-btn-interactive"
+                      style="border-left:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;border-right:none;background:transparent;color:#FFFFFF;padding:6px 12px;font-size:14px;font-weight:bold"
+                      style-hover="background:#C4507E" title="Next space">&rarr;</button>
                   </div>
+                </div>
+              </div>
+
+              <!-- Bottom Bar: Minimal Caption & Sleek Auto-Slide Progress Indicators -->
+              <div
+                style="position:relative;z-index:3;padding:24px 26px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+                <div style="max-width:680px">
                   <div
-                    style="display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.92);background:rgba(20,2,17,0.85);padding:7px 14px;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
-                    <span>Fiber: <strong>100 Mbps Low Latency</strong></span>
-                    <span style="opacity:0.4">&bull;</span>
-                    <span>Power: <strong>24/7 Redundant Solar + Gen</strong></span>
-                  </div>
+                    style="font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;font-weight:600;margin-bottom:4px">
+                    {{ curSpace.tag }}</div>
+                  <div
+                    style="font-family:'Jost',sans-serif;font-weight:300;font-size:19px;color:#FFFFFF;line-height:1.2;margin-bottom:4px">
+                    {{ curSpace.title }}</div>
+                  <p class="drone-mobile-hide"
+                    style="font-size:13.5px;line-height:1.5;color:#E8D6DF;margin:0">
+                    {{ curSpace.desc }}</p>
+                </div>
+
+                <!-- Sleek Auto-Slide Progress Indicators (Pure Visual Rhythm) -->
+                <div style="display:flex;align-items:center;gap:6px">
+                  <sc-for list="{{ spaces }}" as="sp">
+                    <button type="button" onClick="{{ sp.pick }}"
+                      class="space-dash-pill {{ sp.active ? 'dash-active' : '' }}"
+                      title="{{ sp.title }}" style="border:none;cursor:pointer"></button>
+                  </sc-for>
                 </div>
               </div>
             </div>
@@ -4486,6 +4648,81 @@ const HERO_SLIDES = [
   }
 ];
 
+const BUILDING_HIGHLIGHTS = [
+  {
+    key: 'entrance',
+    src: './assets/Highlights/insignia_entrance.jpg',
+    tag: 'ARRIVAL & PORTICO',
+    title: 'The Private Entrance & Gatehouse',
+    shortLabel: '01 Arrival',
+    desc: '5 Tanba Street, Wuse II. Discrete resident security portico, private drop-off, and perimeter greenery tucked away on a quiet residential avenue.'
+  },
+  {
+    key: 'facade',
+    src: './assets/Highlights/DSC06780.jpg',
+    tag: 'ARCHITECTURE & FACADE',
+    title: 'Modernist Four-Story Residential Elevation',
+    shortLabel: '02 Façade',
+    desc: 'Clean architectural geometry, textured Sahelian stone finishes, deep overhangs, and floor-to-ceiling balcony glazing tailored to Abuja sunlight.'
+  },
+  {
+    key: 'foyer',
+    src: './assets/Highlights/DSC07028.jpg',
+    tag: 'GROUND FLOOR FOYER',
+    title: 'Grand Entrance Gallery & Reception',
+    shortLabel: '03 Foyer',
+    desc: 'Polished stone surfaces, curated artisanal ceramics, and welcoming concierge foyer with bespoke sculptural wall art from the Insignia Collection.'
+  },
+  {
+    key: 'lounge',
+    src: './assets/Highlights/DSC07039.jpg',
+    tag: 'RESIDENT LIVING',
+    title: 'The Central Living Lounge & Gathering Space',
+    shortLabel: '04 Lounge',
+    desc: 'Bespoke upholstered seating, custom oak millwork, warm Sahelian palette, and natural daylight filtering through floor-to-ceiling glass.'
+  },
+  {
+    key: 'courtyard',
+    src: './assets/Highlights/DSC07083.jpg',
+    tag: 'CENTRAL COURTYARD',
+    title: 'Sunlit Atrium & Inner Terraces',
+    shortLabel: '05 Courtyard',
+    desc: 'Open-air residential courtyard bridging private suites with natural breezes, geometric railing profiles, and calm domestic rhythm.'
+  },
+  {
+    key: 'corridor',
+    src: './assets/Highlights/DSC07301.jpg',
+    tag: 'RESIDENCE SUITES',
+    title: 'Private Suites Gallery & Landing',
+    shortLabel: '06 Gallery',
+    desc: 'Hand-finished hardwood doorframes, soft directional gallery illumination, and sound-insulated corridor design for unbroken tranquility.'
+  },
+  {
+    key: 'joinery',
+    src: './assets/Highlights/DSC07322.jpg',
+    tag: 'ARCHITECTURAL CRAFT',
+    title: 'Artisanal Joinery & Fine Materials',
+    shortLabel: '07 Craft',
+    desc: 'Meticulous attention to physical textures: rich dark timber accents, brushed brass hardware, and minimalist Sahelian design cues.'
+  },
+  {
+    key: 'mezzanine',
+    src: './assets/Highlights/DSC07551.jpg',
+    tag: 'UPPER LEVEL SPACES',
+    title: 'Mezzanine Lounge & Private Overlook',
+    shortLabel: '08 Mezzanine',
+    desc: 'Elevated residential retreat designed for reading, private conversations, and quiet contemplation overlooking the courtyard.'
+  },
+  {
+    key: 'evening',
+    src: './assets/Highlights/DSC07686.jpg',
+    tag: 'NIGHT AMBIANCE',
+    title: 'Evening Enclave Illumination',
+    shortLabel: '09 Evening',
+    desc: 'Warm architectural lighting across exterior façades and private balconies as twilight settles over Wuse II, Abuja.'
+  }
+];
+
 const PHOTOS = {
   atala:   { main:'./assets/atala_standard.jpg', wide:'./assets/atala_standard.jpg', g:[5490300, 6438752, 6707631] },
   junonia: { main:'./assets/junonia_standard.jpg', wide:'./assets/junonia_standard.jpg', g:[5490298, 3315291, 6707631] },
@@ -4681,6 +4918,10 @@ class Component extends DCLogic {
     page: 'home', roomKey: 'atala', enquiryOpen: false, menuOpen: false,
     articleModalOpen: false, activeArticleKey: 'butterflies',
     decorModalOpen: false, activeDecorKey: 'd1',
+    buildingSlide: 0,
+    buildingAutoPlay: true,
+    buildingMode: 'gallery',
+    buildingVideoMuted: true,
     droneAngle: 1, droneMotion: true, droneMode: 'video', droneMuted: true,
     dronePhase: 'video',
     hoodSlide: 0,
@@ -4731,6 +4972,7 @@ class Component extends DCLogic {
 
   heroTimer = null;
   spaceTimer = null;
+  buildingTimer = null;
   dronePictureTimer = null;
 
   startHeroAutoSlide = () => {
@@ -4769,6 +5011,102 @@ class Component extends DCLogic {
     this.startHeroAutoSlide();
   };
 
+  startBuildingAutoSlide = () => {
+    this.stopBuildingAutoSlide();
+    if (typeof window !== 'undefined') {
+      this.buildingTimer = window.setInterval(() => {
+        if ((!this.state || this.state.page === 'home') &&
+            (!this.state || this.state.buildingMode === 'gallery' || this.state.buildingMode === 'split') &&
+            (!this.state || this.state.buildingAutoPlay !== false) &&
+            (typeof document === 'undefined' || !document.hidden)) {
+          this.setState(s => ({
+            buildingSlide: ((s.buildingSlide || 0) + 1) % BUILDING_HIGHLIGHTS.length
+          }));
+        }
+      }, 4500);
+    }
+  };
+
+  stopBuildingAutoSlide = () => {
+    if (this.buildingTimer) {
+      if (typeof window !== 'undefined') window.clearInterval(this.buildingTimer);
+      this.buildingTimer = null;
+    }
+  };
+
+  pauseBuildingSlide = () => {
+    this.stopBuildingAutoSlide();
+  };
+
+  resumeBuildingSlide = () => {
+    if (!this.state || this.state.buildingAutoPlay !== false) {
+      this.startBuildingAutoSlide();
+    }
+  };
+
+  toggleBuildingAutoPlay = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState(s => {
+      const nextPlay = !(s.buildingAutoPlay !== false);
+      if (nextPlay) {
+        setTimeout(() => this.startBuildingAutoSlide(), 10);
+      } else {
+        this.stopBuildingAutoSlide();
+      }
+      return { buildingAutoPlay: nextPlay };
+    });
+  };
+
+  setBuildingSlide = (idx) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ buildingSlide: idx });
+    if (!this.state || this.state.buildingAutoPlay !== false) {
+      this.startBuildingAutoSlide();
+    }
+  };
+
+  nextBuildingSlide = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState(s => ({
+      buildingSlide: ((s.buildingSlide || 0) + 1) % BUILDING_HIGHLIGHTS.length
+    }));
+    if (!this.state || this.state.buildingAutoPlay !== false) {
+      this.startBuildingAutoSlide();
+    }
+  };
+
+  prevBuildingSlide = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState(s => ({
+      buildingSlide: ((s.buildingSlide || 0) - 1 + BUILDING_HIGHLIGHTS.length) % BUILDING_HIGHLIGHTS.length
+    }));
+    if (!this.state || this.state.buildingAutoPlay !== false) {
+      this.startBuildingAutoSlide();
+    }
+  };
+
+  setBuildingMode = (mode) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ buildingMode: mode }, () => {
+      if (mode === 'video') {
+        const vid = typeof document !== 'undefined' ? document.getElementById('ic-building-video') : null;
+        if (vid) {
+          vid.currentTime = 0;
+          const p = vid.play();
+          if (p && p.catch) p.catch(() => {});
+        }
+      }
+    });
+  };
+
+  toggleBuildingVideoAudio = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const vid = typeof document !== 'undefined' ? document.getElementById('ic-building-video') : null;
+    const nextMuted = !this.state.buildingVideoMuted;
+    if (vid) vid.muted = nextMuted;
+    this.setState({ buildingVideoMuted: nextMuted });
+  };
+
   scrollToTop = () => {
     if (typeof window === 'undefined') return;
     try {
@@ -4791,8 +5129,8 @@ class Component extends DCLogic {
     this.scrollToTop();
     this.startHeroAutoSlide();
     this.startSpaceAutoSlide();
+    this.startBuildingAutoSlide();
     this.setupVideoLoop();
-    this.setupDroneVideoRotate();
     this.setupHoodVideoRotate();
     if (typeof window !== 'undefined') {
       window.addEventListener('keydown', (e) => {
@@ -4813,18 +5151,24 @@ class Component extends DCLogic {
       setTimeout(this.scrollToTop, 250);
       if (this.state && this.state.page === 'home') {
         this.startHeroAutoSlide();
+        this.startBuildingAutoSlide();
       } else {
         this.stopHeroAutoSlide();
+        this.stopBuildingAutoSlide();
+      }
+      if (this.state && (this.state.page === 'home' || this.state.page === 'work')) {
+        this.startSpaceAutoSlide();
+      } else {
+        this.stopSpaceAutoSlide();
       }
     }
-    this.setupVideoLoop();
-    this.setupDroneVideoRotate();
     this.setupHoodVideoRotate();
   }
 
   componentWillUnmount() {
     this.stopHeroAutoSlide();
     this.stopSpaceAutoSlide();
+    this.stopBuildingAutoSlide();
     if (this.dronePictureTimer) clearTimeout(this.dronePictureTimer);
   }
 
@@ -4863,7 +5207,7 @@ class Component extends DCLogic {
     this.stopSpaceAutoSlide();
     if (typeof window !== 'undefined') {
       this.spaceTimer = window.setInterval(() => {
-        if (this.state.page === 'home' && (this.state.location || 'wuse') === 'wuse') {
+        if ((!this.state || this.state.page === 'home' || this.state.page === 'work') && (typeof document === 'undefined' || !document.hidden)) {
           this.setState(s => ({
             spaceSlide: ((s.spaceSlide || 0) + 1) % SPACES.length
           }));
@@ -5140,7 +5484,7 @@ class Component extends DCLogic {
     setTimeout(this.scrollToTop, 300);
 
     if (page === 'work') {
-      setTimeout(() => this.setupVideoLoop(), 60);
+      setTimeout(() => this.startSpaceAutoSlide(), 60);
     }
     if (page === 'hood') {
       setTimeout(() => this.setupHoodVideoRotate(), 60);
@@ -5214,34 +5558,24 @@ class Component extends DCLogic {
       const currentArticle = JOURNAL.find(a => a.key === curArticleKey) || JOURNAL[0];
       const curPage = page || 'home';
 
-      const droneAngles = {
-        1: {
-          title: '01 Aerial Overhead &middot; 4-Story Enclave, 5 Tanba Street, Wuse II',
-          src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85',
-          alt: '120m',
-          gimbal: '-45&deg;'
-        },
-        2: {
-          title: '02 Sunset Terraces &middot; Floor-to-Ceiling Glazing &amp; Panoramic Vista',
-          src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=85',
-          alt: '65m',
-          gimbal: '-20&deg;'
-        },
-        3: {
-          title: '03 Penthouse Living &middot; Double-Height Chandelier &amp; Sunset Fireplace',
-          src: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=2400&q=85',
-          alt: '35m',
-          gimbal: '-10&deg;'
-        }
-      };
-      const activeDroneAngle = (this.state && this.state.droneAngle) || 1;
-      const curDrone = droneAngles[activeDroneAngle] || droneAngles[1];
-      const droneMotion = !!(this.state && this.state.droneMotion);
-      const droneMode = (this.state && this.state.droneMode) || 'video';
-      const isDroneVideo = droneMode === 'video';
-      const isDroneMap = droneMode === 'map';
-      const isDroneSplit = droneMode === 'split';
-      const droneMuted = (this.state && this.state.droneMuted) !== false;
+      const activeBuildingSlide = (this.state && this.state.buildingSlide) || 0;
+      const curBuilding = BUILDING_HIGHLIGHTS[activeBuildingSlide] || BUILDING_HIGHLIGHTS[0];
+      const buildingSlides = BUILDING_HIGHLIGHTS.map((bs, idx) => ({
+        ...bs,
+        idx,
+        active: activeBuildingSlide === idx,
+        activeClass: activeBuildingSlide === idx ? 'building-slide-active' : '',
+        pick: (e) => { if (this.setBuildingSlide) this.setBuildingSlide(idx)(e); }
+      }));
+      const buildingCounter = (activeBuildingSlide + 1 < 10 ? '0' + (activeBuildingSlide + 1) : (activeBuildingSlide + 1)) + ' / ' + (BUILDING_HIGHLIGHTS.length < 10 ? '0' + BUILDING_HIGHLIGHTS.length : BUILDING_HIGHLIGHTS.length);
+      const buildingAutoPlay = this.state && this.state.buildingAutoPlay !== false;
+      const buildingMode = (this.state && this.state.buildingMode) || 'gallery';
+      const isBuildingGallery = buildingMode === 'gallery';
+      const isBuildingMap = buildingMode === 'map';
+      const isBuildingSplit = buildingMode === 'split';
+      const isBuildingVideo = buildingMode === 'video';
+      const buildingVideoMuted = (this.state && this.state.buildingVideoMuted) !== false;
+      const buildingVideoAudioLabel = buildingVideoMuted ? '🔇 Audio Off' : '🔊 Audio On';
 
       const activeSpaceSlide = (this.state && this.state.spaceSlide) || 0;
       const curSpace = SPACES[activeSpaceSlide] || SPACES[0];
@@ -5370,41 +5704,67 @@ class Component extends DCLogic {
         mailComposed: 'mailto:' + ((this.props && this.props.email) || 'stay@insigniacourts.com') +
           '?subject=' + encodeURIComponent('Stay enquiry — Insignia Court') +
           '&body=' + encodeURIComponent(msg.body),
-        aerialSrc: curDrone.src,
-        droneAngle: activeDroneAngle,
-        droneMotion,
-        droneMotionLabel: droneMotion ? 'Active' : 'Paused',
-        droneMotionClass: droneMotion ? 'drone-flying' : '',
-        droneTitle: curDrone.title,
-        droneAlt: curDrone.alt,
-        droneGimbal: curDrone.gimbal,
-        isDroneShowingVideo: (this.state && (this.state.dronePhase || 'video')) === 'video',
-        isDroneShowingPicture: (this.state && this.state.dronePhase) === 'picture',
-        droneDotBg: (this.state && (this.state.dronePhase || 'video')) === 'video' ? '#E74C3C' : '#27AE60',
-        droneDotAnim: (this.state && (this.state.dronePhase || 'video')) === 'video' ? 'pulseRec 1.6s infinite' : 'none',
-        droneBadgeLabel: (this.state && (this.state.dronePhase || 'video')) === 'video' ? '📹 4K Flyover Sequence' : '📸 High-Resolution Aerial View',
-        droneVideoPhaseBg: (this.state && (this.state.dronePhase || 'video')) === 'video' ? '#C4507E' : 'transparent',
-        drone1Bg: (this.state && this.state.dronePhase === 'picture' && activeDroneAngle === 1) ? '#C4507E' : 'transparent',
-        drone2Bg: (this.state && this.state.dronePhase === 'picture' && activeDroneAngle === 2) ? '#C4507E' : 'transparent',
-        drone3Bg: (this.state && this.state.dronePhase === 'picture' && activeDroneAngle === 3) ? '#C4507E' : 'transparent',
-        setDroneVideoPhase: this.setDroneVideoPhase,
-        setDrone1: (e) => { if (this.setDroneAngle) this.setDroneAngle(1)(e); },
-        setDrone2: (e) => { if (this.setDroneAngle) this.setDroneAngle(2)(e); },
-        setDrone3: (e) => { if (this.setDroneAngle) this.setDroneAngle(3)(e); },
-        toggleDroneMotion: this.toggleDroneMotion,
-        droneMode,
-        isDroneVideo,
-        isDroneMap,
-        isDroneSplit,
-        droneMuted,
-        droneAudioLabel: droneMuted ? 'Muted' : 'Audio On',
-        droneVideoBtnBg: isDroneVideo ? '#C4507E' : 'transparent',
-        droneMapBtnBg: isDroneMap ? '#C4507E' : 'transparent',
-        droneSplitBtnBg: isDroneSplit ? '#C4507E' : 'transparent',
-        setDroneVideoMode: (e) => { if (this.setDroneMode) this.setDroneMode('video')(e); },
-        setDroneMapMode: (e) => { if (this.setDroneMode) this.setDroneMode('map')(e); },
-        setDroneSplitMode: (e) => { if (this.setDroneMode) this.setDroneMode('split')(e); },
-        toggleDroneAudio: this.toggleDroneAudio,
+        buildingSlides,
+        curBuilding,
+        curBuildingSlide: curBuilding,
+        buildingSlide: activeBuildingSlide,
+        buildingCounter,
+        buildingAutoPlay,
+        buildingMode,
+        isBuildingGallery,
+        isBuildingMap,
+        isBuildingSplit,
+        isBuildingVideo,
+        buildingVideoMuted,
+        buildingVideoAudioLabel,
+        setBuildingGalleryMode: (e) => { if (this.setBuildingMode) this.setBuildingMode('gallery')(e); },
+        setBuildingMapMode: (e) => { if (this.setBuildingMode) this.setBuildingMode('map')(e); },
+        setBuildingSplitMode: (e) => { if (this.setBuildingMode) this.setBuildingMode('split')(e); },
+        setBuildingVideoMode: (e) => { if (this.setBuildingMode) this.setBuildingMode('video')(e); },
+        toggleBuildingAutoPlay: (e) => { if (this.toggleBuildingAutoPlay) this.toggleBuildingAutoPlay(e); },
+        pauseBuildingSlide: () => { if (this.pauseBuildingSlide) this.pauseBuildingSlide(); },
+        resumeBuildingSlide: () => { if (this.resumeBuildingSlide) this.resumeBuildingSlide(); },
+        setBuildingSlide: (idx) => (e) => { if (this.setBuildingSlide) this.setBuildingSlide(idx)(e); },
+        nextBuildingSlide: (e) => { if (this.nextBuildingSlide) this.nextBuildingSlide(e); },
+        prevBuildingSlide: (e) => { if (this.prevBuildingSlide) this.prevBuildingSlide(e); },
+        toggleBuildingVideoAudio: (e) => { if (this.toggleBuildingVideoAudio) this.toggleBuildingVideoAudio(e); },
+
+        // Backward compatibility fallbacks
+        aerialSrc: curBuilding.src,
+        droneAngle: activeBuildingSlide + 1,
+        droneMotion: true,
+        droneMotionLabel: 'Active',
+        droneMotionClass: '',
+        droneTitle: curBuilding.title,
+        droneAlt: '5 Tanba',
+        droneGimbal: '0deg',
+        isDroneShowingVideo: isBuildingGallery,
+        isDroneShowingPicture: true,
+        droneDotBg: '#C4507E',
+        droneDotAnim: 'none',
+        droneBadgeLabel: '📸 Real Building Photography',
+        droneVideoPhaseBg: '#C4507E',
+        drone1Bg: 'transparent',
+        drone2Bg: 'transparent',
+        drone3Bg: 'transparent',
+        setDroneVideoPhase: (e) => { if (this.setBuildingMode) this.setBuildingMode('gallery')(e); },
+        setDrone1: (e) => { if (this.setBuildingSlide) this.setBuildingSlide(0)(e); },
+        setDrone2: (e) => { if (this.setBuildingSlide) this.setBuildingSlide(1)(e); },
+        setDrone3: (e) => { if (this.setBuildingSlide) this.setBuildingSlide(2)(e); },
+        toggleDroneMotion: () => {},
+        droneMode: buildingMode,
+        isDroneVideo: isBuildingGallery,
+        isDroneMap: isBuildingMap,
+        isDroneSplit: isBuildingSplit,
+        droneMuted: buildingVideoMuted,
+        droneAudioLabel: 'Audio',
+        droneVideoBtnBg: isBuildingGallery ? '#C4507E' : 'transparent',
+        droneMapBtnBg: isBuildingMap ? '#C4507E' : 'transparent',
+        droneSplitBtnBg: isBuildingSplit ? '#C4507E' : 'transparent',
+        setDroneVideoMode: (e) => { if (this.setBuildingMode) this.setBuildingMode('gallery')(e); },
+        setDroneMapMode: (e) => { if (this.setBuildingMode) this.setBuildingMode('map')(e); },
+        setDroneSplitMode: (e) => { if (this.setBuildingMode) this.setBuildingMode('split')(e); },
+        toggleDroneAudio: (e) => { if (this.toggleBuildingVideoAudio) this.toggleBuildingVideoAudio(e); },
 
         hoodSlide: (this.state && this.state.hoodSlide) || 0,
         hoodSlideTransform: ((this.state && this.state.hoodSlide) || 0) === 1 ? '-50%' : '0%',
