@@ -10,3 +10,23 @@ Thumbs.db
 # Environment and IDE
 .vscode/
 .idea/
+powershell.cmd
+
+# Scratch & Temporary Test Files
+eng.traineddata
+test-rendered-fonts.html
+test-logo-options.html
+test-fonts.html
+test-Spirax.svg
+crop_top.png
+crop_bottom.png
+*.png.tmp
+*.traineddata
+
+# Obsolete Canvas Runtime Artifacts
+Insignia Courts.dc.html
+image-slot.js
+support.js
+.image-slots.state.json
+_ds/
+vendor/

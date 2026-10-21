@@ -18,9 +18,9 @@ app.use(express.static(__dirname, {
   dotfiles: 'allow'
 }));
 
-// Root route serves index.html
+// Root route serves home.html (modular home page)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'home.html'));
 });
 
 // Single Page Application fallback for HTML navigation

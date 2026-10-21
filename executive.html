@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Coworking &amp; Meeting Suites — Insignia Court Abuja</title>
+  <meta name="description"
+    content="Partner boutique coworking space in Wuse II, Abuja with dedicated hot desks, private suites, and meeting boardroom at preferred resident rates.">
+  <link rel="icon" type="image/png" href="./assets/logo.png">
+  <meta property="og:title" content="Executive Coworking &amp; Meeting Suites — Insignia Court Abuja">
+  <meta property="og:description"
+    content="Partner boutique coworking space in Wuse II, Abuja with dedicated hot desks, private suites, and meeting boardroom.">
+  <meta property="og:image" content="./assets/space.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Archivo:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Cinzel+Decorative:wght@700&display=swap">
+  <link rel="stylesheet" href="./assets/css/site.css">
+</head>
+
+<body>
+  <div class="page-content-wrapper">
+
+    <!-- Header Navigation -->
+    <header
+      style="position:sticky;top:0;z-index:60;background:rgba(247, 244, 242, 0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:2px solid #3C0031">
+      <div class="nav-header-inner">
+        <a href="home.html" class="nav-brand-box" title="Insignia Court &middot; Wuse II, Abuja">
+          <img src="./assets/logo-trimmed.png" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <a href="rooms.html" class="desktop-nav-link">Rooms &amp; Suites</a>
+          <a href="residence.html" class="desktop-nav-link">The Residence</a>
+          <a href="executive.html" class="desktop-nav-link nav-active">Executive Coworking</a>
+
+          <!-- Experience Dropdown Menu -->
+          <div class="nav-dropdown-wrap">
+            <button type="button" class="desktop-nav-link nav-dropdown-trigger" aria-haspopup="true">
+              <span>Experience</span>
+              <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"
+                stroke-width="1.8">
+                <path d="M1 1L5 5L9 1" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <div class="dropdown-heading">The Residence Spaces</div>
+                <a href="tea.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>The Tea Station</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Japanese-inspired station &amp; herbal blends</div>
+                </a>
+                <a href="art.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>The Art We Live With</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Selected paintings, ceramics &amp; sculpture</div>
+                </a>
+              </div>
+
+              <div class="dropdown-divider"></div>
+
+              <div class="dropdown-col">
+                <div class="dropdown-heading">Stays &amp; Stories</div>
+                <a href="stays.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>Long Stays &amp; Corporate</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Extended stays with tailored terms</div>
+                </a>
+                <a href="neighbourhood.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>Neighbourhood</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Business, shopping &amp; leisure destinations</div>
+                </a>
+                <a href="journal.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>Notes from the Residence</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Stories behind the rooms, art &amp; city</div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="contact.html" class="desktop-nav-link">Contact</a>
+        </nav>
+
+        <div class="nav-actions-right">
+          <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener" class="nav-book-btn"
+            title="Open Instant Booking Web App">Book Online</a>
+          <button type="button" class="nav-cta-btn" data-open-enquiry="Executive Coworking">Enquire</button>
+          <button type="button" class="mobile-burger-btn" aria-label="Toggle navigation directory drawer">
+            <span class="burger-bars">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span class="burger-label">Menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Slide-over Directory Drawer -->
+    <div class="menu-backdrop-overlay" style="display:none"></div>
+    <div class="mobile-menu-drawer" style="display:none">
+      <div
+        style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.2)">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="display:block;width:3px;height:12px;background:#C4507E"></span>
+          <span
+            style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#F7D6E4;font-weight:600">Directory
+            &amp; Concierge</span>
+        </div>
+        <button type="button" data-close-menu
+          style="border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:#FFFFFF;cursor:pointer;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;display:flex;align-items:center;gap:6px;padding:6px 12px">
+          <span>Close</span>
+          <span style="font-size:16px;line-height:1">&times;</span>
+        </button>
+      </div>
+
+      <div
+        style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#F7D6E4;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.15)">
+        Navigate</div>
+      <a href="home.html" class="mobile-menu-link">
+        <span>Home</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="rooms.html" class="mobile-menu-link">
+        <span>Rooms &amp; Suites</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="residence.html" class="mobile-menu-link">
+        <span>The Residence</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="executive.html" class="mobile-menu-link" style="color:#E4A9C3;font-weight:600">
+        <span>Executive Coworking</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="tea.html" class="mobile-menu-link">
+        <span>The Tea Station</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="art.html" class="mobile-menu-link">
+        <span>The Art We Live With</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="stays.html" class="mobile-menu-link">
+        <span>Long Stays &amp; Corporate</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="neighbourhood.html" class="mobile-menu-link">
+        <span>Neighbourhood</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="journal.html" class="mobile-menu-link">
+        <span>Notes from the Residence</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+      <a href="contact.html" class="mobile-menu-link">
+        <span>Contact</span>
+        <span style="font-size:12px;opacity:0.6">&rarr;</span>
+      </a>
+
+      <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
+        <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener"
+          style="border:0;background:#FFFFFF;color:#3C0031;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;text-align:center;display:block;width:100%;min-height:48px;box-sizing:border-box">Book
+          Online &rarr;</a>
+        <button type="button" data-open-enquiry="Executive Coworking"
+          style="border:0;background:#C4507E;color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;cursor:pointer;text-align:center;width:100%;min-height:48px">Enquire
+          About Coworking</button>
+        <a href="https://wa.me/2349110111122" target="_blank" rel="noopener"
+          style="border:1px solid rgba(255,255,255,0.35);color:#FFFFFF;font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px;text-align:center;display:block;width:100%;min-height:48px;box-sizing:border-box">WhatsApp
+          the Front Desk</a>
+      </div>
+
+      <div style="margin-top:28px;font-size:12px;line-height:1.6;color:#F7D6E4">
+        <div style="font-weight:600;color:#FFFFFF;margin-bottom:2px">Insignia Court</div>
+        <div>5 Tanba Street, Wuse II, Abuja &middot; An Insignia Properties Residence</div>
+        <div><a href="https://wa.me/2349110111122" target="_blank" rel="noopener"
+            style="color:#FFFFFF;text-decoration:none">09110111122 (WhatsApp)</a> &middot; <a href="tel:09110111133"
+            style="color:#FFFFFF;text-decoration:none">09110111133</a> &middot; <a href="mailto:stay@insigniacourts.com"
+            style="color:#F7D6E4;text-decoration:none">stay@insigniacourts.com</a></div>
+      </div>
+    </div>
+
+    <!-- Main Content: Executive Coworking Page -->
+    <main>
+      <!-- Hero Split Section -->
+      <section class="grid-2-equal">
+        <div style="position:relative;min-height:360px;background:#EDE7E6">
+          <img src="./assets/space.jpeg" alt="Executive Coworking Wuse II, Abuja"
+            style="width:100%;height:100%;object-fit:cover;display:block;min-height:360px">
+        </div>
+        <div class="container-pad"
+          style="background:#FFFFFF;padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;justify-content:center">
+          <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">
+            Executive Coworking &middot; Preferred Resident Rates</div>
+          <h1
+            style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0 0 22px;color:#3C0031">
+            Executive Coworking<br>&amp; Meeting Suites</h1>
+          <p style="font-size:clamp(16px,1.3vw,20px);line-height:1.62;color:#3C0031;margin:0 0 16px;max-width:46ch">
+            For work and meetings, our partner boutique coworking space in Wuse II is available at preferred guest
+            rates.</p>
+          <p style="font-size:clamp(14px,1.1vw,17px);line-height:1.7;color:#5C3A52;margin:0 0 28px;max-width:50ch">
+            Every room at Insignia Courts is arranged to support both relaxation and productivity. When your day
+            requires more &mdash; dedicated hot desks, private executive suites, or a 12-person boardroom with 4K
+            screens &mdash; our concierge arranges it with direct room billing.</p>
+          <div class="btn-responsive-row" style="display:flex;gap:14px;flex-wrap:wrap">
+            <button type="button" data-open-enquiry="Executive Coworking Pass"
+              style="border:0;background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 30px;min-height:48px;cursor:pointer;text-align:center"
+              onmouseover="this.style.background='#C4507E'" onmouseout="this.style.background='#3C0031'">Reserve Desk
+              or Boardroom</button>
+            <a href="https://wa.me/2349110111122?text=Hello%20Insignia%20Court%2C%20I%20would%20like%20to%20reserve%20a%20workspace%20pass"
+              target="_blank" rel="noopener"
+              style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none"
+              onmouseover="this.style.background='#3C0031';this.style.color='#FFFFFF'"
+              onmouseout="this.style.background='transparent';this.style.color='#3C0031'">WhatsApp Concierge</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Facility & Pricing Grid -->
+      <section style="border-bottom:2px solid #3C0031">
+        <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px">
+          <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:14px">
+            Partner Facilities &middot; Wuse II, Abuja</div>
+          <h2
+            style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin:0 0 44px;color:#3C0031">
+            Spaces Designed for Clarity and Execution</h2>
+          <div class="grid-cards-4" style="background:#3C0031">
+            <!-- Day Pass -->
+            <div
+              style="background:#F7F4F2;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between">
+              <div>
+                <div
+                  style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#C4507E;margin-bottom:8px">
+                  Introductory Rate</div>
+                <h3 style="font-family:'Jost',sans-serif;font-weight:400;font-size:22px;margin:0 0 4px;color:#3C0031">
+                  Day Pass</h3>
+                <div style="font-family:'Jost',sans-serif;font-size:24px;color:#9E3560;margin-bottom:12px">
+                  &#8358;10,000</div>
+                <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Ergonomic seating, Ultra-Fast
+                  Starlink internet, 24/7 solar &amp; inverter power backup, and full kitchenette access.</p>
+              </div>
+              <a href="https://wa.me/2349110111122?text=Hello,%20I%20would%20like%20to%20book%20a%20Day%20Pass%20(N10,000)"
+                target="_blank" rel="noopener"
+                style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560;text-decoration:none">Book
+                Day Pass &rarr;</a>
+            </div>
+
+            <!-- Dedicated Monthly Seat -->
+            <div
+              style="background:#F7F4F2;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between">
+              <div>
+                <div
+                  style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#C4507E;margin-bottom:8px">
+                  Introductory Rate</div>
+                <h3 style="font-family:'Jost',sans-serif;font-weight:400;font-size:22px;margin:0 0 4px;color:#3C0031">
+                  Dedicated Monthly Seat</h3>
+                <div style="font-family:'Jost',sans-serif;font-size:24px;color:#9E3560;margin-bottom:12px">
+                  &#8358;200,000<span style="font-size:14px;color:#8A6577">/mo</span></div>
+                <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Your personal comfortable
+                  professional work desk reserved month-to-month with lockable cabinetry and front desk coordination.</p>
+              </div>
+              <a href="https://wa.me/2349110111122?text=Hello,%20I%20would%20like%20to%20reserve%20a%20Dedicated%20Monthly%20Seat%20(N200,000/mo)"
+                target="_blank" rel="noopener"
+                style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560;text-decoration:none">Reserve
+                Monthly Seat &rarr;</a>
+            </div>
+
+            <!-- Workspace Amenities -->
+            <div
+              style="background:#F7F4F2;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between">
+              <div>
+                <div
+                  style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#C4507E;margin-bottom:8px">
+                  Amenities</div>
+                <h3 style="font-family:'Jost',sans-serif;font-weight:400;font-size:22px;margin:0 0 10px;color:#3C0031">
+                  Workspace Amenities</h3>
+                <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Ultra-Fast Starlink Internet,
+                  24/7 reliable solar + inverter power backup, quiet, secure and well-managed executive workspace
+                  environment.</p>
+              </div>
+              <span
+                style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560">All
+                Passes Included &rarr;</span>
+            </div>
+
+            <!-- Business Support -->
+            <div
+              style="background:#F7F4F2;padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between">
+              <div>
+                <div
+                  style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#C4507E;margin-bottom:8px">
+                  Services</div>
+                <h3 style="font-family:'Jost',sans-serif;font-weight:400;font-size:22px;margin:0 0 10px;color:#3C0031">
+                  Business Support</h3>
+                <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 16px">Reception &amp; front desk
+                  assistance, reprographics services (printing/scanning), dispatch &amp; courier coordination, and
+                  tea/coffee kitchenette access.</p>
+              </div>
+              <span
+                style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9E3560">On-Site
+                Concierge &rarr;</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Workspace Clean Photo Carousel Section -->
+      <section id="workspace-reel" style="border-bottom:2px solid #3C0031;background:#180514">
+        <div class="space-carousel-box" id="spacesCarousel">
+          <!-- Active Space Slide Image with Soft Vignette -->
+          <div style="position:absolute;inset:0;z-index:1;overflow:hidden">
+            <img id="spaceImage" src="./assets/space.jpeg" alt="The Workspace"
+              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);pointer-events:none">
+            <div
+              style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,2,17,0.4) 0%, transparent 45%, rgba(20,2,17,0.82) 100%);pointer-events:none">
+            </div>
+          </div>
+
+          <!-- Top Bar: Minimal Status Badge & Photo Counter -->
+          <div
+            style="position:relative;z-index:3;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <span
+                style="display:inline-flex;align-items:center;gap:7px;background:rgba(20,2,17,0.75);color:#FFFFFF;padding:6px 14px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
+                <span style="width:6px;height:6px;border-radius:50%;background:#27AE60"></span>
+                <span>Resident Preferred Partner &middot; Wuse II</span>
+              </span>
+              <span class="drone-mobile-hide"
+                style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px)">
+                Executive Desks &middot; Private Suites &middot; 12-Seat Boardroom
+              </span>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:8px">
+              <span id="spaceCounter"
+                style="background:rgba(20,2,17,0.75);color:#E4A9C3;font-size:10.5px;letter-spacing:0.18em;font-weight:600;padding:6px 14px;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
+                01 / 05
+              </span>
+              <div
+                style="display:inline-flex;background:rgba(20,2,17,0.75);border:1px solid rgba(255,255,255,0.25);border-radius:2px;overflow:hidden">
+                <button type="button" id="prevSpaceBtn" class="building-btn-interactive"
+                  style="border:none;background:transparent;color:#FFFFFF;padding:6px 12px;font-size:14px;font-weight:bold"
+                  title="Previous space">&larr;</button>
+                <button type="button" id="nextSpaceBtn" class="building-btn-interactive"
+                  style="border-left:1px solid rgba(255,255,255,0.2);border-top:none;border-bottom:none;border-right:none;background:transparent;color:#FFFFFF;padding:6px 12px;font-size:14px;font-weight:bold"
+                  title="Next space">&rarr;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Bar: Minimal Caption & Auto-Slide Progress Indicators -->
+          <div
+            style="position:relative;z-index:3;padding:24px 26px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+            <div style="max-width:680px">
+              <div id="spaceTag"
+                style="font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#E4A9C3;font-weight:600;margin-bottom:4px">
+                THE WORKSPACE</div>
+              <div id="spaceTitle"
+                style="font-family:'Jost',sans-serif;font-weight:300;font-size:19px;color:#FFFFFF;line-height:1.2;margin-bottom:4px">
+                A Calm, Executive Setting to Get Things Done</div>
+              <p id="spaceDesc" class="drone-mobile-hide" style="font-size:13.5px;line-height:1.5;color:#E8D6DF;margin:0">
+                A calm, executive setting to get things done.</p>
+            </div>
+
+            <!-- Sleek Slide Indicators -->
+            <div id="spacePills" style="display:flex;align-items:center;gap:6px">
+              <button type="button" class="space-dash-pill dash-active" data-idx="0"></button>
+              <button type="button" class="space-dash-pill" data-idx="1"></button>
+              <button type="button" class="space-dash-pill" data-idx="2"></button>
+              <button type="button" class="space-dash-pill" data-idx="3"></button>
+              <button type="button" class="space-dash-pill" data-idx="4"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resident Perks Banner -->
+      <section style="background:#3C0031;color:#FFFFFF;border-bottom:2px solid #3C0031">
+        <div class="container-pad"
+          style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px;display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:40px">
+          <div>
+            <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">
+              Preferred Guest Pricing</div>
+            <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Preferred rates are automatically
+              extended to Insignia Courts residents upon booking.</p>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">
+              Direct Room Billing</div>
+            <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">All workspace passes and meeting room
+              hours can be billed directly to your room folio.</p>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E4A9C3;margin-bottom:14px">
+              Errand &amp; Driver Support</div>
+            <p style="font-size:16px;line-height:1.6;color:#FFFFFF;margin:0">Neighborhood drop-offs across Wuse II
+              and Abuja central business district, with document dispatch handled on request.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Global Footer -->
+    <footer style="background:#3C0031;color:#FFFFFF;border-top:2px solid #3C0031">
+      <div class="grid-footer">
+        <div>
+          <div style="margin-bottom:18px">
+            <img src="./assets/logo-white.png" alt="Insignia Court" style="height:36px;width:auto">
+          </div>
+          <p style="font-size:14px;line-height:1.7;color:#E8D6DF;max-width:34ch;margin:0 0 20px">
+            5 Tanba Street, Wuse II, Abuja, Nigeria.<br>
+            A serviced residence by Insignia Properties.
+          </p>
+          <div style="font-size:13px;color:#E4A9C3;display:flex;flex-direction:column;gap:6px">
+            <a href="https://wa.me/2349110111122" target="_blank" rel="noopener"
+              style="color:#FFFFFF;text-decoration:none">09110111122 (WhatsApp)</a>
+            <a href="tel:09110111133" style="color:#FFFFFF;text-decoration:none">09110111133 (Front Desk)</a>
+            <a href="mailto:stay@insigniacourts.com"
+              style="color:#E4A9C3;text-decoration:none">stay@insigniacourts.com</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-header">The Residence</span>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <a href="rooms.html" class="footer-nav-link">Rooms &amp; Suites</a>
+            <a href="residence.html" class="footer-nav-link">Everything Included</a>
+            <a href="tea.html" class="footer-nav-link">The Tea Station</a>
+            <a href="art.html" class="footer-nav-link">The Art We Live With</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-header">Work &amp; Stories</span>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <a href="executive.html" class="footer-nav-link" style="color:#FFFFFF;font-weight:600">Executive Coworking</a>
+            <a href="stays.html" class="footer-nav-link">Long Stays &amp; Corporate</a>
+            <a href="neighbourhood.html" class="footer-nav-link">Neighbourhood Guide</a>
+            <a href="journal.html" class="footer-nav-link">Notes from the Residence</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-header">Booking &amp; Concierge</span>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener" class="footer-nav-link"
+              style="color:#FFD4E5;font-weight:600">Book Online &rarr;</a>
+            <button type="button" class="footer-nav-link" data-open-enquiry="General Enquiry">Enquire About a
+              Stay</button>
+            <a href="contact.html" class="footer-nav-link">Contact &amp; Location</a>
+            <a href="https://maps.google.com/?q=5+Tanba+Street,+Wuse+II,+Abuja" target="_blank" rel="noopener"
+              class="footer-nav-link">Google Maps Directions</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-pad"
+        style="padding-top:20px;padding-bottom:28px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:#C79FB4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>&copy; 2026 Insignia Court. All rights reserved.</div>
+        <div>5 Tanba Street, Wuse II, Abuja, Nigeria</div>
+      </div>
+    </footer>
+
+    <!-- Fixed Mobile Bottom Tab Bar (App-like navigation) -->
+    <nav class="mobile-bottom-bar" aria-label="Quick Navigation">
+      <a href="home.html" class="bottom-tab-item">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="rooms.html" class="bottom-tab-item">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 4v16" />
+          <path d="M2 8h18a2 2 0 0 1 2 2v10" />
+          <path d="M2 17h20" />
+          <path d="M6 8v9" />
+        </svg>
+        <span>Rooms</span>
+      </a>
+      <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener"
+        class="bottom-tab-item bottom-tab-cta">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        <span>Book</span>
+      </a>
+      <button type="button" class="bottom-tab-item" data-open-enquiry="Executive Coworking"
+        title="Enquire About a Stay">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          <line x1="8" y1="9" x2="16" y2="9" />
+          <line x1="8" y1="13" x2="14" y2="13" />
+        </svg>
+        <span>Enquire</span>
+      </button>
+    </nav>
+
+    <!-- Floating / Hovering WhatsApp Concierge Button -->
+    <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" class="hovering-whatsapp-btn"
+      aria-label="Chat with Concierge on WhatsApp" title="WhatsApp Concierge">
+      <div class="hovering-whatsapp-pulse"></div>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF">
+        <path
+          d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.82L4.43 19.64L5.26 16.6L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.43 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15ZM16.56 14.39C16.31 14.26 15.09 13.66 14.86 13.58C14.63 13.5 14.47 13.46 14.3 13.71C14.14 13.95 13.67 14.51 13.52 14.67C13.38 14.83 13.24 14.85 12.99 14.73C12.74 14.6 11.95 14.34 11.01 13.5C10.28 12.85 9.78 12.04 9.64 11.8C9.5 11.55 9.62 11.42 9.75 11.29C9.86 11.18 10 11.02 10.12 10.88C10.24 10.74 10.28 10.64 10.36 10.48C10.44 10.32 10.4 10.18 10.34 10.05C10.28 9.93 9.8 8.74 9.6 8.25C9.4 7.78 9.2 7.84 9.05 7.83C8.91 7.82 8.75 7.82 8.58 7.82C8.42 7.82 8.16 7.88 7.93 8.13C7.71 8.37 7.08 8.96 7.08 10.16C7.08 11.37 7.96 12.53 8.08 12.69C8.21 12.85 9.8 15.3 12.24 16.35C12.82 16.6 13.27 16.75 13.63 16.86C14.21 17.05 14.74 17.02 15.16 16.96C15.63 16.89 16.59 16.38 16.79 15.81C16.99 15.24 16.99 14.75 16.93 14.65C16.87 14.54 16.71 14.48 16.46 14.35L16.56 14.39Z" />
+      </svg>
+      <span class="hovering-whatsapp-label">WhatsApp Concierge</span>
+    </a>
+
+    <!-- Universal Enquiry Modal -->
+    <div id="enquiryModal" class="modal-overlay" style="display:none">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="display:block;width:3px;height:12px;background:#C4507E"></span>
+            <span
+              style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#9E3560;font-weight:600">Concierge
+              &middot; Insignia Court</span>
+          </div>
+          <button type="button" data-close-enquiry
+            style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;cursor:pointer">Close</button>
+        </div>
+
+        <div class="modal-body">
+          <div
+            style="background:#F2DCE5;border:1px solid #C4507E;padding:14px 18px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+            <div>
+              <div
+                style="font-size:9.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-bottom:2px">
+                Instant Confirmation Available</div>
+              <div style="font-size:13px;color:#3C0031">Prefer to book immediately on our web app?</div>
+            </div>
+            <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener"
+              style="background:#3C0031;color:#FFFFFF;font-size:10.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:10px 16px;text-decoration:none">Book
+              Online &rarr;</a>
+          </div>
+
+          <h2
+            style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(26px,3vw,34px);line-height:1.1;margin:0 0 10px;color:#3C0031">
+            Tell Us Your Dates</h2>
+          <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 24px">Rates are shared on enquiry. We
+            reply on WhatsApp or by email, usually the same day.</p>
+
+          <form id="enquiryForm" onsubmit="return false;" style="display:flex;flex-direction:column;gap:18px">
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Name</span>
+              <input type="text" id="enquiryName" placeholder="Your name"
+                style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+            </label>
+
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Email or
+                Phone</span>
+              <input type="text" id="enquiryContact" placeholder="Your email or phone"
+                style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+            </label>
+
+            <div class="grid-form-dates">
+              <label style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Arrival</span>
+                <input type="date" id="enquiryCheckin"
+                  style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px">
+                <span
+                  style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Departure</span>
+                <input type="date" id="enquiryCheckout"
+                  style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+              </label>
+            </div>
+
+            <div>
+              <div
+                style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:10px">
+                Room or Space</div>
+              <input type="hidden" id="enquiryRoomInput" value="No preference">
+              <div class="grid-room-choices">
+                <button type="button" class="room-choice-btn" data-room="No preference"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#3C0031;color:#FFFFFF">No
+                  preference</button>
+                <button type="button" class="room-choice-btn" data-room="Executive Coworking"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Executive
+                  Coworking</button>
+                <button type="button" class="room-choice-btn" data-room="Atala Standard Room"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Atala
+                  &mdash; Standard</button>
+                <button type="button" class="room-choice-btn" data-room="Junonia Standard Room"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Junonia
+                  &mdash; Standard</button>
+                <button type="button" class="room-choice-btn" data-room="Lyria Executive Room"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Lyria
+                  &mdash; Executive</button>
+                <button type="button" class="room-choice-btn" data-room="Evania Executive Room"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Evania
+                  &mdash; Executive</button>
+                <button type="button" class="room-choice-btn" data-room="Morpho Suite"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Morpho
+                  &mdash; Suite</button>
+                <button type="button" class="room-choice-btn" data-room="Papilio Suite"
+                  style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Papilio
+                  &mdash; Suite</button>
+              </div>
+            </div>
+
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Anything
+                Else</span>
+              <textarea id="enquiryNote" rows="3" placeholder="Special requirements or questions..."
+                style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;resize:vertical;outline:none"></textarea>
+            </label>
+
+            <a id="enquiryWaBtn" href="https://wa.me/2349110111122" target="_blank" rel="noopener"
+              style="background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;min-height:48px;display:flex;align-items:center;justify-content:center;margin-top:6px;text-align:center"
+              onmouseover="this.style.background='#C4507E'" onmouseout="this.style.background='#3C0031'">Send via
+              WhatsApp</a>
+            <a id="enquiryMailBtn" href="mailto:stay@insigniacourts.com"
+              style="border:1px solid #3C0031;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center"
+              onmouseover="this.style.background='#3C0031';this.style.color='#FFFFFF'"
+              onmouseout="this.style.background='transparent';this.style.color='#3C0031'">Send by Email</a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Shared Global Controller -->
+  <script src="./assets/js/common.js"></script>
+
+  <!-- Page-Specific Controller: Spaces Carousel -->
+  <script>
+    (function () {
+      const SPACES = [
+        {
+          key: 0,
+          src: './assets/space.jpeg',
+          tag: 'THE WORKSPACE',
+          title: 'A Calm, Executive Setting to Get Things Done',
+          desc: 'A calm, executive setting to get things done.'
+        },
+        {
+          key: 1,
+          src: './assets/space2.jpeg',
+          tag: 'YOUR WORKDAY',
+          title: 'Settle In. Plug In. Get to Work.',
+          desc: 'Settle in. Plug in. Get to work.'
+        },
+        {
+          key: 2,
+          src: './assets/space3.jpeg',
+          tag: 'FOCUS',
+          title: 'A Dedicated Setting for Focused Work',
+          desc: 'A dedicated setting for focused work.'
+        },
+        {
+          key: 3,
+          src: './assets/space4.jpeg',
+          tag: 'TAKE A BREAK',
+          title: 'Step Away. Recharge. Return Refreshed.',
+          desc: 'Step away. Recharge. Return refreshed.'
+        },
+        {
+          key: 4,
+          src: './assets/space5.jpeg',
+          tag: 'WORK YOUR WAY',
+          title: 'For a Few Hours, a Full Day or Longer',
+          desc: 'For a few hours, a full day or longer.'
+        }
+      ];
+
+      let currentIdx = 0;
+      let timer = null;
+
+      const imgEl = document.getElementById('spaceImage');
+      const counterEl = document.getElementById('spaceCounter');
+      const tagEl = document.getElementById('spaceTag');
+      const titleEl = document.getElementById('spaceTitle');
+      const descEl = document.getElementById('spaceDesc');
+      const pills = document.querySelectorAll('.space-dash-pill');
+
+      function updateSlide(idx) {
+        currentIdx = (idx + SPACES.length) % SPACES.length;
+        const s = SPACES[currentIdx];
+
+        if (imgEl) imgEl.src = s.src;
+        if (counterEl) counterEl.textContent = '0' + (currentIdx + 1) + ' / 0' + SPACES.length;
+        if (tagEl) tagEl.textContent = s.tag;
+        if (titleEl) titleEl.textContent = s.title;
+        if (descEl) descEl.textContent = s.desc;
+
+        pills.forEach((p, i) => {
+          if (i === currentIdx) {
+            p.classList.add('dash-active');
+          } else {
+            p.classList.remove('dash-active');
+          }
+        });
+      }
+
+      function startTimer() {
+        stopTimer();
+        timer = setInterval(() => {
+          if (!document.hidden) updateSlide(currentIdx + 1);
+        }, 3600);
+      }
+
+      function stopTimer() {
+        if (timer) clearInterval(timer);
+        timer = null;
+      }
+
+      document.getElementById('prevSpaceBtn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateSlide(currentIdx - 1);
+        startTimer();
+      });
+
+      document.getElementById('nextSpaceBtn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateSlide(currentIdx + 1);
+        startTimer();
+      });
+
+      pills.forEach((pill, idx) => {
+        pill.addEventListener('click', () => {
+          updateSlide(idx);
+          startTimer();
+        });
+      });
+
+      const carouselBox = document.getElementById('spacesCarousel');
+      if (carouselBox) {
+        carouselBox.addEventListener('mouseenter', stopTimer);
+        carouselBox.addEventListener('mouseleave', startTimer);
+      }
+
+      startTimer();
+    })();
+  </script>
+</body>
+
+</html>

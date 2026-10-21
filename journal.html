@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notes from the Residence — Stories &amp; Heritage · Insignia Court</title>
+  <meta name="description"
+    content="Stories behind our butterfly rooms, the living art collection, and the hidden history linking Abuja and Suleja.">
+  <link rel="icon" type="image/png" href="./assets/logo.png">
+  <meta property="og:title" content="Notes from the Residence — Insignia Court Abuja">
+  <meta property="og:description"
+    content="Stories behind our butterfly rooms, the living art collection, and the hidden history linking Abuja and Suleja.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Archivo:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Cinzel+Decorative:wght@700&display=swap">
+  <link rel="stylesheet" href="./assets/css/site.css">
+  <style>
+    .journal-card {
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      color: #3C0031;
+      cursor: pointer;
+      border: 1px solid #E3D8DC;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .journal-card:hover {
+      background: #FDF8FA;
+      border-color: #3C0031;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(60, 0, 49, 0.08);
+    }
+    .article-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(42, 0, 35, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: none;
+      justify-content: flex-end;
+    }
+    .article-drawer-overlay.open {
+      display: flex;
+    }
+    .article-drawer-content {
+      width: min(720px, 100%);
+      height: 100%;
+      background: #F7F4F2;
+      border-left: 2px solid #3C0031;
+      overflow-y: auto;
+      animation: drawerSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-content-wrapper">
+
+    <!-- Header Navigation -->
+    <header
+      style="position:sticky;top:0;z-index:60;background:rgba(247, 244, 242, 0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:2px solid #3C0031">
+      <div class="nav-header-inner">
+        <a href="home.html" class="nav-brand-box" title="Insignia Court &middot; Wuse II, Abuja">
+          <img src="./assets/logo-trimmed.png" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <a href="rooms.html" class="desktop-nav-link">Rooms &amp; Suites</a>
+          <a href="residence.html" class="desktop-nav-link">The Residence</a>
+          <a href="executive.html" class="desktop-nav-link">Executive Coworking</a>
+
+          <!-- Experience Dropdown Menu -->
+          <div class="nav-dropdown-wrap">
+            <button type="button" class="desktop-nav-link nav-dropdown-trigger nav-active" aria-haspopup="true">
+              <span>Experience</span>
+              <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"
+                stroke-width="1.8">
+                <path d="M1 1L5 5L9 1" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <div class="dropdown-heading">The Residence Spaces</div>
+                <a href="tea.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>The Tea Station</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Japanese-inspired station &amp; herbal blends</div>
+                </a>
+                <a href="art.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>The Art We Live With</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Family works, commissions &amp; acquisitions</div>
+                </a>
+              </div>
+              <div class="dropdown-col">
+                <div class="dropdown-heading">Discover Abuja</div>
+                <a href="neighbourhood.html" class="dropdown-item">
+                  <div class="dropdown-item-title">
+                    <span>Neighbourhood Guide</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Central Wuse II, dining, parks &amp; flyovers</div>
+                </a>
+                <a href="journal.html" class="dropdown-item" style="background:#F7F0F4">
+                  <div class="dropdown-item-title">
+                    <span style="color:#C4507E;font-weight:600">Notes from the Residence</span>
+                    <span class="dropdown-arrow">&rarr;</span>
+                  </div>
+                  <div class="dropdown-item-desc">Stories behind our spaces, art &amp; heritage</div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="stays.html" class="desktop-nav-link">Long Stays</a>
+          <a href="contact.html" class="desktop-nav-link">Contact</a>
+        </nav>
+
+        <!-- Right Side Header CTAs -->
+        <div class="header-right-actions">
+          <button type="button" class="btn-enquire-pill navOpenEnquiryBtn">Enquire</button>
+          <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener" class="btn-book-now">
+            <span>Book Now</span>
+            <span class="btn-arrow">&rarr;</span>
+          </a>
+          <button type="button" class="hamburger-menu-btn" id="mobileMenuOpenBtn" aria-label="Open Navigation Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileDrawerBackdrop" class="drawer-backdrop">
+      <div class="mobile-menu-drawer">
+        <div class="mobile-drawer-top">
+          <a href="home.html" class="nav-brand-box">
+            <img src="./assets/logo-trimmed.png" alt="Insignia Court" style="height:34px;width:auto" />
+          </a>
+          <button type="button" id="mobileMenuCloseBtn" class="mobile-drawer-close" aria-label="Close Navigation Menu">&times;</button>
+        </div>
+        <div class="mobile-drawer-links">
+          <a href="rooms.html" class="mobile-drawer-link">Rooms &amp; Suites</a>
+          <a href="residence.html" class="mobile-drawer-link">The Residence</a>
+          <a href="executive.html" class="mobile-drawer-link">Executive Coworking</a>
+          <a href="stays.html" class="mobile-drawer-link">Long Stays &amp; Corporate</a>
+          <div style="height:1px;background:#E3D8DC;margin:8px 0"></div>
+          <a href="tea.html" class="mobile-drawer-link">The Tea Station</a>
+          <a href="art.html" class="mobile-drawer-link">The Art We Live With</a>
+          <a href="neighbourhood.html" class="mobile-drawer-link">Neighbourhood Guide</a>
+          <a href="journal.html" class="mobile-drawer-link active">Notes from the Residence</a>
+          <a href="contact.html" class="mobile-drawer-link">Contact &amp; Directions</a>
+        </div>
+        <div class="mobile-drawer-bottom">
+          <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener" class="btn-book-now"
+            style="width:100%;justify-content:center;padding:16px 20px;font-size:12px;margin-bottom:12px">
+            <span>Instant Online Booking</span>
+            <span class="btn-arrow">&rarr;</span>
+          </a>
+          <button type="button" class="btn-enquire-pill navOpenEnquiryBtn"
+            style="width:100%;padding:14px 20px;text-align:center;font-size:12px">Enquire on WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Split Hero Header -->
+      <section style="border-bottom:2px solid #3C0031;background:#FFFFFF">
+        <div class="grid-split-header">
+          <div>
+            <div
+              style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#C4507E;margin-bottom:18px">
+              Notes from the Residence</div>
+            <h1
+              style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0;color:#3C0031">
+              Notes from<br>the Residence</h1>
+          </div>
+          <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#3C0031;margin:0;max-width:56ch">Stories
+            behind our butterfly rooms, the living art collection, and the hidden history linking Abuja and Suleja.</p>
+        </div>
+      </section>
+
+      <!-- Stories Grid -->
+      <section style="border-bottom:2px solid #3C0031">
+        <div class="container-pad" style="max-width:1440px;margin:0 auto;padding-top:64px;padding-bottom:64px">
+          <div class="grid-cards-3">
+
+            <!-- Story 1: Butterflies -->
+            <div class="journal-card" onclick="openStory('butterflies')">
+              <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6;overflow:hidden">
+                <img src="./assets/Highlights/why named after btfly.png" alt="Why Rooms are Named after Butterflies"
+                  style="width:100%;height:100%;object-fit:cover;display:block">
+              </div>
+              <div style="padding:28px 24px;display:flex;flex-direction:column;gap:12px;flex:1">
+                <span style="font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:#C4507E;font-weight:700">The Residence</span>
+                <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;line-height:1.2;margin:0;color:#3C0031">
+                  Why the Rooms Are Named After Butterflies
+                </h3>
+                <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0;flex:1">
+                  Atala, Junonia, Lyria, Evania, Morpho, Papilio. The story behind the names at Insignia Court.
+                </p>
+                <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-top:8px">
+                  <span>Read Article &rarr;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Story 2: Art We Live With -->
+            <div class="journal-card" onclick="openStory('art-we-live-with')">
+              <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6;overflow:hidden">
+                <img src="./assets/Highlights/art_we_live.jpeg" alt="The Art We Live With"
+                  style="width:100%;height:100%;object-fit:cover;display:block">
+              </div>
+              <div style="padding:28px 24px;display:flex;flex-direction:column;gap:12px;flex:1">
+                <span style="font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:#C4507E;font-weight:700">The Collection</span>
+                <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;line-height:1.2;margin:0;color:#3C0031">
+                  The Art We Live With
+                </h3>
+                <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0;flex:1">
+                  Collected, commissioned and sometimes created close to home. The story of the art that lives alongside us.
+                </p>
+                <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-top:8px">
+                  <span>Read Article &rarr;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Story 3: Abuja & Suleja -->
+            <div class="journal-card" onclick="openStory('abuja-suleja')">
+              <div style="position:relative;aspect-ratio:3/2;background:#EDE7E6;overflow:hidden">
+                <img src="./assets/hiddenstory.png" alt="The Story Hidden in Abuja and Suleja"
+                  style="width:100%;height:100%;object-fit:cover;display:block">
+              </div>
+              <div style="padding:28px 24px;display:flex;flex-direction:column;gap:12px;flex:1">
+                <span style="font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:#C4507E;font-weight:700">Did You Know?</span>
+                <h3 style="font-family:'Jost',sans-serif;font-weight:300;font-size:24px;line-height:1.2;margin:0;color:#3C0031">
+                  The Story Hidden in Abuja and Suleja
+                </h3>
+                <p style="font-size:14.5px;line-height:1.6;color:#5C3A52;margin:0;flex:1">
+                  Abuja was once somewhere else and two familiar place names carry a story stretching back almost two centuries.
+                </p>
+                <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#9E3560;margin-top:8px">
+                  <span>Read Article &rarr;</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Article Reader Drawer Modal -->
+    <div id="articleModalOverlay" class="article-drawer-overlay">
+      <div class="article-drawer-content" onclick="event.stopPropagation()">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:24px 36px;border-bottom:2px solid #3C0031;position:sticky;top:0;background:#F7F4F2;z-index:10">
+          <span id="articleKindBadge" style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#C4507E;font-weight:700">The Residence</span>
+          <button type="button" onclick="closeStory()"
+            style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 16px;cursor:pointer">Close</button>
+        </div>
+        
+        <div style="padding:36px">
+          <div style="position:relative;aspect-ratio:16/9;background:#EDE7E6;margin-bottom:32px;overflow:hidden;border:1px solid #E3D8DC">
+            <img id="articleImage" src="" alt="Story visual" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+
+          <h2 id="articleTitle" style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,3.5vw,42px);line-height:1.15;margin:0 0 16px;color:#3C0031">
+            Story Title
+          </h2>
+          <p id="articleStandfirst" style="font-size:16px;line-height:1.6;color:#C4507E;font-weight:500;margin:0 0 28px;padding-bottom:20px;border-bottom:1px solid #E3D8DC">
+            Story standfirst
+          </p>
+
+          <div id="articleBody" style="display:flex;flex-direction:column;gap:18px;font-size:16px;line-height:1.75;color:#3C0031">
+            <!-- Paragraphs populated dynamically -->
+          </div>
+
+          <div style="margin-top:40px;padding-top:24px;border-top:2px solid #3C0031;display:flex;gap:12px;flex-wrap:wrap">
+            <button type="button" onclick="closeStory()"
+              style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;cursor:pointer">&larr; Back to Stories</button>
+            <button type="button" class="navOpenEnquiryBtn"
+              style="border:0;background:#C4507E;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;min-height:44px;cursor:pointer">Enquire About a Stay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background:#3C0031;color:#FFFFFF">
+      <div class="grid-footer">
+        <div>
+          <a href="index.html" style="display:inline-block;text-decoration:none;margin-bottom:18px"
+            title="Insignia Courts &mdash; Return to Home">
+            <img src="./assets/logo-white.png" alt="Insignia Court Wuse II, Abuja"
+              style="height:44px;width:auto;max-width:200px;display:block;object-fit:contain" />
+          </a>
+          <p style="font-size:14px;line-height:1.6;color:#E8D6DF;margin:0 0 16px;max-width:36ch">A thoughtfully prepared
+            serviced residence in the heart of Abuja&rsquo;s prime business and leisure district.</p>
+          <div style="font-size:12px;color:#C79FB4;line-height:1.6">
+            <a href="contact.html" style="color:#C79FB4;text-decoration:none;display:inline-flex;align-items:center;gap:6px">
+              <span>5 Tanba Street, Wuse II, Abuja &rarr;</span>
+            </a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="footer-col-header">Stay</div>
+          <a href="rooms.html" class="footer-nav-link">Rooms &amp; Suites</a>
+          <a href="residence.html" class="footer-nav-link">The Residence</a>
+          <a href="executive.html" class="footer-nav-link">Executive Coworking</a>
+          <a href="stays.html" class="footer-nav-link">Long Stays &amp; Corporate</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="footer-col-header">Within</div>
+          <a href="tea.html" class="footer-nav-link">The Tea Station</a>
+          <a href="art.html" class="footer-nav-link">The Art We Live With</a>
+          <a href="neighbourhood.html" class="footer-nav-link">Neighbourhood</a>
+          <a href="journal.html" class="footer-nav-link" style="color:#FFB5D2">Notes from the Residence</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="footer-col-header">Reach Us</div>
+          <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener" class="footer-nav-link"
+            style="color:#FFB5D2;font-weight:600">Instant Online Booking &rarr;</a>
+          <a href="contact.html" class="footer-nav-link">Contact &amp; Directions</a>
+          <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" class="footer-nav-link">09110111122 (WhatsApp)</a>
+          <a href="tel:09110111133" class="footer-nav-link">09110111133 (Direct Line)</a>
+          <a href="mailto:stay@insigniacourts.com" class="footer-nav-link">stay@insigniacourts.com</a>
+        </div>
+      </div>
+      <div class="container-pad"
+        style="max-width:1440px;margin:0 auto;padding-top:20px;padding-bottom:36px;border-top:1px solid rgba(255,255,255,0.22);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:#FCE7F0">
+        <span>&copy; 2026 Insignia Court &mdash; Insignia Court, Wuse II &mdash; An Insignia Properties Residence</span>
+        <span>Abuja, Nigeria</span>
+      </div>
+    </footer>
+
+    <!-- Mobile Floating Navigation Bar -->
+    <nav class="mobile-bottom-bar" aria-label="Quick Navigation">
+      <a href="home.html" class="bottom-tab-item">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="rooms.html" class="bottom-tab-item">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 4v16" />
+          <path d="M2 8h18a2 2 0 0 1 2 2v10" />
+          <path d="M2 17h20" />
+          <path d="M6 8v9" />
+        </svg>
+        <span>Rooms</span>
+      </a>
+      <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener" class="bottom-tab-item bottom-tab-cta">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        <span>Book</span>
+      </a>
+      <button type="button" class="bottom-tab-item navOpenEnquiryBtn" title="Enquire About a Stay">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          <line x1="8" y1="9" x2="16" y2="9" />
+          <line x1="8" y1="13" x2="14" y2="13" />
+        </svg>
+        <span>Enquire</span>
+      </button>
+    </nav>
+
+    <!-- Floating / Hovering WhatsApp Concierge Button -->
+    <a href="https://wa.me/2349110111122" target="_blank" rel="noopener" class="hovering-whatsapp-btn"
+      aria-label="Chat with Concierge on WhatsApp" title="WhatsApp Concierge">
+      <div class="hovering-whatsapp-pulse"></div>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF">
+        <path
+          d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.82L4.43 19.64L5.26 16.6L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.43 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15ZM16.56 14.39C16.31 14.26 15.09 13.66 14.86 13.58C14.63 13.5 14.47 13.46 14.3 13.71C14.14 13.95 13.67 14.51 13.52 14.67C13.38 14.83 13.24 14.85 12.99 14.73C12.74 14.6 11.95 14.34 11.01 13.5C10.28 12.85 9.78 12.04 9.64 11.8C9.5 11.55 9.62 11.42 9.75 11.29C9.86 11.18 10 11.02 10.12 10.88C10.24 10.74 10.28 10.64 10.36 10.48C10.44 10.32 10.4 10.18 10.34 10.05C10.28 9.93 9.8 8.74 9.6 8.25C9.4 7.78 9.2 7.84 9.05 7.83C8.91 7.82 8.75 7.82 8.58 7.82C8.42 7.82 8.16 7.88 7.93 8.13C7.71 8.37 7.08 8.96 7.08 10.16C7.08 11.37 7.96 12.53 8.08 12.69C8.21 12.85 9.8 15.3 12.24 16.35C12.82 16.6 13.27 16.75 13.63 16.86C14.21 17.05 14.74 17.02 15.16 16.96C15.63 16.89 16.59 16.38 16.79 15.81C16.99 15.24 16.99 14.75 16.93 14.65C16.87 14.54 16.71 14.48 16.46 14.35L16.56 14.39Z" />
+      </svg>
+      <span class="hovering-whatsapp-label">WhatsApp Concierge</span>
+    </a>
+
+    <!-- Universal Enquiry Drawer Modal -->
+    <div id="enquiryDrawerModal" class="enquiry-drawer-overlay">
+      <div class="drawer-container-box">
+        <div class="drawer-header">
+          <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#3C0031">Enquiry &amp; Reservations</span>
+          <button type="button" class="enquiryModalCloseBtn" style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;cursor:pointer">Close</button>
+        </div>
+        <div class="drawer-inner" style="padding:36px">
+          <div style="background:#F2DCE5;border:1px solid #C4507E;padding:16px 18px;margin-bottom:26px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#9E3560;margin-bottom:2px">Instant Confirmation Available</div>
+              <div style="font-size:13px;color:#3C0031">Prefer to book immediately on our web app?</div>
+            </div>
+            <a href="https://booking.insigniacourts.com" target="_blank" rel="noopener"
+              style="background:#3C0031;color:#FFFFFF;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:10px 16px;text-decoration:none;white-space:nowrap">Book Online &rarr;</a>
+          </div>
+
+          <h2 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(28px,3vw,38px);line-height:1.08;margin:0 0 12px;color:#3C0031">Tell Us Your Dates</h2>
+          <p style="font-size:14px;line-height:1.6;color:#5C3A52;margin:0 0 28px">Rates are shared on enquiry. We reply on WhatsApp or by email, usually within hours.</p>
+
+          <form id="enquiryForm" style="display:flex;flex-direction:column;gap:20px" onsubmit="return false;">
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Name</span>
+              <input type="text" id="enquiryName" placeholder="Your full name" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Email or Phone</span>
+              <input type="text" id="enquiryContact" placeholder="Your email or phone" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+            </label>
+            <div class="grid-form-dates">
+              <label style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Arrival</span>
+                <input type="date" id="enquiryCheckin" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Departure</span>
+                <input type="date" id="enquiryCheckout" style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;outline:none">
+              </label>
+            </div>
+            <div>
+              <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577;margin-bottom:10px">Room or Space</div>
+              <input type="hidden" id="enquiryRoomInput" value="No preference">
+              <div class="grid-room-choices">
+                <button type="button" class="room-choice-btn" data-room="No preference" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#3C0031;color:#FFFFFF">No preference</button>
+                <button type="button" class="room-choice-btn" data-room="Atala Standard Room" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Atala &mdash; Standard</button>
+                <button type="button" class="room-choice-btn" data-room="Junonia Standard Room" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Junonia &mdash; Standard</button>
+                <button type="button" class="room-choice-btn" data-room="Lyria Executive Room" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Lyria &mdash; Executive</button>
+                <button type="button" class="room-choice-btn" data-room="Evania Executive Room" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Evania &mdash; Executive</button>
+                <button type="button" class="room-choice-btn" data-room="Morpho Suite" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Morpho &mdash; Suite</button>
+                <button type="button" class="room-choice-btn" data-room="Papilio Suite" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Papilio &mdash; Suite</button>
+                <button type="button" class="room-choice-btn" data-room="Executive Coworking" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;padding:12px;text-align:left;background:#FFFFFF;color:#3C0031">Executive Coworking</button>
+              </div>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8A6577">Anything Else</span>
+              <textarea id="enquiryNote" rows="3" placeholder="Special requirements or questions..." style="border:0;border-bottom:2px solid #3C0031;background:transparent;font-family:'Archivo',sans-serif;font-size:15px;color:#3C0031;padding:8px 0;resize:vertical;outline:none"></textarea>
+            </label>
+            <a id="enquiryWaBtn" href="https://wa.me/2349110111122" target="_blank" rel="noopener" style="background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;min-height:48px;display:flex;align-items:center;justify-content:center;margin-top:6px;text-align:center">Send via WhatsApp</a>
+            <a id="enquiryMailBtn" href="mailto:stay@insigniacourts.com" style="border:1px solid #3C0031;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 24px;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center">Send by Email</a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./assets/js/common.js"></script>
+  <script>
+    const STORIES = {
+      'butterflies': {
+        kind: 'The Residence',
+        title: 'Why the Rooms Are Named After Butterflies',
+        standfirst: 'Atala, Junonia, Lyria, Evania, Morpho, Papilio. The story behind the names at Insignia Court.',
+        px: './assets/Highlights/why named after btfly.png',
+        paragraphs: [
+          'There are six rooms at Insignia Court, and none of them has a number.',
+          'The names all come from butterflies.',
+          'The idea began with what the butterfly represents: transformation, lightness and the possibility of becoming something different. It seemed fitting for a residence; a place that is never defined entirely by its walls, but also by the people who pass through it and the life that happens within.',
+          'So, when it came to naming the rooms, numbers felt a little too ordinary. We wanted each one to have an identity of its own while still belonging to the same story.',
+          'We found our vocabulary in butterflies.',
+          'Atala is small and striking, dark-winged with flashes of colour. Junonia belongs to a family known for distinctive markings and character. Morpho brings to mind the extraordinary blue for which its butterflies are known, while Papilio takes its name from the genus that includes the graceful swallowtails. Lyria and Evania complete our collection of six.',
+          'The connection was never intended to be literal. It is quieter than that.',
+          'It is in the idea that individual things can belong together without needing to look the same.',
+          'That is how we think about the rooms at Insignia Court. Each has its own proportions, details and character, while remaining part of one residence and one approach to hospitality.',
+          'A residence also changes slightly with every person who occupies it. One guest arrives for work, another for a celebration, and another simply looking for a few quiet days away. For a little while, the room becomes theirs.',
+          'Then they leave, and it waits for another story.',
+          'Six butterflies. Six rooms. One residence.'
+        ]
+      },
+      'art-we-live-with': {
+        kind: 'The Collection',
+        title: 'The Art We Live With',
+        standfirst: 'Collected, commissioned and sometimes created close to home. The story of the art that lives alongside us at Insignia Court.',
+        px: './assets/Highlights/art_we_live.jpeg',
+        paragraphs: [
+          'The artworks at Insignia Court didn’t arrive as a single collection.',
+          'Some were discovered and brought home. Others were commissioned. And some of the paintings on our walls were created by members of our own family.',
+          'They come from different hands, places and moments, but each has found a place here because there was something about it that held our attention.',
+          'We have always thought art should do more than simply occupy a space.',
+          'It can change the mood of a room, introduce colour where it is least expected, make a quiet corner more interesting, or simply give you something new to notice each time you pass.',
+          'That is how the collection at Insignia Court has grown; gradually and personally.',
+          'There isn’t one style that every piece has to follow. Some works are expressive and immediately noticeable; others are quieter and reveal themselves slowly. What matters is how each one sits within its surroundings and what it brings to the space.',
+          'Nature, colour, texture and everyday life appear in different ways throughout the collection. But rather than asking every work to tell the same story, we prefer to let each retain its own character.',
+          'Perhaps that is part of the pleasure of living with art.',
+          'You don’t experience it only once. A piece you barely noticed on arrival may catch you differently the following morning. Another may become the thing you remember about a particular room.',
+          'And because this is a collection that continues to evolve, a few selected pieces may occasionally be available for acquisition. If something catches your eye during your stay, you are always welcome to ask us about it.',
+          'Some pieces, of course, are simply part of the family story and will remain that way.',
+          'The collection will continue to change. New pieces will arrive, others may find new homes, and the spaces will evolve with them.',
+          'That feels right to us.',
+          'After all, a home needn’t remain exactly the same to remain itself.'
+        ]
+      },
+      'abuja-suleja': {
+        kind: 'Did You Know?',
+        title: 'The Story Hidden in Abuja and Suleja',
+        standfirst: 'Abuja was once somewhere else and two familiar place names carry a story stretching back almost two centuries.',
+        px: './assets/hiddenstory.png',
+        paragraphs: [
+          'Here’s something even some people who know Abuja well may not know:',
+          'The name Abuja originally belonged to the town we now call Suleja.',
+          'The story goes back to the early nineteenth century and a ruler named Jatau, who became known as Abu Ja. According to the traditional account, the nickname referred to his light complexion - ja meaning red in Hausa - giving us “Abu the red” or “Abu the fair.”',
+          'When a new emirate capital was established in 1829, it was named Abuja after him.',
+          'And Abuja it remained for about 150 years.',
+          'Then Nigeria began creating a new Federal Capital. Much of the territory selected came from the old Abuja area, and in 1979 Abuja was adopted for the proposed capital.',
+          'The original town therefore needed a new identity.',
+          'It became Suleja, in honour of the then Emir, Suleiman Barau.',
+          'Some historical accounts go a little further, explaining Suleja as a combination of Sule, from Suleiman, and ja, carried over from Abuja - allowing a small piece of the old name to survive in the new one.',
+          'So behind two familiar places lies one connected story:',
+          'Abu Ja → Abuja → Suleja.',
+          'Today’s Abuja and Suleja are distinct, but their names preserve the history that links them.',
+          'Sometimes a place name is more than a label.',
+          'It is a little piece of history hiding in plain sight.'
+        ]
+      }
+    };
+
+    const modalOverlay = document.getElementById('articleModalOverlay');
+    const badgeEl = document.getElementById('articleKindBadge');
+    const imgEl = document.getElementById('articleImage');
+    const titleEl = document.getElementById('articleTitle');
+    const standfirstEl = document.getElementById('articleStandfirst');
+    const bodyEl = document.getElementById('articleBody');
+
+    function openStory(key) {
+      const story = STORIES[key];
+      if (!story) return;
+
+      badgeEl.textContent = story.kind;
+      imgEl.src = story.px;
+      imgEl.alt = story.title;
+      titleEl.textContent = story.title;
+      standfirstEl.textContent = story.standfirst;
+
+      bodyEl.innerHTML = '';
+      story.paragraphs.forEach(p => {
+        const pEl = document.createElement('p');
+        pEl.style.margin = '0';
+        pEl.textContent = p;
+        bodyEl.appendChild(pEl);
+      });
+
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeStory() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    modalOverlay.addEventListener('click', closeStory);
+  </script>
+</body>
+
+</html>
