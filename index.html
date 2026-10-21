@@ -5596,6 +5596,9 @@ class Component extends DCLogic {
         enquire: (e) => { if (this.openEnquiry) this.openEnquiry(r.name)(e); }
       }));
       const room = withHandlers.find(r => r.key === safeRoomKey) || withHandlers[0];
+      const curRoomIdx = withHandlers.findIndex(r => r.key === safeRoomKey);
+      const safeRoomIdx = curRoomIdx >= 0 ? curRoomIdx : 0;
+      const otherRooms = [1, 2, 3].map(offset => withHandlers[(safeRoomIdx + offset) % withHandlers.length]).filter(Boolean);
       const msg = this.message ? this.message() : { phone:'2349110111122', body:'' };
       const wa = 'https://wa.me/' + (msg.phone || '2349110111122');
       const options = ['No preference'].concat(ROOMS.map(r => r.name + ' — ' + r.tag));
@@ -5680,7 +5683,7 @@ class Component extends DCLogic {
         rooms: withHandlers,
         tiers: TIERS.map(t => ({ ...t, rooms: withHandlers.filter(r => r.tier === t.key) })),
         room,
-        otherRooms: withHandlers.filter(r => r.key !== safeRoomKey).slice(0, 3),
+        otherRooms,
         enquireThisRoom: (e) => { if (this.openEnquiry) this.openEnquiry(room.name)(e); },
         services: SERVICES,
         decor: DECOR.map(d => ({
