@@ -10,3 +10,4 @@ Thumbs.db
 # Environment and IDE
 .vscode/
 .idea/
+powershell.cmd
