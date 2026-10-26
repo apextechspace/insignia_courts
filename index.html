@@ -4669,7 +4669,7 @@
 
   </x-dc>
   <script type="text/x-dc" data-dc-script
-    data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2349110111122&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;stay@insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;bookingUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://booking.insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Booking&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C4507E&quot;,&quot;options&quot;:[&quot;#C4507E&quot;,&quot;#9E3560&quot;,&quot;#3C0031&quot;,&quot;#B8446E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
+    data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2349110111122&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;stay@insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;bookingUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://stay.insigniacourts.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Booking&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C4507E&quot;,&quot;options&quot;:[&quot;#C4507E&quot;,&quot;#9E3560&quot;,&quot;#3C0031&quot;,&quot;#B8446E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
 const PX = (id, w) => typeof id === 'string' ? id : ('https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=' + (w || 1400));
 
 const HERO_SLIDES = [
@@ -5574,7 +5574,7 @@ class Component extends DCLogic {
     try {
       const { page, roomKey, enquiryOpen, menuOpen, articleModalOpen, activeArticleKey, decorModalOpen, activeDecorKey, f } = this.state || {};
       const accent = (this.props && this.props.accent) ? this.props.accent : '#C4507E';
-      const bookingUrl = (this.props && this.props.bookingUrl) ? this.props.bookingUrl : 'https://booking.insigniacourts.com';
+      const bookingUrl = (this.props && this.props.bookingUrl) ? this.props.bookingUrl : 'https://stay.insigniacourts.com';
       const safeRoomKey = roomKey || 'atala';
       const safeDecorKey = activeDecorKey || (DECOR[0] && DECOR[0].key) || 'd1';
       const curDecorIdx = DECOR.findIndex(d => d.key === safeDecorKey);
