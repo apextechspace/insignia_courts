@@ -226,6 +226,8 @@
           transition: transform 0.18s ease;
         }
 
+        .nav-brand-stack { display:flex; flex-direction:column; align-items:flex-start; gap:3px; }
+        .nav-managed-by { font-family:'Archivo',sans-serif; font-size:9px; letter-spacing:.045em; line-height:1.2; color:#734D66; white-space:nowrap; }
         .nav-brand-box:hover .brand-logo-img {
           transform: scale(1.025);
         }
@@ -1457,6 +1459,7 @@
             height: 33px !important;
             max-width: 140px !important;
           }
+          .nav-managed-by { font-size:8px; letter-spacing:0; }
 
           .nav-actions-right {
             gap: 8px !important;
@@ -2322,7 +2325,10 @@
         style="position:sticky;top:0;z-index:60;background:rgba(247, 244, 242, 0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:2px solid #3C0031">
         <div class="nav-header-inner">
           <a href="#" onClick="{{ goHome }}" class="nav-brand-box" title="Insignia Court &middot; Wuse II, Abuja">
-            <img src="./assets/logo-trimmed.png" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
+            <span class="nav-brand-stack">
+              <img src="./assets/logo-trimmed.png" alt="Insignia Court Wuse II, Abuja" class="brand-logo-img" />
+              <span class="nav-managed-by">Managed by Masterpiece Capital</span>
+            </span>
           </a>
 
           <!-- Primary Navigation -->
@@ -3499,18 +3505,18 @@
                 Executive Coworking &middot; Preferred Resident Rates</div>
               <h1
                 style="font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(34px,4vw,62px);line-height:1.05;margin:0 0 22px;color:#3C0031">
-                Executive Coworking<br>&amp; Meeting Suites</h1>
+                Executive Coworking<br>&amp; Meeting Room</h1>
               <p style="font-size:clamp(16px,1.3vw,20px);line-height:1.62;color:#3C0031;margin:0 0 16px;max-width:46ch">
                 For work and meetings, our partner boutique coworking space in Wuse II is available at preferred guest
                 rates.</p>
               <p style="font-size:clamp(14px,1.1vw,17px);line-height:1.7;color:#5C3A52;margin:0 0 28px;max-width:50ch">
                 Every room at Insignia Courts is arranged to support both relaxation and productivity. When your day
-                requires more &mdash; dedicated hot desks, private executive suites, or a 12-person boardroom with 4K
-                screens &mdash; our concierge arranges it with direct room billing.</p>
+                requires a dedicated workspace or a professional meeting environment, our concierge can arrange
+                hot desks or a 5-person meeting room at our partner coworking space.</p>
               <div class="btn-responsive-row" style="display:flex;gap:14px;flex-wrap:wrap">
                 <button type="button" onClick="{{ openEnquiry }}"
                   style="border:0;background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 30px;min-height:48px;cursor:pointer;text-align:center"
-                  style-hover="background:#C4507E">Reserve Desk or Boardroom</button>
+                  style-hover="background:#C4507E">Reserve Desk or Meeting Room</button>
                 <a href="{{ waHref }}" target="_blank" rel="noopener"
                   style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 28px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none"
                   style-hover="background:#3C0031;color:#FFFFFF">WhatsApp Concierge</a>
@@ -3628,7 +3634,7 @@
                   </span>
                   <span class="drone-mobile-hide"
                     style="color:#FFFFFF;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;background:rgba(20,2,17,0.7);padding:6px 12px;border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(4px)">
-                    Executive Desks &middot; Private Suites &middot; 12-Seat Boardroom
+                    Hot Desks &middot; 5-Person Meeting Room
                   </span>
                 </div>
 
