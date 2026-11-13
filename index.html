@@ -3462,9 +3462,9 @@
                           <button type="button" onClick="{{ piece.view }}"
                             style="border:1px solid #E3D8DC;background:#FFFFFF;color:#3C0031;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:8px 12px;cursor:pointer"
                             style-hover="background:#F7F4F2;border-color:#3C0031">View</button>
-                          <button type="button" onClick="{{ piece.enquire }}"
+                          <a href="{{ piece.enquiryHref }}" target="_blank" rel="noopener"
                             style="border:1px solid #3C0031;background:transparent;color:#3C0031;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;cursor:pointer;text-align:left"
-                            style-hover="background:#3C0031;color:#FFFFFF">Ask About Piece</button>
+                            style-hover="background:#3C0031;color:#FFFFFF">Ask About Piece</a>
                         </div>
                       </div>
                     </div>
@@ -3483,9 +3483,9 @@
                 <p style="font-size:14.5px;color:#5C3A52;margin:0;max-width:48ch">Selected artworks and artisanal
                   ceramics are available for private acquisition. Family originals remain in the residence story.</p>
               </div>
-              <button type="button" onClick="{{ openEnquiry }}"
+              <a href="{{ artAcquisitionHref }}" target="_blank" rel="noopener"
                 style="border:0;background:#3C0031;color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:18px 34px;cursor:pointer;text-align:center"
-                style-hover="background:#C4507E">Inquire About Acquisition</button>
+                style-hover="background:#C4507E">Inquire About Acquisition</a>
             </div>
           </section>
         </main>
@@ -4296,11 +4296,11 @@
               <!-- Action & Pagination Footer -->
               <div>
                 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
-                  <button type="button" onClick="{{ enquireCurDecor }}"
+                  <a href="{{ curDecorEnquiryHref }}" target="_blank" rel="noopener"
                     style="flex:1;border:0;background:#3C0031;color:#FFFFFF;font-size:11.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 22px;cursor:pointer;text-align:center;min-height:48px;display:flex;align-items:center;justify-content:center"
                     style-hover="background:#C4507E">
                     Inquire About This Piece &rarr;
-                  </button>
+                  </a>
                 </div>
 
                 <!-- Gallery Prev / Next Buttons -->
@@ -5366,6 +5366,9 @@ class Component extends DCLogic {
       const otherRooms = [1, 2, 3].map(offset => withHandlers[(safeRoomIdx + offset) % withHandlers.length]).filter(Boolean);
       const msg = this.message ? this.message() : { phone:'2349110111122', body:'' };
       const wa = 'https://wa.me/' + (msg.phone || '2349110111122');
+      const artworkEnquiryHref = (name) => wa + '?text=' + encodeURIComponent(
+        'Hello Insignia Court, I’d like to ask about the artwork “' + name + '” from The Art We Live With.'
+      );
       const options = ['No preference'].concat(ROOMS.map(r => r.name + ' — ' + r.tag));
 
       const curArticleKey = activeArticleKey || 'butterflies';
@@ -5458,7 +5461,7 @@ class Component extends DCLogic {
           photo: PX(d.px, 900),
           spanClass: d.key === 'd11' ? 'decor-card-wide' : '',
           view: (e) => { if (this.openDecorModal) this.openDecorModal(d.key)(e); },
-          enquire: (e) => { if (this.openEnquiry) this.openEnquiry('The Art We Live With — ' + d.name)(e); }
+          enquiryHref: artworkEnquiryHref(d.name)
         })),
         decorModalOpen: !!decorModalOpen,
         curDecor,
@@ -5472,9 +5475,8 @@ class Component extends DCLogic {
         closeDecorModal: (e) => { if (this.closeDecorModal) this.closeDecorModal(e); },
         nextDecorModal: (e) => { if (this.nextDecorModal) this.nextDecorModal(e); },
         prevDecorModal: (e) => { if (this.prevDecorModal) this.prevDecorModal(e); },
-        enquireCurDecor: (e) => {
-          if (this.openEnquiry) this.openEnquiry('The Art We Live With — ' + curDecor.name)(e);
-        },
+        curDecorEnquiryHref: artworkEnquiryHref(curDecor.name),
+        artAcquisitionHref: wa + '?text=' + encodeURIComponent('Hello Insignia Court, which pieces from The Art We Live With are available for acquisition?'),
         hood: HOOD,
         journal: JOURNAL.map(p => ({
           ...p,
